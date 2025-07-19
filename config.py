@@ -1,15 +1,14 @@
 # Trading configuration settings
 
-# The symbol for the trading pair (e.g., 'DOGEUSDT')
-# Binance uses DOGEUSDT for DOGE spot/futures trading
-SYMBOL = 'DOGEUSDT'  # Changed to DOGE trading pair
+# The symbols for the trading pairs to scan
+# The bot will trade the first symbol that provides a valid signal
+SYMBOLS = ['DOGEUSDT']
 
-# The leverage to use for futures trading
-LEVERAGE = 1
+# The maximum leverage to use for futures trading
+MAX_LEVERAGE = 10
 
-# The amount of the asset to trade in each order
-# DOGE trading - adjusted for DOGEUSDT format
-LOT_SIZE = 50  # About $5-10 per trade (DOGE price range)
+# The percentage of your account balance to risk on a single trade
+RISK_PERCENT = 1.0  # e.g., 1.0 means 1% of your account balance
 
 # The execution interval in seconds
 BOT_SLEEP_TIME_SECS = 300  # 5 minutes

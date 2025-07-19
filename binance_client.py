@@ -7,6 +7,7 @@ import asyncio
 import json
 from datetime import datetime
 from dotenv import load_dotenv
+from typing import List, Dict
 
 class BinanceClient:
     def __init__(self, mock_mode=False, testnet=False):
@@ -165,7 +166,7 @@ class BinanceClient:
             return None
     
     def place_order(self, symbol, side, quantity, order_type='market', price=None, stop_loss=None, take_profit=None):
-        """Place an order on Binance"""
+        """Place an order on Binance with optional SL/TP for futures"""
         # Handle mock mode
         if self.mock_mode:
             if not price:
@@ -183,42 +184,77 @@ class BinanceClient:
                 'status': 'closed',
                 'timestamp': int(time.time() * 1000),
                 'datetime': datetime.now().isoformat(),
-                'info': {'mock': True}
+                'info': {'mock': True, 'stopLoss': stop_loss, 'takeProfit': take_profit}
             }
             
+            # Simulate balance change
+            cost = quantity * price
             if side.lower() == 'buy':
-                cost = quantity * price
-                self.mock_balance['USDT'] = self.mock_balance.get('USDT', 0) - cost
-                symbol_asset = symbol.replace('USDT', '')
-                self.mock_balance[symbol_asset] = self.mock_balance.get(symbol_asset, 0) + quantity
-            else:  # sell
-                proceeds = quantity * price
-                self.mock_balance['USDT'] = self.mock_balance.get('USDT', 0) + proceeds
-                symbol_asset = symbol.replace('USDT', '')
-                self.mock_balance[symbol_asset] = self.mock_balance.get(symbol_asset, 0) - quantity
+                self.mock_balance['USDT'] -= cost
+            else:
+                self.mock_balance['USDT'] += cost
             
             return mock_order
 
-        # Real mode
+        # Real mode for futures trading
         try:
-            # Create the primary order. We ignore stop_loss and take_profit here
-            # because they must be created in separate orders after this one fills.
+            params = {
+                'reduceOnly': False
+            }
+
+            # For futures, we can often set SL/TP in the same order request
+            # The exact parameter names can vary, 'stopPrice' and 'takeProfitPrice' are common
+            if stop_loss:
+                params['stopPrice'] = stop_loss
+                params['takeProfitPrice'] = take_profit # Binance often requires both or neither
+
             order = self.client.create_order(
                 symbol=symbol,
-                type=order_type, # This is 'market' as set in main.py
+                type=order_type, 
                 side=side,
                 amount=quantity,
-                price=price, # ccxt handles price=None for market orders
-                params={}    # Pass empty params to prevent ccxt from being too smart
+                price=price, # For limit orders
+                params=params
             )
-
-            # TODO: After the market order fills, create separate stop-loss and take-profit orders.
 
             return order
         except Exception as e:
             print(f"Error placing order: {e}")
-            return None
+            # Attempt to place a simple order if the complex one fails
+            try:
+                print("Attempting to place order without SL/TP...")
+                order = self.client.create_order(
+                    symbol=symbol,
+                    type=order_type,
+                    side=side,
+                    amount=quantity,
+                    price=price
+                )
+                print("Simple order placed successfully. You must set SL/TP manually.")
+                return order
+            except Exception as e2:
+                print(f"Failed to place even a simple order: {e2}")
+                return None
     
+    def get_income_history(self, symbol: str, start_time: int) -> List[Dict]:
+        """Get income history (realized PNL) for a symbol since a specific time."""
+        if self.mock_mode:
+            # In mock mode, we don't have a real trade history
+            return []
+        
+        try:
+            # Fetch income history. 'REALIZED_PNL' is what we want for closed trades.
+            income_history = self.client.fetch_income_history(
+                symbol=symbol,
+                since=start_time,
+                limit=1000, # Max limit
+                params={'incomeType': 'REALIZED_PNL'}
+            )
+            return income_history
+        except Exception as e:
+            print(f"Error getting income history for {symbol}: {e}")
+            return []
+
     def get_open_positions(self, symbol):
         """Get open positions for a symbol. Returns a list of positions."""
         if self.mock_mode:

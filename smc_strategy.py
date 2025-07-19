@@ -16,6 +16,26 @@ class SMCStrategy:
         self.fvg_threshold = 0.001  # Minimum gap size as percentage
         self.liquidity_threshold = 0.002  # Minimum liquidity zone size
         
+    def _is_market_tradeable(self, df: pd.DataFrame) -> Tuple[bool, str]:
+        """Check if the market has enough volume and volatility to trade"""
+        # Volatility Check (ATR)
+        atr = df.ta.atr(length=14).iloc[-1]
+        current_price = df['close'].iloc[-1]
+        atr_percent = (atr / current_price) * 100
+        
+        if atr_percent < self.config.MIN_ATR_PERCENT:
+            return False, f"Low volatility (ATR: {atr_percent:.2f}%)"
+        
+        # Volume Check
+        volume_ma = df['volume'].rolling(window=20).mean().iloc[-1]
+        current_volume = df['volume'].iloc[-1]
+        volume_ratio = current_volume / volume_ma
+        
+        if volume_ratio < self.config.MIN_VOLUME_RATIO:
+            return False, f"Low volume (Ratio: {volume_ratio:.2f})"
+            
+        return True, "Market is tradeable"
+
     def identify_market_structure(self, df: pd.DataFrame) -> Dict:
         """Identify market structure: HH, HL, LH, LL"""
         if len(df) < 20:
@@ -260,8 +280,13 @@ class SMCStrategy:
         """Generate trading signal based on SMC analysis"""
         if len(df) < 50:
             return "HOLD", {"reason": "Insufficient data"}
+
+        # 1. Check if market is tradeable first
+        is_tradeable, reason = self._is_market_tradeable(df)
+        if not is_tradeable:
+            return "HOLD", {"reason": reason}
         
-        # Perform all SMC analysis
+        # 2. Perform all SMC analysis
         market_structure = self.identify_market_structure(df)
         order_blocks = self.identify_order_blocks(df)
         fvgs = self.identify_fair_value_gaps(df)
