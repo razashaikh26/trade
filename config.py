@@ -19,6 +19,12 @@ TAKE_PROFIT_PERCENT = 2.5  # Adjusted for DOGE volatility
 # The percentage for stop-loss from the entry price
 STOP_LOSS_PERCENT = 1.2  # Adjusted for DOGE price movements
 
+# --- FILTERS ---
+# Minimum volatility (ATR as a percentage of price) to consider a trade
+MIN_ATR_PERCENT = 0.5  # e.g., 0.5% - avoids flat markets
+
+# Minimum volume (compared to its moving average) to consider a trade
+MIN_VOLUME_RATIO = 0.8 # e.g., 0.8 - current volume must be at least 80% of the average
 
 # STRATEGY SETTINGS
 # -- Moving Average --
