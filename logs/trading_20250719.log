@@ -247,3 +247,109 @@
 2025-07-19 23:24:08,023 - INFO - No open positions found. Scanning for new trading opportunities...
 2025-07-19 23:24:10,048 - WARNING - Risk manager check failed: Account balance (0.15) below minimum (1). Halting trade.
 2025-07-19 23:24:10,088 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:33:57,056 - INFO - --- STARTING BOT IN LIVE TRADING MODE ---
+2025-07-19 23:33:57,066 - INFO - Running trade check at 2025-07-19 23:33:57
+2025-07-19 23:33:57,547 - INFO - No open positions found. Scanning for new trading opportunities...
+2025-07-19 23:33:59,471 - WARNING - Risk manager check failed: Account balance (0.00) below minimum (1). Halting trade.
+2025-07-19 23:33:59,476 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:34:23,882 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:34:23,891 - INFO - Running trade check at 2025-07-19 23:34:23
+2025-07-19 23:34:27,169 - INFO - An open buy position for DOGEUSDT is being managed on the exchange.
+2025-07-19 23:34:27,169 - INFO - Entry: 0.2648, Size: 50.0. Bot will not take new action.
+2025-07-19 23:34:27,184 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:42:17,994 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:42:17,995 - INFO - Running trade check at 2025-07-19 23:42:17
+2025-07-19 23:42:19,961 - ERROR - ❌ An unexpected error occurred in check_and_trade: SMCStrategy.__init__() missing 1 required positional argument: 'config'
+2025-07-19 23:42:19,961 - ERROR - 📋 Full traceback: Traceback (most recent call last):
+  File "/Users/razashaikh/Desktop/trade/main.py", line 56, in check_and_trade
+    check_and_trade.strategy = SMCStrategy()
+                               ^^^^^^^^^^^^^
+TypeError: SMCStrategy.__init__() missing 1 required positional argument: 'config'
+
+2025-07-19 23:42:19,961 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:43:17,954 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:43:17,955 - INFO - Running trade check at 2025-07-19 23:43:17
+2025-07-19 23:43:19,903 - ERROR - ❌ An unexpected error occurred in check_and_trade: RiskManager.__init__() missing 3 required positional arguments: 'max_trades_per_day', 'max_daily_loss', and 'min_balance'
+2025-07-19 23:43:19,904 - ERROR - 📋 Full traceback: Traceback (most recent call last):
+  File "/Users/razashaikh/Desktop/trade/main.py", line 57, in check_and_trade
+    check_and_trade.risk_manager = RiskManager()
+                                   ^^^^^^^^^^^^^
+TypeError: RiskManager.__init__() missing 3 required positional arguments: 'max_trades_per_day', 'max_daily_loss', and 'min_balance'
+
+2025-07-19 23:43:19,904 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:44:44,972 - INFO - --- STARTING BOT IN LIVE TRADING MODE ---
+2025-07-19 23:44:44,973 - INFO - Running trade check at 2025-07-19 23:44:44
+2025-07-19 23:44:45,297 - ERROR - ❌ Failed to get current price for DOGEUSDT: 'BinanceClient' object has no attribute 'get_current_price'
+2025-07-19 23:44:45,297 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:45:10,567 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:45:10,568 - INFO - Running trade check at 2025-07-19 23:45:10
+2025-07-19 23:45:12,460 - ERROR - ❌ Failed to get current price for DOGEUSDT: 'BinanceClient' object has no attribute 'get_current_price'
+2025-07-19 23:45:12,460 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:47:20,280 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:47:20,281 - INFO - Running trade check at 2025-07-19 23:47:20
+2025-07-19 23:47:22,488 - INFO - 📊 Current DOGEUSDT price: $0.2660
+2025-07-19 23:47:24,928 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:47:24,928 - ERROR - ❌ Failed to get historical data: 'BinanceClient' object has no attribute 'get_historical_data'
+2025-07-19 23:47:24,928 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:48:15,841 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:48:15,841 - INFO - Running trade check at 2025-07-19 23:48:15
+2025-07-19 23:48:17,654 - INFO - 📊 Current DOGEUSDT price: $0.2660
+2025-07-19 23:48:18,631 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:48:19,144 - INFO - 📈 Analyzing 100 candles of historical data
+2025-07-19 23:48:19,144 - ERROR - ❌ Strategy analysis failed: 'SMCStrategy' object has no attribute 'analyze'
+2025-07-19 23:48:19,144 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:49:16,225 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:49:16,226 - INFO - Running trade check at 2025-07-19 23:49:16
+2025-07-19 23:49:18,206 - INFO - 📊 Current DOGEUSDT price: $0.2660
+2025-07-19 23:49:18,980 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:49:19,155 - INFO - 📈 Analyzing 100 candles of historical data
+2025-07-19 23:49:19,156 - ERROR - ❌ Strategy analysis failed: 'SMCStrategy' object has no attribute 'analyze'
+2025-07-19 23:49:19,156 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:49:56,850 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:49:56,851 - INFO - Running trade check at 2025-07-19 23:49:56
+2025-07-19 23:49:58,818 - INFO - 📊 Current DOGEUSDT price: $0.2660
+2025-07-19 23:50:00,342 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:50:00,781 - INFO - 📈 Analyzing 100 candles of historical data
+2025-07-19 23:50:00,786 - INFO - 🧠 Strategy signal: HOLD
+2025-07-19 23:50:00,786 - INFO - ⏸️ No trading signal. Waiting for next opportunity...
+2025-07-19 23:50:00,786 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:52:16,157 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:52:16,158 - INFO - Running trade check at 2025-07-19 23:52:16
+2025-07-19 23:52:18,366 - INFO - Current DOGEUSDT price: 0.2660
+2025-07-19 23:52:19,204 - INFO - Managing open long position for DOGEUSDT. Entry: 0.2648, Size: 50.0
+2025-07-19 23:52:19,205 - INFO - Current Price: 0.27, TP: 0.27, SL: 0.26
+2025-07-19 23:52:19,205 - INFO - Holding position. No action needed.
+2025-07-19 23:52:19,205 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:54:03,883 - INFO - Starting DOGEUSDT trading bot in TESTNET mode
+2025-07-19 23:54:03,884 - INFO - Running trade check at 2025-07-19 23:54:03
+2025-07-19 23:54:05,219 - INFO - Current DOGEUSDT price: 0.2660
+2025-07-19 23:54:06,359 - INFO - Managing open long position for DOGEUSDT. Entry: 0.2648, Size: 50.0
+2025-07-19 23:54:06,359 - INFO - Account balance: 8212.09 USDT
+2025-07-19 23:54:06,360 - INFO - Current Price: 0.27, TP: 0.27, SL: 0.26
+2025-07-19 23:54:06,360 - INFO - Holding position. No action needed.
+2025-07-19 23:54:06,360 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:54:49,152 - INFO - --- STARTING BOT IN LIVE TRADING MODE ---
+2025-07-19 23:54:49,153 - INFO - Running trade check at 2025-07-19 23:54:49
+2025-07-19 23:54:52,114 - INFO - Current DOGEUSDT price: 0.2418
+2025-07-19 23:54:52,467 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:54:52,637 - INFO - 📈 Analyzing 100 candles of historical data
+2025-07-19 23:54:52,644 - INFO - 🧠 Strategy signal: HOLD
+2025-07-19 23:54:52,644 - INFO - ⏸️ No trading signal. Waiting for next opportunity...
+2025-07-19 23:54:52,644 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:55:33,220 - INFO - --- STARTING BOT IN LIVE TRADING MODE ---
+2025-07-19 23:55:33,220 - INFO - Running trade check at 2025-07-19 23:55:33
+2025-07-19 23:55:36,062 - INFO - Current DOGEUSDT price: 0.2419
+2025-07-19 23:55:36,404 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:55:36,570 - INFO - 📈 Analyzing 100 candles of historical data
+2025-07-19 23:55:36,574 - INFO - 🧠 Strategy signal: HOLD
+2025-07-19 23:55:36,574 - INFO - ⏸️ No trading signal. Waiting for next opportunity...
+2025-07-19 23:55:36,574 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 23:57:46,301 - INFO - --- STARTING BOT IN LIVE TRADING MODE ---
+2025-07-19 23:57:46,302 - INFO - Running trade check at 2025-07-19 23:57:46
+2025-07-19 23:57:48,776 - INFO - Current DOGEUSDT price: 0.2419
+2025-07-19 23:57:49,317 - INFO - Account balance: 0.51 USDT
+2025-07-19 23:57:49,317 - INFO - 🔍 Analyzing DOGEUSDT for new trading opportunities...
+2025-07-19 23:57:49,484 - INFO - 📈 Analyzing 100 candles of historical data
+2025-07-19 23:57:49,491 - INFO - 🧠 Strategy signal: HOLD
+2025-07-19 23:57:49,491 - INFO - ⏸️ No trading signal. Waiting for next opportunity...
+2025-07-19 23:57:49,491 - INFO - Bot scheduled to run every 300 seconds

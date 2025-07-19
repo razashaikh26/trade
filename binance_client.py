@@ -5,6 +5,7 @@ import pandas as pd
 import ccxt
 import asyncio
 import json
+import requests
 from datetime import datetime
 from dotenv import load_dotenv
 from typing import List, Dict
@@ -14,34 +15,87 @@ class BinanceClient:
         # Load environment variables
         load_dotenv()
         
+        self.mock_mode = mock_mode
+        self.testnet = testnet
+        self.connection_failed = False
+        
+        # Mock mode settings
+        if mock_mode:
+            self.mock_balance = {'USDT': 1000.0}
+            self.mock_positions = []
+            self.mock_orders = []
+            print(" BinanceClient initialized in MOCK MODE")
+            return
+        
         # Initialize Binance client using CCXT
         api_key = os.getenv('BINANCE_API_KEY')
         api_secret = os.getenv('BINANCE_API_SECRET')
         
         if not api_key or not api_secret:
-            raise ValueError("API key and secret must be set in .env file")
+            print(" API credentials not found. Running in mock mode.")
+            self.mock_mode = True
+            self.mock_balance = {'USDT': 1000.0}
+            self.mock_positions = []
+            self.mock_orders = []
+            return
             
-        self.client = ccxt.binance({
-            'apiKey': api_key,
-            'secret': api_secret,
-            'enableRateLimit': True,  # important to avoid getting banned
-            'options': {
-                'defaultType': 'future', # Use 'future' for DOGE futures trading
-            },
-        })
+        try:
+            self.client = ccxt.binance({
+                'apiKey': api_key,
+                'secret': api_secret,
+                'enableRateLimit': True,
+                'options': {
+                    'defaultType': 'future',
+                },
+                'timeout': 30000,  # 30 second timeout
+            })
 
-        # Set testnet mode if enabled
-        if testnet:
-            self.client.set_sandbox_mode(True)
+            # Set testnet mode if enabled
+            if testnet:
+                self.client.set_sandbox_mode(True)
+                print(" BinanceClient initialized in TESTNET MODE")
+            
+            # Test connection
+            self._test_connection()
+            
+        except Exception as e:
+            print(f" Failed to initialize Binance client: {e}")
+            print(" Falling back to MOCK MODE")
+            self.mock_mode = True
+            self.connection_failed = True
+            self.mock_balance = {'USDT': 1000.0}
+            self.mock_positions = []
+            self.mock_orders = []
         
         # Store latest prices
         self.latest_prices = {}
         self.websocket_running = False
         
-        # Mock mode settings
-        self.mock_mode = mock_mode
-        self.mock_balance = {'USDT': 1000.0}  # Default mock balance of 1000 USDT
+        # Store latest prices
+        self.latest_prices = {}
+        self.websocket_running = False
         
+    def _test_connection(self):
+        """Test connection to Binance API"""
+        if self.mock_mode:
+            return True
+            
+        try:
+            # Try to ping the server
+            self.client.load_markets()
+            print(" Successfully connected to Binance API")
+            return True
+        except ccxt.NetworkError as e:
+            if "restricted location" in str(e).lower():
+                print(" Geographic restriction detected - Binance API blocked")
+                raise Exception("Geographic restriction")
+            else:
+                print(f" Network error: {e}")
+                raise
+        except Exception as e:
+            print(f" Connection test failed: {e}")
+            raise
+    
     def get_account_balance(self, asset='USDT'):
         """Get account balance for a specific asset from both Futures and Spot wallets"""
         if self.mock_mode:

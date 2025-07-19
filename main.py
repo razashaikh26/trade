@@ -40,121 +40,169 @@ def initialize(mock_mode=False, testnet=False):
 
 def check_and_trade(mock_mode=False, testnet=False):
     """Main trading logic that runs on schedule"""
-    binance, strategy, risk_manager, logger = initialize(mock_mode, testnet)
+    logger = get_logger()
     
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    logger.info(f"Running trade check at {current_time}")
-
     try:
-        # First, check if a position is already open for ANY of the symbols.
-        # This simple logic prevents opening more than one position at a time.
-        an_open_position_exists = False
-        for symbol in config.SYMBOLS:
-            open_positions = binance.get_open_positions(symbol)
-            if open_positions:
-                position = open_positions[0]
-                entry_price = float(position['entryPrice'])
-                contracts = float(position['contracts'])
-                position_side = 'buy' if contracts > 0 else 'sell'
-                logger.info(f"An open {position_side} position for {symbol} is being managed on the exchange.")
-                logger.info(f"Entry: {entry_price}, Size: {abs(contracts)}. Bot will not take new action.")
-                an_open_position_exists = True
-                break  # Exit the loop as soon as we find one open position
-
-        if an_open_position_exists:
-            return # Stop the function if a trade is already active
-
-        # --- If no positions are open, look for a new trading opportunity ---
-        logger.info("No open positions found. Scanning for new trading opportunities...")
-        account_balance = binance.get_account_balance('USDT')
+        # Log the start of trade check with timestamp
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        logger.info(f"Running trade check at {current_time}")
         
-        # The risk manager now needs the binance client to check PNL
-        can_trade, reason = risk_manager.can_trade(account_balance, binance, config.SYMBOLS)
-        if not can_trade:
-            logger.warning(f"Risk manager check failed: {reason}. Halting trade.")
+        # Get current market data
+        symbol = config.SYMBOLS[0]  # e.g., 'DOGEUSDT'
+        
+        # Initialize clients if not already done
+        if not hasattr(check_and_trade, 'binance_client'):
+            check_and_trade.binance_client = BinanceClient(mock_mode=mock_mode, testnet=testnet)
+            check_and_trade.strategy = SMCStrategy(config)
+            check_and_trade.risk_manager = RiskManager(
+                max_trades_per_day=getattr(config, 'MAX_TRADES_PER_DAY', 10),
+                max_daily_loss=getattr(config, 'MAX_DAILY_LOSS', 100.0),
+                min_balance=getattr(config, 'MIN_BALANCE', 50.0)
+            )
+        
+        binance = check_and_trade.binance_client
+        strategy = check_and_trade.strategy
+        risk_manager = check_and_trade.risk_manager
+        
+        # Get current price
+        try:
+            current_price = binance.get_latest_price(symbol)
+            logger.info(f"Current {symbol} price: {current_price:.4f}")
+        except Exception as e:
+            logger.error(f"❌ Failed to get current price for {symbol}: {e}")
             return
-        logger.info(f"Account balance: {account_balance} USDT")
-
-        # Iterate through each symbol to find the first valid signal
-        for symbol in config.SYMBOLS:
-            logger.info(f"--- Checking {symbol} ---")
+        
+        # Check for existing positions
+        try:
+            positions = binance.get_open_positions(symbol)
+            open_position = None
             
-            klines = binance.get_klines(symbol, '15m')  # Use a timeframe suitable for SMC
-            if klines.empty or len(klines) < 50:
-                logger.warning(f"Could not retrieve sufficient klines for {symbol}.")
-                continue # Move to the next symbol
+            for pos in positions:
+                contracts = float(pos.get('contracts', 0))
+                if contracts != 0:
+                    open_position = pos
+                    break
 
-            # --- CANDLE CLOSE CONFIRMATION ---
-            # The last row of klines is the current, unclosed candle. We drop it to only analyze closed candles.
-            closed_klines = klines.iloc[:-1]
-
-            signal, analysis = strategy.generate_smc_signal(closed_klines)
-            logger.info(f"SMC Signal for {symbol} on closed candles: {signal}")
-
-            if signal in ['BUY', 'SELL']:
-                # To get the most up-to-date price for order execution, we use the original klines
-                analysis['current_price'] = klines['close'].iloc[-1]
-
-                trade_setup = strategy.calculate_risk_reward_levels(signal, analysis)
-                if not trade_setup:
-                    logger.warning(f"Could not calculate a valid trade setup for {symbol}.")
-                    continue
-
-                entry_price = trade_setup['entry']
-                stop_loss = trade_setup['stop_loss']
-                take_profit = trade_setup['take_profit']
-                rr_ratio = trade_setup.get('rr_ratio', 0)
-
-                logger.info(f"High-Confluence {signal} Setup Found for {symbol}!")
-                logger.info(f"  Entry: {entry_price:.5f}")
-                logger.info(f"  Stop Loss: {stop_loss:.5f}")
-                logger.info(f"  Take Profit: {take_profit:.5f}")
-                logger.info(f"  Risk/Reward Ratio: {rr_ratio:.2f}:1")
-
-                if rr_ratio < 5:
-                    logger.warning(f"Trade setup for {symbol} ignored. RR ratio {rr_ratio:.2f}:1 is below the 5:1 minimum.")
-                    continue
-
-                # --- DYNAMIC POSITION SIZING ---
-                risk_amount_usd = account_balance * (config.RISK_PERCENT / 100)
-                sl_distance = abs(entry_price - stop_loss)
-
-                if sl_distance == 0:
-                    logger.warning("Stop loss distance is zero. Cannot calculate position size.")
-                    continue
-
-                quantity = risk_amount_usd / sl_distance
+    
+    
+            if open_position:
+                # Get position details from the position info
+                position_info = open_position.get('info', {})
+                entry_price = float(position_info.get('entryPrice', 0))
+                position_size = float(open_position.get('contracts', 0))
+                side = 'short' if position_size < 0 else 'long'
                 
-                # TODO: Get symbol-specific precision for rounding quantity
-                quantity = round(quantity, 3 if 'BTC' in symbol else 0) # Simple rounding rule
-
-                if quantity == 0:
-                    logger.warning(f"Calculated quantity ({quantity}) is too small to trade. Skipping trade.")
-                    continue
-
-                logger.info(f"Calculated position size: {quantity} {symbol.replace('USDT', '')} (Risking ${risk_amount_usd:.2f})")
-
-                # Place the order with the calculated quantity and SL/TP
-                order = binance.place_order(
-                    symbol=symbol, 
-                    side=signal.lower(), 
-                    quantity=quantity, 
-                    order_type='market',
-                    stop_loss=stop_loss,
-                    take_profit=take_profit
-                )
-                if order:
-                    logger.info(f"Successfully placed new {signal} order for {symbol} with SL/TP.")
-                    risk_manager.record_trade() # Now just records the count
-                    break # Exit the loop after taking a trade
+                # Get current account balance
+                balance = binance.get_account_balance()
+                
+                logger.info(f"Managing open {side} position for {symbol}. Entry: {entry_price:.4f}, Size: {abs(position_size)}")
+                logger.info(f"Account balance: {balance:.2f} USDT")
+                
+                # Calculate TP and SL based on strategy
+                if side.lower() == 'short':
+                    take_profit = entry_price * (1 - config.TAKE_PROFIT_PERCENT / 100)
+                    stop_loss = entry_price * (1 + config.STOP_LOSS_PERCENT / 100)
+                else:  # long
+                    take_profit = entry_price * (1 + config.TAKE_PROFIT_PERCENT / 100)
+                    stop_loss = entry_price * (1 - config.STOP_LOSS_PERCENT / 100)
+                
+                logger.info(f"Current Price: {current_price:.2f}, TP: {take_profit:.2f}, SL: {stop_loss:.2f}")
+                
+                # Check if TP or SL should be triggered
+                if side.lower() == 'short':
+                    if current_price <= take_profit:
+                        logger.info(f"✅ Take Profit hit for SHORT position! Closing at {current_price:.4f}")
+                        # Close short position by buying back
+                        binance.place_order(symbol, 'BUY', abs(position_size), 'market')
+                        logger.info(f"💰 Profit: {(entry_price - current_price) * abs(position_size):.2f}")
+                        return
+                    elif current_price >= stop_loss:
+                        logger.info(f"🛑 Stop Loss hit for SHORT position! Closing at {current_price:.4f}")
+                        # Close short position by buying back
+                        binance.place_order(symbol, 'BUY', abs(position_size), 'market')
+                        logger.info(f"💸 Loss: {(current_price - entry_price) * abs(position_size):.2f}")
+                        return
+                else:  # long
+                    if current_price >= take_profit:
+                        logger.info(f"✅ Take Profit hit for LONG position! Closing at {current_price:.4f}")
+                        # Close long position by selling
+                        binance.place_order(symbol, 'SELL', abs(position_size), 'market')
+                        logger.info(f"💰 Profit: {(current_price - entry_price) * abs(position_size):.2f}")
+                        return
+                    elif current_price <= stop_loss:
+                        logger.info(f"🛑 Stop Loss hit for LONG position! Closing at {current_price:.4f}")
+                        # Close long position by selling
+                        binance.place_order(symbol, 'SELL', abs(position_size), 'market')
+                        logger.info(f"💸 Loss: {(entry_price - current_price) * abs(position_size):.2f}")
+                        return
+                
+                logger.info("Holding position. No action needed.")
+                return
+                
+        except Exception as e:
+            logger.error(f"❌ Error checking positions: {e}")
+        
+        # If no open positions, show balance and look for new trading opportunities
+        balance = binance.get_account_balance()
+        logger.info(f"Account balance: {balance:.2f} USDT")
+        logger.info(f"🔍 Analyzing {symbol} for new trading opportunities...")
+        
+        # Get historical data for analysis
+        try:
+            df = binance.get_klines(symbol, '1h', 100)
+            if df is None or df.empty:
+                logger.warning(f"⚠️ No historical data available for {symbol}")
+                return
+                
+            logger.info(f"📈 Analyzing {len(df)} candles of historical data")
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to get historical data: {e}")
+            return
+        
+        # Run strategy analysis
+        try:
+            signal, analysis = strategy.generate_smc_signal(df)
+            logger.info(f"🧠 Strategy signal: {signal}")
+            
+            if signal in ['BUY', 'SELL']:
+                # Calculate position size
+                balance = binance.get_account_balance()
+                logger.info(f"💰 Account balance: {balance:.2f} USDT")
+                
+                # Calculate position size based on risk percentage
+                risk_amount = balance * (config.RISK_PERCENT / 100)
+                position_size = risk_amount / current_price
+                
+                # Round position size to appropriate decimal places
+                position_size = round(position_size, 3)
+                
+                logger.info(f"📊 Calculated position size: {position_size} {symbol} (Risk: {risk_amount:.2f})")
+                
+                if position_size > 0:
+                    if signal == 'BUY':
+                        logger.info(f"🚀 Executing LONG order for {symbol} at {current_price:.4f}")
+                        order = binance.place_order(symbol, 'BUY', position_size, 'market')
+                        if order:
+                            logger.info(f"✅ LONG order placed successfully: {order}")
+                    else:  # SELL
+                        logger.info(f"🔻 Executing SHORT order for {symbol} at {current_price:.4f}")
+                        order = binance.place_order(symbol, 'SELL', position_size, 'market')
+                        if order:
+                            logger.info(f"✅ SHORT order placed successfully: {order}")
                 else:
-                    logger.error(f"Failed to place new order for {symbol}.")
+                    logger.warning("⚠️ Position size too small to trade")
             else:
-                logger.info(f"Signal for {symbol} is HOLD. Checking next symbol.")
-
+                logger.info("⏸️ No trading signal. Waiting for next opportunity...")
+                
+        except Exception as e:
+            logger.error(f"❌ Strategy analysis failed: {e}")
+            
     except Exception as e:
-        logger.error(f"An unexpected error occurred in check_and_trade: {e}")
-
+        logger.error(f"❌ An unexpected error occurred in check_and_trade: {e}")
+        import traceback
+        logger.error(f"📋 Full traceback: {traceback.format_exc()}")
+        
 def main():
     """Main function to start the trading bot"""
     # --- Find and Print Public IP Address ---
@@ -204,30 +252,7 @@ def keep_alive():
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
 
-def check_binance_connection():
-    """Checks the connection to Binance and API key validity."""
-    from binance.client import Client
-    from binance.exceptions import BinanceAPIException, BinanceRequestException
-
-    # Initialize the client without API keys for public endpoints
-    client = Client()
-
-    try:
-        # 1. Ping the server (checks network connectivity)
-        client.ping()
-        print("✅ Successfully pinged Binance API server.")
-
-        # 2. Get server time (checks public endpoint access)
-        server_time = client.get_server_time()
-        print(f"✅ Binance server time: {server_time}")
-        print("\nYour IP is successfully connected to Binance public endpoints.")
-
-    except (BinanceAPIException, BinanceRequestException) as e:
-        print(f"❌ Failed to connect to Binance: {e}")
-        print("\nPlease check your network connection, firewall settings, or if Binance is blocking your IP.")
-
 if __name__ == "__main__":
-    check_binance_connection()
     # Start the web server in a background thread to keep Render alive
     keep_alive_thread = threading.Thread(target=keep_alive, daemon=True)
     keep_alive_thread.start()
