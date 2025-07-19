@@ -25,7 +25,7 @@ class BinanceClient:
             'secret': api_secret,
             'enableRateLimit': True,  # important to avoid getting banned
             'options': {
-                'defaultType': 'future', # Changed from 'future' to 'spot' for SHIB
+                'defaultType': 'future', # Use 'future' for DOGE futures trading
             },
         })
 

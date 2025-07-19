@@ -1,24 +1,24 @@
 # Trading configuration settings
 
-# The symbol for the trading pair (e.g., '1000SHIBUSDT')
-# Binance uses 1000SHIBUSDT for SHIB futures trading
-SYMBOL = '1000SHIBUSDT'  # Correct Binance futures symbol for SHIB
+# The symbol for the trading pair (e.g., 'DOGEUSDT')
+# Binance uses DOGEUSDT for DOGE spot/futures trading
+SYMBOL = 'DOGEUSDT'  # Changed to DOGE trading pair
 
 # The leverage to use for futures trading
 LEVERAGE = 1
 
 # The amount of the asset to trade in each order
-# SHIB trading - adjusted for 1000SHIBUSDT format
-LOT_SIZE = 100  # About $1-2 per trade (1000SHIB multiplier)
+# DOGE trading - adjusted for DOGEUSDT format
+LOT_SIZE = 50  # About $5-10 per trade (DOGE price range)
 
 # The execution interval in seconds
 BOT_SLEEP_TIME_SECS = 300  # 5 minutes
 
 # The percentage for take-profit from the entry price
-TAKE_PROFIT_PERCENT = 3.0  # Increased to 3% (SHIB is more volatile)
+TAKE_PROFIT_PERCENT = 2.5  # Adjusted for DOGE volatility
 
 # The percentage for stop-loss from the entry price
-STOP_LOSS_PERCENT = 1.5  # Increased to 1.5% (SHIB needs wider stops)
+STOP_LOSS_PERCENT = 1.2  # Adjusted for DOGE price movements
 
 
 # STRATEGY SETTINGS
@@ -34,7 +34,7 @@ RSI_OVERBOUGHT = 70    # Standard overbought threshold
 # Execution settings
 CHECK_INTERVAL = 5     # Check every 5 minutes
 
-# Risk management - SAFER SETTINGS FOR SHIB
-MAX_TRADES_PER_DAY = 5   # Even more conservative for altcoin
-MAX_DAILY_LOSS = 2      # REDUCED to $10 max daily loss (very safe)
-MIN_BALANCE = 5        # Minimum account balance in USD (reduced)
+# Risk management - OPTIMIZED FOR DOGE
+MAX_TRADES_PER_DAY = 6   # Slightly more trades for DOGE
+MAX_DAILY_LOSS = 15     # $15 max daily loss for DOGE
+MIN_BALANCE = 10       # Minimum account balance in USD
