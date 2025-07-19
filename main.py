@@ -157,7 +157,10 @@ def check_and_trade(mock_mode=False, testnet=False):
         
         # If no open positions, show balance and look for new trading opportunities
         balance = binance.get_account_balance()
-        logger.info(f"Account balance: {balance:.2f} USDT")
+        if binance.mock_mode:
+            logger.info(f"Account balance: {balance:.2f} USDT (MOCK DATA)")
+        else:
+            logger.info(f"Account balance: {balance:.2f} USDT")
         logger.info(f"🔍 Analyzing {symbol} for new trading opportunities...")
         
         # Get historical data for analysis

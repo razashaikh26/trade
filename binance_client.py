@@ -6,6 +6,7 @@ import ccxt
 import asyncio
 import json
 import requests
+import random
 from datetime import datetime
 from dotenv import load_dotenv
 from typing import List, Dict
@@ -18,6 +19,20 @@ class BinanceClient:
         self.mock_mode = mock_mode
         self.testnet = testnet
         self.connection_failed = False
+        
+        # Free proxy list - these are public proxies that often work
+        self.free_proxies = [
+            'http://8.210.83.33:80',
+            'http://47.74.152.29:8888',
+            'http://43.134.68.153:3128',
+            'http://103.149.162.194:80',
+            'http://185.15.172.212:3128',
+            'http://103.216.207.15:8080',
+            'http://8.219.97.248:80',
+            'http://20.24.43.214:80',
+            'http://103.145.133.22:42325',
+            'http://194.182.187.78:3128'
+        ]
         
         # Mock mode settings
         if mock_mode:
@@ -39,15 +54,19 @@ class BinanceClient:
             self.mock_orders = []
             return
             
+        # Try to connect with different methods
+        self.client = None
+        connection_successful = False
+        
+        # Method 1: Direct connection
         try:
+            print(" Attempting direct connection to Binance...")
             self.client = ccxt.binance({
                 'apiKey': api_key,
                 'secret': api_secret,
                 'enableRateLimit': True,
-                'options': {
-                    'defaultType': 'future',
-                },
-                'timeout': 30000,  # 30 second timeout
+                'options': {'defaultType': 'future'},
+                'timeout': 30000,
             })
 
             # Set testnet mode if enabled
@@ -57,9 +76,47 @@ class BinanceClient:
             
             # Test connection
             self._test_connection()
+            connection_successful = True
+            print(" Direct connection successful!")
             
         except Exception as e:
-            print(f" Failed to initialize Binance client: {e}")
+            print(f" Direct connection failed: {e}")
+            
+        # Method 2: Try with free proxies if direct connection failed
+        if not connection_successful:
+            print(" Trying free proxy connections...")
+            for proxy in self.free_proxies:
+                try:
+                    print(f" Testing proxy: {proxy}")
+                    self.client = ccxt.binance({
+                        'apiKey': api_key,
+                        'secret': api_secret,
+                        'enableRateLimit': True,
+                        'options': {'defaultType': 'future'},
+                        'timeout': 15000,  # Shorter timeout for proxy testing
+                        'proxies': {
+                            'http': proxy,
+                            'https': proxy,
+                        }
+                    })
+                    
+                    # Set testnet mode if enabled
+                    if testnet:
+                        self.client.set_sandbox_mode(True)
+                    
+                    # Test the proxy connection
+                    self._test_connection()
+                    connection_successful = True
+                    print(f" Proxy connection successful: {proxy}")
+                    break
+                    
+                except Exception as e:
+                    print(f" Proxy {proxy} failed: {str(e)[:50]}...")
+                    continue
+        
+        # If all connections failed, fall back to mock mode
+        if not connection_successful:
+            print(" All connection methods failed!")
             print(" Falling back to MOCK MODE")
             self.mock_mode = True
             self.connection_failed = True
