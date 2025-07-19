@@ -59,6 +59,16 @@ def check_and_trade(mock_mode=False, testnet=False):
                 max_daily_loss=getattr(config, 'MAX_DAILY_LOSS', 100.0),
                 min_balance=getattr(config, 'MIN_BALANCE', 50.0)
             )
+            
+            # Log the actual mode the bot is running in
+            if check_and_trade.binance_client.mock_mode:
+                logger.warning("⚠️ BOT IS RUNNING IN MOCK MODE - Data is simulated, not real!")
+                logger.warning("⚠️ Prices and balances shown are fake test values")
+                if check_and_trade.binance_client.connection_failed:
+                    logger.error("❌ Binance API connection failed - likely geographic restriction")
+                    logger.error("💡 Consider using a VPN or different cloud provider for live trading")
+            else:
+                logger.info("✅ BOT IS RUNNING IN LIVE MODE - Using real Binance data")
         
         binance = check_and_trade.binance_client
         strategy = check_and_trade.strategy
@@ -67,7 +77,10 @@ def check_and_trade(mock_mode=False, testnet=False):
         # Get current price
         try:
             current_price = binance.get_latest_price(symbol)
-            logger.info(f"Current {symbol} price: {current_price:.4f}")
+            if binance.mock_mode:
+                logger.info(f"Current {symbol} price: {current_price:.4f} (MOCK DATA)")
+            else:
+                logger.info(f"Current {symbol} price: {current_price:.4f}")
         except Exception as e:
             logger.error(f"❌ Failed to get current price for {symbol}: {e}")
             return
