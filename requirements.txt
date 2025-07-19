@@ -5,4 +5,5 @@ python-dotenv==1.0.1
 schedule==1.2.1
 requests==2.32.3
 Flask==3.0.3
+python-binance==1.0.29
 numpy==1.26.4

@@ -204,7 +204,30 @@ def keep_alive():
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
 
+def check_binance_connection():
+    """Checks the connection to Binance and API key validity."""
+    from binance.client import Client
+    from binance.exceptions import BinanceAPIException, BinanceRequestException
+
+    # Initialize the client without API keys for public endpoints
+    client = Client()
+
+    try:
+        # 1. Ping the server (checks network connectivity)
+        client.ping()
+        print("✅ Successfully pinged Binance API server.")
+
+        # 2. Get server time (checks public endpoint access)
+        server_time = client.get_server_time()
+        print(f"✅ Binance server time: {server_time}")
+        print("\nYour IP is successfully connected to Binance public endpoints.")
+
+    except (BinanceAPIException, BinanceRequestException) as e:
+        print(f"❌ Failed to connect to Binance: {e}")
+        print("\nPlease check your network connection, firewall settings, or if Binance is blocking your IP.")
+
 if __name__ == "__main__":
+    check_binance_connection()
     # Start the web server in a background thread to keep Render alive
     keep_alive_thread = threading.Thread(target=keep_alive, daemon=True)
     keep_alive_thread.start()

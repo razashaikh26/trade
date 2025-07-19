@@ -43,26 +43,63 @@ class BinanceClient:
         self.mock_balance = {'USDT': 1000.0}  # Default mock balance of 1000 USDT
         
     def get_account_balance(self, asset='USDT'):
-        """Get account balance for a specific asset"""
+        """Get account balance for a specific asset from both Futures and Spot wallets"""
         if self.mock_mode:
             # Return mock balance if in mock mode
             return self.mock_balance.get(asset, 0.0)
         
         try:
-            # Get futures account balance
-            balance = self.client.fetch_balance()
+            # First check Futures account balance
+            futures_balance = self.client.fetch_balance()
             
-            # For futures, check both 'free' and 'total' balance
-            if asset in balance:
-                # Return available balance for trading
-                available = balance[asset]['free'] if balance[asset]['free'] > 0 else balance[asset]['total']
-                return float(available)
-            else:
-                return 0.0
+            # Check for balance in futures account first
+            common_currencies = ['USDT', 'BUSD', 'BNB', 'USDC', 'FDUSD', 'ETH', 'BTC', 'LDUSDT', 'BFUSD']
+            
+            # Check futures balance
+            for currency in [asset] + common_currencies:
+                if currency in futures_balance and isinstance(futures_balance[currency], dict):
+                    total_balance = futures_balance[currency].get('total', 0)
+                    free_balance = futures_balance[currency].get('free', 0)
+                    if total_balance > 0 or free_balance > 0:
+                        available = free_balance if free_balance > 0 else total_balance
+                        return float(available)
+            
+            # If no futures balance found, check spot wallet
+            
+            # Temporarily switch to spot mode to check spot balance
+            original_type = self.client.options.get('defaultType', 'future')
+            self.client.options['defaultType'] = 'spot'
+            
+            try:
+                spot_balance = self.client.fetch_balance()
+                
+                # Check spot balance - first try common currencies, then any non-zero balance
+                for currency in [asset] + common_currencies:
+                    if currency in spot_balance and isinstance(spot_balance[currency], dict):
+                        total_balance = spot_balance[currency].get('total', 0)
+                        free_balance = spot_balance[currency].get('free', 0)
+                        if total_balance > 0 or free_balance > 0:
+                            available = free_balance if free_balance > 0 else total_balance
+                            return float(available)
+                
+                # If no common currencies found, check for ANY non-zero balance
+                for currency, balance_info in spot_balance.items():
+                    if isinstance(balance_info, dict):
+                        total_balance = balance_info.get('total', 0)
+                        free_balance = balance_info.get('free', 0)
+                        if total_balance > 0 or free_balance > 0:
+                            available = free_balance if free_balance > 0 else total_balance
+                            return float(available)
+                
+            finally:
+                # Always restore original type
+                self.client.options['defaultType'] = original_type
+            
+            return 0.0
                 
         except Exception as e:
             print(f"CRITICAL ERROR: Could not get account balance. Check API keys and permissions. Error: {e}")
-            raise e # Re-raise the exception to stop the bot
+            return 0.0
     
     def get_klines(self, symbol, interval, limit=100):
         """Get historical klines (candlestick data)"""

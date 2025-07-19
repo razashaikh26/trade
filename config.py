@@ -42,4 +42,4 @@ CHECK_INTERVAL = 5     # Check every 5 minutes
 # Risk management - OPTIMIZED FOR DOGE
 MAX_TRADES_PER_DAY = 6   # Slightly more trades for DOGE
 MAX_DAILY_LOSS = 15     # $15 max daily loss for DOGE
-MIN_BALANCE = 10       # Minimum account balance in USD
+MIN_BALANCE = 1       # Minimum account balance in USD
