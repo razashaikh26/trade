@@ -167,52 +167,45 @@ def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description=f'{config.SYMBOLS[0]} Trading Bot')
     parser.add_argument('--mock', action='store_true', help='Run in mock mode with simulated balance')
-    parser.add_argument('--testnet', action='store_true', help='Run in testnet mode')
+    parser.add_argument('--testnet', action='store_true', help='Use Binance Testnet')
     args = parser.parse_args()
     
     # Initialize logger (use singleton)
     logger = get_logger()
     
-    # Default to testnet mode for real data without risk
+    # Initialize bot
+    binance, strategy, risk_manager, logger = initialize(mock_mode=args.mock, testnet=args.testnet)
+
+    # --- Mode Confirmation ---
     if args.mock:
         logger.info(f"Starting {config.SYMBOLS[0]} trading bot in MOCK mode")
-    elif args.testnet or not any([args.mock]):  # Default to testnet if no flags
-        logger.info(f"Starting {config.SYMBOLS[0]} trading bot in TESTNET mode (Real Data)")
-        args.testnet = True  # Ensure testnet is set
-    else:
-        logger.info(f"Starting {config.SYMBOLS[0]} trading bot in LIVE mode")
-    
-    # Run once at startup
-    check_and_trade(mock_mode=args.mock, testnet=args.testnet)
-    
-    # Schedule to run every BOT_SLEEP_TIME_SECS seconds
-    if args.mock:
-        schedule.every(config.BOT_SLEEP_TIME_SECS).seconds.do(check_and_trade, mock_mode=True, testnet=False)
     elif args.testnet:
-        schedule.every(config.BOT_SLEEP_TIME_SECS).seconds.do(check_and_trade, mock_mode=False, testnet=True)
+        logger.info(f"Starting {config.SYMBOLS[0]} trading bot in TESTNET mode")
     else:
-        schedule.every(config.BOT_SLEEP_TIME_SECS).seconds.do(check_and_trade, mock_mode=False, testnet=False)
-    
-    # Keep the script running
+        logger.info(f"--- STARTING BOT IN LIVE TRADING MODE ---")
+
+    # Run once at startup, then schedule
+    check_and_trade(mock_mode=args.mock, testnet=args.testnet)
+    schedule.every(config.BOT_SLEEP_TIME_SECS).seconds.do(check_and_trade, mock_mode=args.mock, testnet=args.testnet)
+
     logger.info(f"Bot scheduled to run every {config.BOT_SLEEP_TIME_SECS} seconds")
+
     while True:
         schedule.run_pending()
         time.sleep(1)
 
-# Flask web server to keep Render instance alive
-app = Flask(__name__)
+def keep_alive():
+    app = Flask(__name__)
 
-@app.route('/')
-def hello():
-    return "Bot is alive!"
+    @app.route('/')
+    def hello():
+        return "Bot is alive!"
 
-def run_web_server():
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
 
 if __name__ == "__main__":
-    # Start the web server in a background thread
-    web_thread = threading.Thread(target=run_web_server, daemon=True)
-    web_thread.start()
-
+    # Start the web server in a background thread to keep Render alive
+    keep_alive_thread = threading.Thread(target=keep_alive, daemon=True)
+    keep_alive_thread.start()
     main()
