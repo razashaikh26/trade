@@ -1,0 +1,58 @@
+2025-07-19 13:25:34,884 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-19 13:25:34,888 - INFO - Running trade check at 2025-07-19 13:25:34
+2025-07-19 13:25:35,268 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-19 13:25:35,827 - INFO - Account balance: 0.0 USDT
+2025-07-19 13:25:36,036 - WARNING - Could not retrieve sufficient klines for BTC/USDT.
+2025-07-19 13:25:36,038 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:09:07,485 - INFO - Starting BTC trading bot in TESTNET mode (Real Data)
+2025-07-19 16:09:07,489 - INFO - Running trade check at 2025-07-19 16:09:07
+2025-07-19 16:09:11,541 - INFO - Managing open long position for BTC/USDT. Entry: 118066.4, Size: 0.001
+2025-07-19 16:09:11,976 - INFO - Current Price: 118282.90, TP: 115705.07, SL: 119247.06
+2025-07-19 16:09:11,976 - INFO - Holding position. No action needed.
+2025-07-19 16:09:11,986 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:20:39,978 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-19 16:20:39,983 - INFO - Running trade check at 2025-07-19 16:20:39
+2025-07-19 16:20:43,964 - INFO - Managing open long position for BTC/USDT. Entry: 118066.4, Size: 0.001
+2025-07-19 16:20:44,811 - INFO - Current Price: 118337.60, TP: 115705.07, SL: 119247.06
+2025-07-19 16:20:44,811 - INFO - Holding position. No action needed.
+2025-07-19 16:20:44,818 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:23:39,634 - INFO - Starting SHIB/USDT trading bot in TESTNET mode (Real Data)
+2025-07-19 16:23:39,639 - INFO - Running trade check at 2025-07-19 16:23:39
+2025-07-19 16:23:43,079 - INFO - No open position for SHIB/USDT. Looking for a new trade.
+2025-07-19 16:23:43,597 - INFO - Account balance: 8094.3906371 USDT
+2025-07-19 16:23:43,599 - WARNING - Could not retrieve sufficient klines for SHIB/USDT.
+2025-07-19 16:23:43,618 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:26:34,004 - INFO - Starting 1000SHIBUSDT trading bot in TESTNET mode (Real Data)
+2025-07-19 16:26:34,008 - INFO - Running trade check at 2025-07-19 16:26:34
+2025-07-19 16:26:36,572 - INFO - No open position for 1000SHIBUSDT. Looking for a new trade.
+2025-07-19 16:26:36,774 - INFO - Account balance: 0.0 USDT
+2025-07-19 16:26:37,019 - INFO - SMC Signal: HOLD
+2025-07-19 16:26:37,019 - INFO - Signal is HOLD. No action taken.
+2025-07-19 16:26:37,026 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:26:47,008 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-19 16:26:47,012 - INFO - Running trade check at 2025-07-19 16:26:47
+2025-07-19 16:26:50,169 - INFO - Managing open long position for BTC/USDT. Entry: 118066.4, Size: 0.001
+2025-07-19 16:26:50,599 - INFO - Current Price: 118363.60, TP: 115705.07, SL: 119247.06
+2025-07-19 16:26:50,599 - INFO - Holding position. No action needed.
+2025-07-19 16:26:50,620 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:27:29,623 - INFO - Starting 1000SHIBUSDT trading bot in TESTNET mode (Real Data)
+2025-07-19 16:27:29,627 - INFO - Running trade check at 2025-07-19 16:27:29
+2025-07-19 16:27:32,562 - INFO - No open position for 1000SHIBUSDT. Looking for a new trade.
+2025-07-19 16:27:32,740 - INFO - Account balance: 0.0 USDT
+2025-07-19 16:27:33,407 - INFO - SMC Signal: HOLD
+2025-07-19 16:27:33,408 - INFO - Signal is HOLD. No action taken.
+2025-07-19 16:27:33,420 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:32:14,543 - INFO - Starting 1000SHIBUSDT trading bot in TESTNET mode (Real Data)
+2025-07-19 16:32:14,547 - INFO - Running trade check at 2025-07-19 16:32:14
+2025-07-19 16:32:17,622 - INFO - No open position for 1000SHIBUSDT. Looking for a new trade.
+2025-07-19 16:32:18,031 - INFO - Account balance: 0.0 USDT
+2025-07-19 16:32:18,225 - INFO - SMC Signal: HOLD
+2025-07-19 16:32:18,226 - INFO - Signal is HOLD. No action taken.
+2025-07-19 16:32:18,234 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:34:40,133 - INFO - Starting 1000SHIBUSDT trading bot in TESTNET mode (Real Data)
+2025-07-19 16:34:40,137 - INFO - Running trade check at 2025-07-19 16:34:40
+2025-07-19 16:34:43,247 - INFO - No open position for 1000SHIBUSDT. Looking for a new trade.
+2025-07-19 16:34:43,413 - INFO - Account balance: 0.0 USDT
+2025-07-19 16:34:43,878 - INFO - SMC Signal: HOLD
+2025-07-19 16:34:43,878 - INFO - Signal is HOLD. No action taken.
+2025-07-19 16:34:43,889 - INFO - Bot scheduled to run every 300 seconds

@@ -1,0 +1,2587 @@
+2025-07-18 00:03:59,654 - INFO - Starting BTC trading bot
+2025-07-18 00:03:59,659 - INFO - Running trade check at 2025-07-18 00:03:59
+2025-07-18 00:03:59,659 - INFO - Running trade check at 2025-07-18 00:03:59
+2025-07-18 00:04:03,888 - INFO - Account balance: 0.0 USDT
+2025-07-18 00:04:03,888 - INFO - Account balance: 0.0 USDT
+2025-07-18 00:04:03,888 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 00:04:03,888 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 00:04:03,908 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:04:03,908 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:42:59,805 - INFO - Starting BTC trading bot
+2025-07-18 00:42:59,809 - INFO - Running trade check at 2025-07-18 00:42:59
+2025-07-18 00:42:59,809 - INFO - Running trade check at 2025-07-18 00:42:59
+2025-07-18 00:43:00,292 - INFO - Account balance: 0.0 USDT
+2025-07-18 00:43:00,292 - INFO - Account balance: 0.0 USDT
+2025-07-18 00:43:00,293 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 00:43:00,293 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 00:43:00,296 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:43:00,296 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:46:54,395 - INFO - Starting BTC trading bot
+2025-07-18 00:46:54,399 - INFO - Running trade check at 2025-07-18 00:46:54
+2025-07-18 00:46:54,399 - INFO - Running trade check at 2025-07-18 00:46:54
+2025-07-18 00:46:54,726 - INFO - Account balance: 0.0 USDT
+2025-07-18 00:46:54,726 - INFO - Account balance: 0.0 USDT
+2025-07-18 00:46:54,727 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 00:46:54,727 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 00:46:54,730 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:46:54,730 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:51:47,437 - INFO - Starting BTC trading bot in MOCK mode
+2025-07-18 00:51:47,442 - INFO - Running trade check at 2025-07-18 00:51:47
+2025-07-18 00:51:47,442 - INFO - Running trade check at 2025-07-18 00:51:47
+2025-07-18 00:51:47,442 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:51:47,442 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:51:47,444 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:51:47,444 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:51:47,444 - INFO - Using real-time WebSocket price data
+2025-07-18 00:51:47,444 - INFO - Using real-time WebSocket price data
+2025-07-18 00:51:47,444 - INFO - No trade signal generated
+2025-07-18 00:51:47,444 - INFO - No trade signal generated
+2025-07-18 00:51:47,444 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:51:47,444 - INFO - Bot scheduled to run every 5 minutes
+2025-07-18 00:55:09,182 - INFO - Starting BTC trading bot in MOCK mode
+2025-07-18 00:55:09,187 - INFO - Running trade check at 2025-07-18 00:55:09
+2025-07-18 00:55:09,187 - INFO - Running trade check at 2025-07-18 00:55:09
+2025-07-18 00:55:09,187 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:55:09,187 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:55:09,192 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:55:09,192 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:55:09,192 - INFO - Using real-time WebSocket price data
+2025-07-18 00:55:09,192 - INFO - Using real-time WebSocket price data
+2025-07-18 00:55:09,192 - INFO - No trade signal generated
+2025-07-18 00:55:09,192 - INFO - No trade signal generated
+2025-07-18 00:55:09,192 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 00:55:09,192 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 00:55:39,318 - INFO - Running trade check at 2025-07-18 00:55:39
+2025-07-18 00:55:39,318 - INFO - Running trade check at 2025-07-18 00:55:39
+2025-07-18 00:55:39,318 - INFO - Running trade check at 2025-07-18 00:55:39
+2025-07-18 00:55:39,318 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:55:39,318 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:55:39,318 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:55:39,321 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:55:39,321 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:55:39,321 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:55:39,321 - INFO - Using real-time WebSocket price data
+2025-07-18 00:55:39,321 - INFO - Using real-time WebSocket price data
+2025-07-18 00:55:39,321 - INFO - Using real-time WebSocket price data
+2025-07-18 00:55:39,321 - INFO - No trade signal generated
+2025-07-18 00:55:39,321 - INFO - No trade signal generated
+2025-07-18 00:55:39,321 - INFO - No trade signal generated
+2025-07-18 00:56:09,457 - INFO - Running trade check at 2025-07-18 00:56:09
+2025-07-18 00:56:09,457 - INFO - Running trade check at 2025-07-18 00:56:09
+2025-07-18 00:56:09,457 - INFO - Running trade check at 2025-07-18 00:56:09
+2025-07-18 00:56:09,457 - INFO - Running trade check at 2025-07-18 00:56:09
+2025-07-18 00:56:09,457 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:09,457 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:09,457 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:09,457 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:09,460 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:09,460 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:09,460 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:09,460 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:09,460 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:09,460 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:09,460 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:09,460 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:09,460 - INFO - No trade signal generated
+2025-07-18 00:56:09,460 - INFO - No trade signal generated
+2025-07-18 00:56:09,460 - INFO - No trade signal generated
+2025-07-18 00:56:09,460 - INFO - No trade signal generated
+2025-07-18 00:56:39,608 - INFO - Running trade check at 2025-07-18 00:56:39
+2025-07-18 00:56:39,608 - INFO - Running trade check at 2025-07-18 00:56:39
+2025-07-18 00:56:39,608 - INFO - Running trade check at 2025-07-18 00:56:39
+2025-07-18 00:56:39,608 - INFO - Running trade check at 2025-07-18 00:56:39
+2025-07-18 00:56:39,608 - INFO - Running trade check at 2025-07-18 00:56:39
+2025-07-18 00:56:39,609 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:39,609 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:39,609 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:39,609 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:39,609 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:56:39,617 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:39,617 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:39,617 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:39,617 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:39,617 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:56:39,617 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:39,617 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:39,617 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:39,617 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:39,617 - INFO - Using real-time WebSocket price data
+2025-07-18 00:56:39,617 - INFO - No trade signal generated
+2025-07-18 00:56:39,617 - INFO - No trade signal generated
+2025-07-18 00:56:39,617 - INFO - No trade signal generated
+2025-07-18 00:56:39,617 - INFO - No trade signal generated
+2025-07-18 00:56:39,617 - INFO - No trade signal generated
+2025-07-18 00:57:09,748 - INFO - Running trade check at 2025-07-18 00:57:09
+2025-07-18 00:57:09,748 - INFO - Running trade check at 2025-07-18 00:57:09
+2025-07-18 00:57:09,748 - INFO - Running trade check at 2025-07-18 00:57:09
+2025-07-18 00:57:09,748 - INFO - Running trade check at 2025-07-18 00:57:09
+2025-07-18 00:57:09,748 - INFO - Running trade check at 2025-07-18 00:57:09
+2025-07-18 00:57:09,748 - INFO - Running trade check at 2025-07-18 00:57:09
+2025-07-18 00:57:09,748 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:09,748 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:09,748 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:09,748 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:09,748 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:09,748 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:09,751 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:09,751 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:09,751 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:09,751 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:09,751 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:09,751 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:09,751 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:09,751 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:09,751 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:09,751 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:09,751 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:09,751 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:09,751 - INFO - No trade signal generated
+2025-07-18 00:57:09,751 - INFO - No trade signal generated
+2025-07-18 00:57:09,751 - INFO - No trade signal generated
+2025-07-18 00:57:09,751 - INFO - No trade signal generated
+2025-07-18 00:57:09,751 - INFO - No trade signal generated
+2025-07-18 00:57:09,751 - INFO - No trade signal generated
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Running trade check at 2025-07-18 00:57:39
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,895 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,896 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - Using real-time WebSocket price data
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:57:39,897 - INFO - No trade signal generated
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Running trade check at 2025-07-18 00:58:10
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,026 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:10,030 - INFO - No trade signal generated
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,174 - INFO - Running trade check at 2025-07-18 00:58:40
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,175 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,177 - INFO - Using real-time WebSocket price data
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:58:40,178 - INFO - No trade signal generated
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Running trade check at 2025-07-18 00:59:10
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:10,332 - INFO - No trade signal generated
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,467 - INFO - Running trade check at 2025-07-18 00:59:40
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,468 - INFO - Account balance: 1000.0 USDT
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - Using real-time WebSocket price data
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 00:59:40,472 - INFO - No trade signal generated
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Running trade check at 2025-07-18 01:00:10
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,612 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,615 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:10,616 - INFO - No trade signal generated
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,770 - INFO - Running trade check at 2025-07-18 01:00:40
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,771 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:00:40,788 - INFO - No trade signal generated
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,944 - INFO - Running trade check at 2025-07-18 01:01:10
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,945 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:10,956 - INFO - No trade signal generated
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,088 - INFO - Running trade check at 2025-07-18 01:01:41
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,089 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,093 - INFO - Using real-time WebSocket price data
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:01:41,094 - INFO - No trade signal generated
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,246 - INFO - Running trade check at 2025-07-18 01:02:11
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,247 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:11,257 - INFO - No trade signal generated
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,405 - INFO - Running trade check at 2025-07-18 01:02:41
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,407 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,415 - INFO - Using real-time WebSocket price data
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:02:41,416 - INFO - No trade signal generated
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,564 - INFO - Running trade check at 2025-07-18 01:03:11
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,565 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:11,574 - INFO - No trade signal generated
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,706 - INFO - Running trade check at 2025-07-18 01:03:41
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,707 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,711 - INFO - Using real-time WebSocket price data
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:03:41,712 - INFO - No trade signal generated
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,856 - INFO - Running trade check at 2025-07-18 01:04:11
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,858 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,862 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:11,863 - INFO - No trade signal generated
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Running trade check at 2025-07-18 01:04:41
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:41,999 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - Using real-time WebSocket price data
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:04:42,002 - INFO - No trade signal generated
+2025-07-18 01:05:15,847 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:05:15,851 - INFO - Running trade check at 2025-07-18 01:05:15
+2025-07-18 01:05:15,851 - INFO - Running trade check at 2025-07-18 01:05:15
+2025-07-18 01:05:16,372 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:05:16,372 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:05:16,372 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:05:16,372 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:05:16,375 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:05:16,375 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:05:37,148 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:05:37,152 - INFO - Running trade check at 2025-07-18 01:05:37
+2025-07-18 01:05:37,152 - INFO - Running trade check at 2025-07-18 01:05:37
+2025-07-18 01:05:37,592 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:05:37,592 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:05:37,592 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:05:37,592 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:05:37,594 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:05:37,594 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:05:53,475 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:05:53,479 - INFO - Running trade check at 2025-07-18 01:05:53
+2025-07-18 01:05:53,479 - INFO - Running trade check at 2025-07-18 01:05:53
+2025-07-18 01:05:53,839 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:05:53,839 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:05:53,840 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:05:53,840 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:05:53,841 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:05:53,841 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:06:26,428 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:06:26,433 - INFO - Running trade check at 2025-07-18 01:06:26
+2025-07-18 01:06:26,433 - INFO - Running trade check at 2025-07-18 01:06:26
+2025-07-18 01:06:26,819 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:06:26,819 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:06:26,820 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:06:26,820 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:06:26,822 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:06:26,822 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:06:56,930 - INFO - Running trade check at 2025-07-18 01:06:56
+2025-07-18 01:06:56,930 - INFO - Running trade check at 2025-07-18 01:06:56
+2025-07-18 01:06:56,930 - INFO - Running trade check at 2025-07-18 01:06:56
+2025-07-18 01:06:57,376 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:06:57,376 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:06:57,376 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:06:57,377 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:06:57,377 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:06:57,377 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:07:27,508 - INFO - Running trade check at 2025-07-18 01:07:27
+2025-07-18 01:07:27,508 - INFO - Running trade check at 2025-07-18 01:07:27
+2025-07-18 01:07:27,508 - INFO - Running trade check at 2025-07-18 01:07:27
+2025-07-18 01:07:27,508 - INFO - Running trade check at 2025-07-18 01:07:27
+2025-07-18 01:07:28,009 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:07:28,009 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:07:28,009 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:07:28,009 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:07:28,009 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:07:28,009 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:07:28,009 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:07:28,009 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:08:21,768 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:08:21,772 - INFO - Running trade check at 2025-07-18 01:08:21
+2025-07-18 01:08:21,772 - INFO - Running trade check at 2025-07-18 01:08:21
+2025-07-18 01:08:22,299 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:08:22,299 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:08:22,299 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:08:22,299 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:08:22,300 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:08:22,300 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:13:15,581 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:13:15,585 - INFO - Running trade check at 2025-07-18 01:13:15
+2025-07-18 01:13:16,061 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:13:16,062 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:13:16,065 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:13:46,183 - INFO - Running trade check at 2025-07-18 01:13:46
+2025-07-18 01:13:46,666 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:13:46,666 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:14:16,802 - INFO - Running trade check at 2025-07-18 01:14:16
+2025-07-18 01:14:17,423 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:14:17,423 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:14:20,521 - INFO - Starting BTC trading bot in MOCK mode
+2025-07-18 01:14:20,525 - INFO - Running trade check at 2025-07-18 01:14:20
+2025-07-18 01:14:20,525 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:14:20,533 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:14:20,533 - INFO - Using real-time WebSocket price data
+2025-07-18 01:14:20,533 - INFO - No trade signal generated
+2025-07-18 01:14:20,533 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:14:47,566 - INFO - Running trade check at 2025-07-18 01:14:47
+2025-07-18 01:14:48,027 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:14:48,027 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:14:50,644 - INFO - Running trade check at 2025-07-18 01:14:50
+2025-07-18 01:14:50,644 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:14:50,646 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:14:50,646 - INFO - Using real-time WebSocket price data
+2025-07-18 01:14:50,646 - INFO - No trade signal generated
+2025-07-18 01:15:20,777 - INFO - Running trade check at 2025-07-18 01:15:20
+2025-07-18 01:15:20,777 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:15:20,780 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:15:20,780 - INFO - Using real-time WebSocket price data
+2025-07-18 01:15:20,780 - INFO - No trade signal generated
+2025-07-18 01:15:50,915 - INFO - Running trade check at 2025-07-18 01:15:50
+2025-07-18 01:15:50,915 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:15:50,919 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:15:50,919 - INFO - Using real-time WebSocket price data
+2025-07-18 01:15:50,919 - INFO - No trade signal generated
+2025-07-18 01:16:21,037 - INFO - Running trade check at 2025-07-18 01:16:21
+2025-07-18 01:16:21,038 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:16:21,045 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:16:21,045 - INFO - Using real-time WebSocket price data
+2025-07-18 01:16:21,045 - INFO - No trade signal generated
+2025-07-18 01:16:51,168 - INFO - Running trade check at 2025-07-18 01:16:51
+2025-07-18 01:16:51,168 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:16:51,171 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:16:51,171 - INFO - Using real-time WebSocket price data
+2025-07-18 01:16:51,171 - INFO - No trade signal generated
+2025-07-18 01:17:21,294 - INFO - Running trade check at 2025-07-18 01:17:21
+2025-07-18 01:17:21,295 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:17:21,298 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:17:21,298 - INFO - Using real-time WebSocket price data
+2025-07-18 01:17:21,298 - INFO - No trade signal generated
+2025-07-18 01:17:51,391 - INFO - Running trade check at 2025-07-18 01:17:51
+2025-07-18 01:17:51,392 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:17:51,394 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:17:51,394 - INFO - Using real-time WebSocket price data
+2025-07-18 01:17:51,394 - INFO - No trade signal generated
+2025-07-18 01:17:53,218 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:17:53,222 - INFO - Running trade check at 2025-07-18 01:17:53
+2025-07-18 01:17:56,513 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:17:56,513 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:17:56,533 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:18:21,485 - INFO - Running trade check at 2025-07-18 01:18:21
+2025-07-18 01:18:21,485 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:18:21,488 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:18:21,488 - INFO - Using real-time WebSocket price data
+2025-07-18 01:18:21,488 - INFO - No trade signal generated
+2025-07-18 01:18:51,632 - INFO - Running trade check at 2025-07-18 01:18:51
+2025-07-18 01:18:51,632 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:18:51,635 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:18:51,635 - INFO - Using real-time WebSocket price data
+2025-07-18 01:18:51,635 - INFO - No trade signal generated
+2025-07-18 01:19:21,783 - INFO - Running trade check at 2025-07-18 01:19:21
+2025-07-18 01:19:21,783 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:19:21,789 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:19:21,789 - INFO - Using real-time WebSocket price data
+2025-07-18 01:19:21,789 - INFO - No trade signal generated
+2025-07-18 01:19:51,897 - INFO - Running trade check at 2025-07-18 01:19:51
+2025-07-18 01:19:51,897 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:19:51,900 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:19:51,900 - INFO - Using real-time WebSocket price data
+2025-07-18 01:19:51,900 - INFO - No trade signal generated
+2025-07-18 01:20:15,534 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 01:20:15,538 - INFO - Running trade check at 2025-07-18 01:20:15
+2025-07-18 01:20:18,315 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:20:18,315 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:20:18,320 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:20:22,016 - INFO - Running trade check at 2025-07-18 01:20:22
+2025-07-18 01:20:22,016 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:20:22,021 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:20:22,021 - INFO - Using real-time WebSocket price data
+2025-07-18 01:20:22,021 - INFO - No trade signal generated
+2025-07-18 01:20:52,167 - INFO - Running trade check at 2025-07-18 01:20:52
+2025-07-18 01:20:52,167 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:20:52,172 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:20:52,172 - INFO - Using real-time WebSocket price data
+2025-07-18 01:20:52,172 - INFO - No trade signal generated
+2025-07-18 01:21:22,304 - INFO - Running trade check at 2025-07-18 01:21:22
+2025-07-18 01:21:22,304 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:21:22,308 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:21:22,308 - INFO - Using real-time WebSocket price data
+2025-07-18 01:21:22,308 - INFO - No trade signal generated
+2025-07-18 01:21:52,469 - INFO - Running trade check at 2025-07-18 01:21:52
+2025-07-18 01:21:52,469 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:21:52,474 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:21:52,474 - INFO - Using real-time WebSocket price data
+2025-07-18 01:21:52,474 - INFO - No trade signal generated
+2025-07-18 01:22:22,606 - INFO - Running trade check at 2025-07-18 01:22:22
+2025-07-18 01:22:22,606 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:22:22,609 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:22:22,609 - INFO - Using real-time WebSocket price data
+2025-07-18 01:22:22,609 - INFO - No trade signal generated
+2025-07-18 01:22:52,729 - INFO - Running trade check at 2025-07-18 01:22:52
+2025-07-18 01:22:52,729 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:22:52,731 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:22:52,731 - INFO - Using real-time WebSocket price data
+2025-07-18 01:22:52,731 - INFO - No trade signal generated
+2025-07-18 01:22:55,475 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:22:55,479 - INFO - Running trade check at 2025-07-18 01:22:55
+2025-07-18 01:22:56,083 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:22:56,083 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:22:56,084 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:23:22,872 - INFO - Running trade check at 2025-07-18 01:23:22
+2025-07-18 01:23:22,872 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:23:22,876 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:23:22,876 - INFO - Using real-time WebSocket price data
+2025-07-18 01:23:22,876 - INFO - No trade signal generated
+2025-07-18 01:23:53,016 - INFO - Running trade check at 2025-07-18 01:23:53
+2025-07-18 01:23:53,016 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:23:53,019 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:23:53,020 - INFO - Using real-time WebSocket price data
+2025-07-18 01:23:53,020 - INFO - No trade signal generated
+2025-07-18 01:24:23,140 - INFO - Running trade check at 2025-07-18 01:24:23
+2025-07-18 01:24:23,140 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:24:23,143 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:24:23,143 - INFO - Using real-time WebSocket price data
+2025-07-18 01:24:23,143 - INFO - No trade signal generated
+2025-07-18 01:24:28,071 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:24:28,075 - INFO - Running trade check at 2025-07-18 01:24:28
+2025-07-18 01:24:28,592 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:24:28,593 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:24:28,596 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:24:53,298 - INFO - Running trade check at 2025-07-18 01:24:53
+2025-07-18 01:24:53,298 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:24:53,304 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:24:53,305 - INFO - Using real-time WebSocket price data
+2025-07-18 01:24:53,305 - INFO - No trade signal generated
+2025-07-18 01:24:58,746 - INFO - Running trade check at 2025-07-18 01:24:58
+2025-07-18 01:24:59,296 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:24:59,297 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:25:23,433 - INFO - Running trade check at 2025-07-18 01:25:23
+2025-07-18 01:25:23,433 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:25:23,435 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:25:23,435 - INFO - Using real-time WebSocket price data
+2025-07-18 01:25:23,436 - INFO - No trade signal generated
+2025-07-18 01:25:29,434 - INFO - Running trade check at 2025-07-18 01:25:29
+2025-07-18 01:25:29,968 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:25:29,968 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:25:53,570 - INFO - Running trade check at 2025-07-18 01:25:53
+2025-07-18 01:25:53,571 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:25:53,578 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:25:53,578 - INFO - Using real-time WebSocket price data
+2025-07-18 01:25:53,578 - INFO - No trade signal generated
+2025-07-18 01:26:00,093 - INFO - Running trade check at 2025-07-18 01:26:00
+2025-07-18 01:26:00,522 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:26:00,522 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:26:23,699 - INFO - Running trade check at 2025-07-18 01:26:23
+2025-07-18 01:26:23,699 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:26:23,702 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:26:23,702 - INFO - Using real-time WebSocket price data
+2025-07-18 01:26:23,702 - INFO - No trade signal generated
+2025-07-18 01:26:50,434 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 01:26:50,438 - INFO - Running trade check at 2025-07-18 01:26:50
+2025-07-18 01:26:52,860 - INFO - Account balance: 10000.0 USDT
+2025-07-18 01:26:53,198 - INFO - RSI value: 92.20, Signal: SELL
+2025-07-18 01:26:53,697 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:26:53,836 - INFO - Running trade check at 2025-07-18 01:26:53
+2025-07-18 01:26:53,836 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:26:53,838 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:26:53,838 - INFO - Using real-time WebSocket price data
+2025-07-18 01:26:53,838 - INFO - No trade signal generated
+2025-07-18 01:26:53,924 - ERROR - Failed to place order
+2025-07-18 01:26:53,931 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:27:23,979 - INFO - Running trade check at 2025-07-18 01:27:23
+2025-07-18 01:27:23,980 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:27:23,982 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:27:23,982 - INFO - Using real-time WebSocket price data
+2025-07-18 01:27:23,982 - INFO - No trade signal generated
+2025-07-18 01:27:24,060 - INFO - Running trade check at 2025-07-18 01:27:24
+2025-07-18 01:27:27,093 - INFO - Account balance: 10000.0 USDT
+2025-07-18 01:27:27,529 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:27:27,929 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:27:28,331 - ERROR - Failed to place order
+2025-07-18 01:27:54,093 - INFO - Running trade check at 2025-07-18 01:27:54
+2025-07-18 01:27:54,093 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:27:54,097 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:27:54,097 - INFO - Using real-time WebSocket price data
+2025-07-18 01:27:54,097 - INFO - No trade signal generated
+2025-07-18 01:27:58,473 - INFO - Running trade check at 2025-07-18 01:27:58
+2025-07-18 01:28:01,221 - INFO - Account balance: 10000.0 USDT
+2025-07-18 01:28:01,381 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:28:01,773 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:28:02,309 - ERROR - Failed to place order
+2025-07-18 01:28:24,225 - INFO - Running trade check at 2025-07-18 01:28:24
+2025-07-18 01:28:24,225 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:28:24,228 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:28:24,228 - INFO - Using real-time WebSocket price data
+2025-07-18 01:28:24,228 - INFO - No trade signal generated
+2025-07-18 01:28:54,365 - INFO - Running trade check at 2025-07-18 01:28:54
+2025-07-18 01:28:54,365 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:28:54,369 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:28:54,369 - INFO - Using real-time WebSocket price data
+2025-07-18 01:28:54,369 - INFO - No trade signal generated
+2025-07-18 01:29:24,517 - INFO - Running trade check at 2025-07-18 01:29:24
+2025-07-18 01:29:24,517 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:29:24,520 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:29:24,520 - INFO - Using real-time WebSocket price data
+2025-07-18 01:29:24,520 - INFO - No trade signal generated
+2025-07-18 01:29:54,660 - INFO - Running trade check at 2025-07-18 01:29:54
+2025-07-18 01:29:54,660 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:29:54,664 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:29:54,664 - INFO - Using real-time WebSocket price data
+2025-07-18 01:29:54,664 - INFO - No trade signal generated
+2025-07-18 01:30:24,797 - INFO - Running trade check at 2025-07-18 01:30:24
+2025-07-18 01:30:24,797 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:30:24,800 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:30:24,800 - INFO - Using real-time WebSocket price data
+2025-07-18 01:30:24,800 - INFO - No trade signal generated
+2025-07-18 01:30:54,933 - INFO - Running trade check at 2025-07-18 01:30:54
+2025-07-18 01:30:54,934 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:30:54,940 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:30:54,940 - INFO - Using real-time WebSocket price data
+2025-07-18 01:30:54,940 - INFO - No trade signal generated
+2025-07-18 01:31:25,056 - INFO - Running trade check at 2025-07-18 01:31:25
+2025-07-18 01:31:25,057 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:31:25,058 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:31:25,058 - INFO - Using real-time WebSocket price data
+2025-07-18 01:31:25,058 - INFO - No trade signal generated
+2025-07-18 01:31:25,570 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 01:31:25,574 - INFO - Running trade check at 2025-07-18 01:31:25
+2025-07-18 01:31:28,199 - INFO - Account balance: 10000.0 USDT
+2025-07-18 01:31:28,615 - INFO - RSI value: 84.32, Signal: SELL
+2025-07-18 01:31:29,157 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:31:29,605 - ERROR - Failed to place order
+2025-07-18 01:31:29,626 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:31:55,202 - INFO - Running trade check at 2025-07-18 01:31:55
+2025-07-18 01:31:55,203 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:31:55,205 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:31:55,205 - INFO - Using real-time WebSocket price data
+2025-07-18 01:31:55,205 - INFO - No trade signal generated
+2025-07-18 01:32:25,355 - INFO - Running trade check at 2025-07-18 01:32:25
+2025-07-18 01:32:25,356 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:32:25,362 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:32:25,362 - INFO - Using real-time WebSocket price data
+2025-07-18 01:32:25,362 - INFO - No trade signal generated
+2025-07-18 01:32:55,493 - INFO - Running trade check at 2025-07-18 01:32:55
+2025-07-18 01:32:55,493 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:32:55,497 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:32:55,497 - INFO - Using real-time WebSocket price data
+2025-07-18 01:32:55,497 - INFO - No trade signal generated
+2025-07-18 01:33:25,640 - INFO - Running trade check at 2025-07-18 01:33:25
+2025-07-18 01:33:25,640 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:33:25,643 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:33:25,643 - INFO - Using real-time WebSocket price data
+2025-07-18 01:33:25,643 - INFO - No trade signal generated
+2025-07-18 01:33:55,787 - INFO - Running trade check at 2025-07-18 01:33:55
+2025-07-18 01:33:55,788 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:33:55,794 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:33:55,794 - INFO - Using real-time WebSocket price data
+2025-07-18 01:33:55,794 - INFO - No trade signal generated
+2025-07-18 01:34:25,930 - INFO - Running trade check at 2025-07-18 01:34:25
+2025-07-18 01:34:25,931 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:34:25,966 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:34:25,966 - INFO - Using real-time WebSocket price data
+2025-07-18 01:34:25,966 - INFO - No trade signal generated
+2025-07-18 01:34:56,103 - INFO - Running trade check at 2025-07-18 01:34:56
+2025-07-18 01:34:56,103 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:34:56,110 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:34:56,110 - INFO - Using real-time WebSocket price data
+2025-07-18 01:34:56,110 - INFO - No trade signal generated
+2025-07-18 01:35:26,242 - INFO - Running trade check at 2025-07-18 01:35:26
+2025-07-18 01:35:26,242 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:35:26,246 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:35:26,246 - INFO - Using real-time WebSocket price data
+2025-07-18 01:35:26,246 - INFO - No trade signal generated
+2025-07-18 01:35:56,359 - INFO - Running trade check at 2025-07-18 01:35:56
+2025-07-18 01:35:56,359 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:35:56,366 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:35:56,366 - INFO - Using real-time WebSocket price data
+2025-07-18 01:35:56,366 - INFO - No trade signal generated
+2025-07-18 01:36:26,509 - INFO - Running trade check at 2025-07-18 01:36:26
+2025-07-18 01:36:26,510 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:36:26,517 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:36:26,517 - INFO - Using real-time WebSocket price data
+2025-07-18 01:36:26,517 - INFO - No trade signal generated
+2025-07-18 01:36:56,647 - INFO - Running trade check at 2025-07-18 01:36:56
+2025-07-18 01:36:56,648 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:36:56,657 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:36:56,657 - INFO - Using real-time WebSocket price data
+2025-07-18 01:36:56,657 - INFO - No trade signal generated
+2025-07-18 01:37:26,782 - INFO - Running trade check at 2025-07-18 01:37:26
+2025-07-18 01:37:26,782 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:37:26,787 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:37:26,788 - INFO - Using real-time WebSocket price data
+2025-07-18 01:37:26,788 - INFO - No trade signal generated
+2025-07-18 01:37:53,563 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 01:37:53,567 - INFO - Running trade check at 2025-07-18 01:37:53
+2025-07-18 01:37:55,719 - INFO - Account balance: 120.76380214 USDT
+2025-07-18 01:37:56,153 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:37:56,314 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:37:56,533 - ERROR - Failed to place order
+2025-07-18 01:37:56,540 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:37:56,930 - INFO - Running trade check at 2025-07-18 01:37:56
+2025-07-18 01:37:56,930 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:37:56,939 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:37:56,939 - INFO - Using real-time WebSocket price data
+2025-07-18 01:37:56,939 - INFO - No trade signal generated
+2025-07-18 01:38:20,638 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:38:20,642 - INFO - Running trade check at 2025-07-18 01:38:20
+2025-07-18 01:38:21,152 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:38:21,153 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:38:21,157 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:38:27,061 - INFO - Running trade check at 2025-07-18 01:38:27
+2025-07-18 01:38:27,061 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:38:27,065 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:38:27,065 - INFO - Using real-time WebSocket price data
+2025-07-18 01:38:27,065 - INFO - No trade signal generated
+2025-07-18 01:38:29,052 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:38:29,057 - INFO - Running trade check at 2025-07-18 01:38:29
+2025-07-18 01:38:29,463 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:38:29,463 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:38:29,467 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:38:52,869 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 01:38:52,873 - INFO - Running trade check at 2025-07-18 01:38:52
+2025-07-18 01:38:55,421 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:38:55,421 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:38:55,440 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:38:57,183 - INFO - Running trade check at 2025-07-18 01:38:57
+2025-07-18 01:38:57,184 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:38:57,188 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:38:57,189 - INFO - Using real-time WebSocket price data
+2025-07-18 01:38:57,189 - INFO - No trade signal generated
+2025-07-18 01:38:59,610 - INFO - Running trade check at 2025-07-18 01:38:59
+2025-07-18 01:39:00,196 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:39:00,197 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:39:25,562 - INFO - Running trade check at 2025-07-18 01:39:25
+2025-07-18 01:39:27,313 - INFO - Running trade check at 2025-07-18 01:39:27
+2025-07-18 01:39:27,314 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:39:27,317 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:39:27,317 - INFO - Using real-time WebSocket price data
+2025-07-18 01:39:27,317 - INFO - No trade signal generated
+2025-07-18 01:39:27,967 - INFO - Account balance: 72.63432949 USDT
+2025-07-18 01:39:27,967 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:39:30,328 - INFO - Running trade check at 2025-07-18 01:39:30
+2025-07-18 01:39:30,863 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:39:30,864 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:39:57,450 - INFO - Running trade check at 2025-07-18 01:39:57
+2025-07-18 01:39:57,450 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:39:57,452 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:39:57,453 - INFO - Using real-time WebSocket price data
+2025-07-18 01:39:57,453 - INFO - No trade signal generated
+2025-07-18 01:39:58,132 - INFO - Running trade check at 2025-07-18 01:39:58
+2025-07-18 01:40:00,951 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:40:00,951 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:40:00,984 - INFO - Running trade check at 2025-07-18 01:40:00
+2025-07-18 01:40:01,721 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:40:01,721 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:40:27,601 - INFO - Running trade check at 2025-07-18 01:40:27
+2025-07-18 01:40:27,601 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:40:27,609 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:40:27,609 - INFO - Using real-time WebSocket price data
+2025-07-18 01:40:27,609 - INFO - No trade signal generated
+2025-07-18 01:40:31,117 - INFO - Running trade check at 2025-07-18 01:40:31
+2025-07-18 01:40:31,862 - INFO - Running trade check at 2025-07-18 01:40:31
+2025-07-18 01:40:32,432 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:40:32,432 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:40:34,084 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:40:34,084 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:40:57,745 - INFO - Running trade check at 2025-07-18 01:40:57
+2025-07-18 01:40:57,745 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:40:57,752 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:40:57,752 - INFO - Using real-time WebSocket price data
+2025-07-18 01:40:57,752 - INFO - No trade signal generated
+2025-07-18 01:41:02,574 - INFO - Running trade check at 2025-07-18 01:41:02
+2025-07-18 01:41:03,309 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:41:03,309 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:41:04,228 - INFO - Running trade check at 2025-07-18 01:41:04
+2025-07-18 01:41:06,502 - INFO - Account balance: 63.62625393 USDT
+2025-07-18 01:41:06,502 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:41:27,891 - INFO - Running trade check at 2025-07-18 01:41:27
+2025-07-18 01:41:27,891 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:41:27,898 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:41:27,898 - INFO - Using real-time WebSocket price data
+2025-07-18 01:41:27,898 - INFO - No trade signal generated
+2025-07-18 01:41:36,634 - INFO - Running trade check at 2025-07-18 01:41:36
+2025-07-18 01:41:39,302 - INFO - Account balance: 52.68714307 USDT
+2025-07-18 01:41:39,302 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:41:58,045 - INFO - Running trade check at 2025-07-18 01:41:58
+2025-07-18 01:41:58,045 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:41:58,049 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:41:58,049 - INFO - Using real-time WebSocket price data
+2025-07-18 01:41:58,049 - INFO - No trade signal generated
+2025-07-18 01:42:09,445 - INFO - Running trade check at 2025-07-18 01:42:09
+2025-07-18 01:42:11,451 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:42:11,452 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:42:28,177 - INFO - Running trade check at 2025-07-18 01:42:28
+2025-07-18 01:42:28,177 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:42:28,179 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:42:28,179 - INFO - Using real-time WebSocket price data
+2025-07-18 01:42:28,179 - INFO - No trade signal generated
+2025-07-18 01:42:41,609 - INFO - Running trade check at 2025-07-18 01:42:41
+2025-07-18 01:42:44,221 - INFO - Account balance: 42.09482391 USDT
+2025-07-18 01:42:44,221 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:42:58,312 - INFO - Running trade check at 2025-07-18 01:42:58
+2025-07-18 01:42:58,312 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:42:58,315 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:42:58,315 - INFO - Using real-time WebSocket price data
+2025-07-18 01:42:58,315 - INFO - No trade signal generated
+2025-07-18 01:43:14,352 - INFO - Running trade check at 2025-07-18 01:43:14
+2025-07-18 01:43:16,384 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:43:16,385 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:43:28,449 - INFO - Running trade check at 2025-07-18 01:43:28
+2025-07-18 01:43:28,449 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:43:28,456 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:43:28,456 - INFO - Using real-time WebSocket price data
+2025-07-18 01:43:28,456 - INFO - No trade signal generated
+2025-07-18 01:43:46,545 - INFO - Running trade check at 2025-07-18 01:43:46
+2025-07-18 01:43:49,598 - INFO - Account balance: 42.81908782 USDT
+2025-07-18 01:43:49,598 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:43:58,589 - INFO - Running trade check at 2025-07-18 01:43:58
+2025-07-18 01:43:58,589 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:43:58,595 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:43:58,595 - INFO - Using real-time WebSocket price data
+2025-07-18 01:43:58,595 - INFO - No trade signal generated
+2025-07-18 01:44:19,754 - INFO - Running trade check at 2025-07-18 01:44:19
+2025-07-18 01:44:24,965 - INFO - Account balance: 39.57634767 USDT
+2025-07-18 01:44:24,965 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:44:28,737 - INFO - Running trade check at 2025-07-18 01:44:28
+2025-07-18 01:44:28,737 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:44:28,741 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:44:28,741 - INFO - Using real-time WebSocket price data
+2025-07-18 01:44:28,741 - INFO - No trade signal generated
+2025-07-18 01:44:55,123 - INFO - Running trade check at 2025-07-18 01:44:55
+2025-07-18 01:44:57,605 - INFO - Account balance: 33.55996651 USDT
+2025-07-18 01:44:57,605 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:44:58,884 - INFO - Running trade check at 2025-07-18 01:44:58
+2025-07-18 01:44:58,884 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:44:58,890 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:44:58,890 - INFO - Using real-time WebSocket price data
+2025-07-18 01:44:58,890 - INFO - No trade signal generated
+2025-07-18 01:45:27,734 - INFO - Running trade check at 2025-07-18 01:45:27
+2025-07-18 01:45:29,007 - INFO - Running trade check at 2025-07-18 01:45:29
+2025-07-18 01:45:29,007 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:45:29,014 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:45:29,014 - INFO - Using real-time WebSocket price data
+2025-07-18 01:45:29,014 - INFO - No trade signal generated
+2025-07-18 01:45:29,981 - INFO - Account balance: 34.60166289 USDT
+2025-07-18 01:45:29,981 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:45:59,132 - INFO - Running trade check at 2025-07-18 01:45:59
+2025-07-18 01:45:59,132 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:45:59,134 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:45:59,134 - INFO - Using real-time WebSocket price data
+2025-07-18 01:45:59,134 - INFO - No trade signal generated
+2025-07-18 01:46:00,129 - INFO - Running trade check at 2025-07-18 01:46:00
+2025-07-18 01:46:01,994 - INFO - Account balance: 29.00455671 USDT
+2025-07-18 01:46:01,994 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:46:29,266 - INFO - Running trade check at 2025-07-18 01:46:29
+2025-07-18 01:46:29,266 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:46:29,270 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:46:29,270 - INFO - Using real-time WebSocket price data
+2025-07-18 01:46:29,270 - INFO - No trade signal generated
+2025-07-18 01:46:32,141 - INFO - Running trade check at 2025-07-18 01:46:32
+2025-07-18 01:46:34,682 - INFO - Account balance: 26.42826692 USDT
+2025-07-18 01:46:34,682 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:46:59,408 - INFO - Running trade check at 2025-07-18 01:46:59
+2025-07-18 01:46:59,408 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:46:59,411 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:46:59,411 - INFO - Using real-time WebSocket price data
+2025-07-18 01:46:59,411 - INFO - No trade signal generated
+2025-07-18 01:47:04,865 - INFO - Running trade check at 2025-07-18 01:47:04
+2025-07-18 01:47:07,195 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:47:07,196 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:47:29,553 - INFO - Running trade check at 2025-07-18 01:47:29
+2025-07-18 01:47:29,553 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:47:29,556 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:47:29,556 - INFO - Using real-time WebSocket price data
+2025-07-18 01:47:29,556 - INFO - No trade signal generated
+2025-07-18 01:47:37,343 - INFO - Running trade check at 2025-07-18 01:47:37
+2025-07-18 01:47:39,653 - INFO - Account balance: 31.07645163 USDT
+2025-07-18 01:47:39,654 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:47:59,690 - INFO - Running trade check at 2025-07-18 01:47:59
+2025-07-18 01:47:59,691 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:47:59,694 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:47:59,694 - INFO - Using real-time WebSocket price data
+2025-07-18 01:47:59,694 - INFO - No trade signal generated
+2025-07-18 01:48:09,799 - INFO - Running trade check at 2025-07-18 01:48:09
+2025-07-18 01:48:11,960 - INFO - Account balance: 8293.36372023 USDT
+2025-07-18 01:48:12,149 - INFO - RSI value: 78.69, Signal: SELL
+2025-07-18 01:48:12,334 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:48:12,534 - ERROR - Failed to place order
+2025-07-18 01:48:29,824 - INFO - Running trade check at 2025-07-18 01:48:29
+2025-07-18 01:48:29,824 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:48:29,837 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:48:29,837 - INFO - Using real-time WebSocket price data
+2025-07-18 01:48:29,837 - INFO - No trade signal generated
+2025-07-18 01:48:33,141 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 01:48:33,145 - INFO - Running trade check at 2025-07-18 01:48:33
+2025-07-18 01:48:33,604 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:48:33,604 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:48:33,606 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:48:42,695 - INFO - Running trade check at 2025-07-18 01:48:42
+2025-07-18 01:48:44,801 - INFO - Account balance: 8235.36115683 USDT
+2025-07-18 01:48:44,969 - INFO - RSI value: 78.69, Signal: SELL
+2025-07-18 01:48:45,133 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:48:45,339 - ERROR - Failed to place order
+2025-07-18 01:48:59,981 - INFO - Running trade check at 2025-07-18 01:48:59
+2025-07-18 01:48:59,982 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:48:59,985 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:48:59,985 - INFO - Using real-time WebSocket price data
+2025-07-18 01:48:59,985 - INFO - No trade signal generated
+2025-07-18 01:49:03,747 - INFO - Running trade check at 2025-07-18 01:49:03
+2025-07-18 01:49:04,166 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:49:04,166 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:49:15,496 - INFO - Running trade check at 2025-07-18 01:49:15
+2025-07-18 01:49:17,850 - INFO - Account balance: 8175.2920987 USDT
+2025-07-18 01:49:18,037 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:49:18,211 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:49:18,664 - ERROR - Failed to place order
+2025-07-18 01:49:30,104 - INFO - Running trade check at 2025-07-18 01:49:30
+2025-07-18 01:49:30,105 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:49:30,107 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:49:30,108 - INFO - Using real-time WebSocket price data
+2025-07-18 01:49:30,108 - INFO - No trade signal generated
+2025-07-18 01:49:34,304 - INFO - Running trade check at 2025-07-18 01:49:34
+2025-07-18 01:49:34,724 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:49:34,725 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:49:48,819 - INFO - Running trade check at 2025-07-18 01:49:48
+2025-07-18 01:49:51,238 - INFO - Account balance: 8286.7485306 USDT
+2025-07-18 01:49:51,442 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:49:51,849 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:49:52,259 - ERROR - Failed to place order
+2025-07-18 01:50:00,253 - INFO - Running trade check at 2025-07-18 01:50:00
+2025-07-18 01:50:00,253 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:50:00,256 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:50:00,256 - INFO - Using real-time WebSocket price data
+2025-07-18 01:50:00,256 - INFO - No trade signal generated
+2025-07-18 01:50:04,864 - INFO - Running trade check at 2025-07-18 01:50:04
+2025-07-18 01:50:05,324 - INFO - Account balance: 0.0 USDT
+2025-07-18 01:50:05,324 - WARNING - Trading restricted: Account balance below minimum
+2025-07-18 01:50:22,393 - INFO - Running trade check at 2025-07-18 01:50:22
+2025-07-18 01:50:24,947 - INFO - Account balance: 8283.88284751 USDT
+2025-07-18 01:50:25,116 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:50:25,283 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:50:25,876 - ERROR - Failed to place order
+2025-07-18 01:50:30,363 - INFO - Running trade check at 2025-07-18 01:50:30
+2025-07-18 01:50:30,364 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:50:30,367 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:50:30,367 - INFO - Using real-time WebSocket price data
+2025-07-18 01:50:30,367 - INFO - No trade signal generated
+2025-07-18 01:50:56,007 - INFO - Running trade check at 2025-07-18 01:50:56
+2025-07-18 01:50:57,787 - INFO - Account balance: 8281.01784918 USDT
+2025-07-18 01:50:57,973 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:50:58,427 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:50:58,602 - ERROR - Failed to place order
+2025-07-18 01:51:00,483 - INFO - Running trade check at 2025-07-18 01:51:00
+2025-07-18 01:51:00,484 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:51:00,487 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:51:00,487 - INFO - Using real-time WebSocket price data
+2025-07-18 01:51:00,487 - INFO - No trade signal generated
+2025-07-18 01:51:28,772 - INFO - Running trade check at 2025-07-18 01:51:28
+2025-07-18 01:51:30,581 - INFO - Running trade check at 2025-07-18 01:51:30
+2025-07-18 01:51:30,581 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:51:30,603 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:51:30,603 - INFO - Using real-time WebSocket price data
+2025-07-18 01:51:30,603 - INFO - No trade signal generated
+2025-07-18 01:51:30,952 - INFO - Account balance: 8221.1940879 USDT
+2025-07-18 01:51:31,129 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:51:31,531 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:51:31,939 - ERROR - Failed to place order
+2025-07-18 01:52:00,754 - INFO - Running trade check at 2025-07-18 01:52:00
+2025-07-18 01:52:00,754 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:52:00,760 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:52:00,760 - INFO - Using real-time WebSocket price data
+2025-07-18 01:52:00,760 - INFO - No trade signal generated
+2025-07-18 01:52:02,086 - INFO - Running trade check at 2025-07-18 01:52:02
+2025-07-18 01:52:04,416 - INFO - Account balance: 8158.33508023 USDT
+2025-07-18 01:52:04,588 - INFO - RSI value: 92.11, Signal: SELL
+2025-07-18 01:52:04,985 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:52:05,255 - ERROR - Failed to place order
+2025-07-18 01:52:30,897 - INFO - Running trade check at 2025-07-18 01:52:30
+2025-07-18 01:52:30,897 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:52:30,904 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:52:30,904 - INFO - Using real-time WebSocket price data
+2025-07-18 01:52:30,904 - INFO - No trade signal generated
+2025-07-18 01:52:35,401 - INFO - Running trade check at 2025-07-18 01:52:35
+2025-07-18 01:52:37,651 - INFO - Account balance: 8101.34776434 USDT
+2025-07-18 01:52:37,835 - INFO - RSI value: 92.11, Signal: SELL
+2025-07-18 01:52:38,264 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:52:38,780 - ERROR - Failed to place order
+2025-07-18 01:53:01,027 - INFO - Running trade check at 2025-07-18 01:53:01
+2025-07-18 01:53:01,028 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:53:01,032 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:53:01,033 - INFO - Using real-time WebSocket price data
+2025-07-18 01:53:01,033 - INFO - No trade signal generated
+2025-07-18 01:53:08,924 - INFO - Running trade check at 2025-07-18 01:53:08
+2025-07-18 01:53:11,365 - INFO - Account balance: 8042.90825993 USDT
+2025-07-18 01:53:11,805 - INFO - RSI value: 81.33, Signal: SELL
+2025-07-18 01:53:11,973 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:53:12,188 - ERROR - Failed to place order
+2025-07-18 01:53:31,155 - INFO - Running trade check at 2025-07-18 01:53:31
+2025-07-18 01:53:31,156 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:53:31,159 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:53:31,160 - INFO - Using real-time WebSocket price data
+2025-07-18 01:53:31,160 - INFO - No trade signal generated
+2025-07-18 01:53:42,319 - INFO - Running trade check at 2025-07-18 01:53:42
+2025-07-18 01:53:44,511 - INFO - Account balance: 7973.91170801 USDT
+2025-07-18 01:53:44,679 - INFO - RSI value: 81.33, Signal: SELL
+2025-07-18 01:53:45,064 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:53:45,474 - ERROR - Failed to place order
+2025-07-18 01:54:01,313 - INFO - Running trade check at 2025-07-18 01:54:01
+2025-07-18 01:54:01,314 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:54:01,320 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:54:01,320 - INFO - Using real-time WebSocket price data
+2025-07-18 01:54:01,320 - INFO - No trade signal generated
+2025-07-18 01:54:15,609 - INFO - Running trade check at 2025-07-18 01:54:15
+2025-07-18 01:54:31,461 - INFO - Running trade check at 2025-07-18 01:54:31
+2025-07-18 01:54:31,462 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:54:31,465 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:54:31,465 - INFO - Using real-time WebSocket price data
+2025-07-18 01:54:31,465 - INFO - No trade signal generated
+2025-07-18 01:55:01,588 - INFO - Running trade check at 2025-07-18 01:55:01
+2025-07-18 01:55:01,588 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:55:01,591 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:55:01,591 - INFO - Using real-time WebSocket price data
+2025-07-18 01:55:01,591 - INFO - No trade signal generated
+2025-07-18 01:55:31,718 - INFO - Running trade check at 2025-07-18 01:55:31
+2025-07-18 01:55:31,718 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:55:31,720 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:55:31,720 - INFO - Using real-time WebSocket price data
+2025-07-18 01:55:31,720 - INFO - No trade signal generated
+2025-07-18 01:56:01,865 - INFO - Running trade check at 2025-07-18 01:56:01
+2025-07-18 01:56:01,865 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:56:01,867 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:56:01,867 - INFO - Using real-time WebSocket price data
+2025-07-18 01:56:01,867 - INFO - No trade signal generated
+2025-07-18 01:56:32,002 - INFO - Running trade check at 2025-07-18 01:56:32
+2025-07-18 01:56:32,002 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:56:32,008 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:56:32,008 - INFO - Using real-time WebSocket price data
+2025-07-18 01:56:32,008 - INFO - No trade signal generated
+2025-07-18 01:56:32,834 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 01:56:32,838 - INFO - Running trade check at 2025-07-18 01:56:32
+2025-07-18 01:56:35,218 - INFO - Account balance: 8269.16181243 USDT
+2025-07-18 01:56:35,640 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:56:35,812 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:56:36,276 - ERROR - Failed to place order
+2025-07-18 01:56:36,283 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 01:57:02,134 - INFO - Running trade check at 2025-07-18 01:57:02
+2025-07-18 01:57:02,135 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:57:02,136 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:57:02,136 - INFO - Using real-time WebSocket price data
+2025-07-18 01:57:02,136 - INFO - No trade signal generated
+2025-07-18 01:57:06,415 - INFO - Running trade check at 2025-07-18 01:57:06
+2025-07-18 01:57:09,011 - INFO - Account balance: 8209.170654 USDT
+2025-07-18 01:57:09,527 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:57:10,032 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:57:10,339 - ERROR - Failed to place order
+2025-07-18 01:57:32,264 - INFO - Running trade check at 2025-07-18 01:57:32
+2025-07-18 01:57:32,264 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:57:32,267 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:57:32,267 - INFO - Using real-time WebSocket price data
+2025-07-18 01:57:32,267 - INFO - No trade signal generated
+2025-07-18 01:57:40,477 - INFO - Running trade check at 2025-07-18 01:57:40
+2025-07-18 01:57:42,842 - INFO - Account balance: 8149.14101504 USDT
+2025-07-18 01:57:43,321 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:57:43,486 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:57:43,928 - ERROR - Failed to place order
+2025-07-18 01:58:02,392 - INFO - Running trade check at 2025-07-18 01:58:02
+2025-07-18 01:58:02,392 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:58:02,396 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:58:02,396 - INFO - Using real-time WebSocket price data
+2025-07-18 01:58:02,396 - INFO - No trade signal generated
+2025-07-18 01:58:14,082 - INFO - Running trade check at 2025-07-18 01:58:14
+2025-07-18 01:58:17,002 - INFO - Account balance: 8088.83391733 USDT
+2025-07-18 01:58:17,520 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 01:58:18,025 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:58:18,538 - ERROR - Failed to place order
+2025-07-18 01:58:32,522 - INFO - Running trade check at 2025-07-18 01:58:32
+2025-07-18 01:58:32,523 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:58:32,526 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:58:32,527 - INFO - Using real-time WebSocket price data
+2025-07-18 01:58:32,527 - INFO - No trade signal generated
+2025-07-18 01:58:48,687 - INFO - Running trade check at 2025-07-18 01:58:48
+2025-07-18 01:58:51,025 - INFO - Account balance: 8029.14192175 USDT
+2025-07-18 01:58:51,517 - INFO - RSI value: 81.33, Signal: SELL
+2025-07-18 01:58:51,796 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 01:58:51,976 - ERROR - Failed to place order
+2025-07-18 01:59:02,652 - INFO - Running trade check at 2025-07-18 01:59:02
+2025-07-18 01:59:02,652 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:59:02,655 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:59:02,655 - INFO - Using real-time WebSocket price data
+2025-07-18 01:59:02,655 - INFO - No trade signal generated
+2025-07-18 01:59:32,792 - INFO - Running trade check at 2025-07-18 01:59:32
+2025-07-18 01:59:32,793 - INFO - Account balance: 1000.0 USDT
+2025-07-18 01:59:32,801 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 01:59:32,801 - INFO - Using real-time WebSocket price data
+2025-07-18 01:59:32,801 - INFO - No trade signal generated
+2025-07-18 02:00:02,931 - INFO - Running trade check at 2025-07-18 02:00:02
+2025-07-18 02:00:02,931 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:00:02,933 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:00:02,933 - INFO - Using real-time WebSocket price data
+2025-07-18 02:00:02,933 - INFO - No trade signal generated
+2025-07-18 02:00:33,071 - INFO - Running trade check at 2025-07-18 02:00:33
+2025-07-18 02:00:33,072 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:00:33,075 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:00:33,075 - INFO - Using real-time WebSocket price data
+2025-07-18 02:00:33,075 - INFO - No trade signal generated
+2025-07-18 02:01:03,187 - INFO - Running trade check at 2025-07-18 02:01:03
+2025-07-18 02:01:03,188 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:01:03,190 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:01:03,190 - INFO - Using real-time WebSocket price data
+2025-07-18 02:01:03,190 - INFO - No trade signal generated
+2025-07-18 02:01:33,327 - INFO - Running trade check at 2025-07-18 02:01:33
+2025-07-18 02:01:33,328 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:01:33,331 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:01:33,331 - INFO - Using real-time WebSocket price data
+2025-07-18 02:01:33,331 - INFO - No trade signal generated
+2025-07-18 02:02:03,459 - INFO - Running trade check at 2025-07-18 02:02:03
+2025-07-18 02:02:03,460 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:02:03,462 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:02:03,462 - INFO - Using real-time WebSocket price data
+2025-07-18 02:02:03,462 - INFO - No trade signal generated
+2025-07-18 02:02:09,564 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:02:09,569 - INFO - Running trade check at 2025-07-18 02:02:09
+2025-07-18 02:02:13,817 - INFO - Account balance: 8254.83846359 USDT
+2025-07-18 02:02:14,220 - INFO - RSI value: 81.91, Signal: SELL
+2025-07-18 02:02:14,624 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:02:14,625 - ERROR - Failed to place order
+2025-07-18 02:02:14,644 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:02:33,584 - INFO - Running trade check at 2025-07-18 02:02:33
+2025-07-18 02:02:33,585 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:02:33,586 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:02:33,586 - INFO - Using real-time WebSocket price data
+2025-07-18 02:02:33,586 - INFO - No trade signal generated
+2025-07-18 02:03:03,710 - INFO - Running trade check at 2025-07-18 02:03:03
+2025-07-18 02:03:03,711 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:03:03,714 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:03:03,714 - INFO - Using real-time WebSocket price data
+2025-07-18 02:03:03,714 - INFO - No trade signal generated
+2025-07-18 02:03:17,707 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:03:17,711 - INFO - Running trade check at 2025-07-18 02:03:17
+2025-07-18 02:03:20,005 - INFO - Account balance: 8254.83844086 USDT
+2025-07-18 02:03:20,430 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 02:03:20,924 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:03:20,925 - ERROR - Failed to place order
+2025-07-18 02:03:20,946 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:03:33,844 - INFO - Running trade check at 2025-07-18 02:03:33
+2025-07-18 02:03:33,844 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:03:33,850 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:03:33,851 - INFO - Using real-time WebSocket price data
+2025-07-18 02:03:33,851 - INFO - No trade signal generated
+2025-07-18 02:04:03,983 - INFO - Running trade check at 2025-07-18 02:04:03
+2025-07-18 02:04:03,983 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:04:03,985 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:04:03,985 - INFO - Using real-time WebSocket price data
+2025-07-18 02:04:03,985 - INFO - No trade signal generated
+2025-07-18 02:04:34,108 - INFO - Running trade check at 2025-07-18 02:04:34
+2025-07-18 02:04:34,108 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:04:34,111 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:04:34,111 - INFO - Using real-time WebSocket price data
+2025-07-18 02:04:34,111 - INFO - No trade signal generated
+2025-07-18 02:05:04,238 - INFO - Running trade check at 2025-07-18 02:05:04
+2025-07-18 02:05:04,239 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:05:04,240 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:05:04,241 - INFO - Using real-time WebSocket price data
+2025-07-18 02:05:04,241 - INFO - No trade signal generated
+2025-07-18 02:05:15,374 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:05:15,378 - INFO - Running trade check at 2025-07-18 02:05:15
+2025-07-18 02:05:18,483 - INFO - Account balance: 8254.83844374 USDT
+2025-07-18 02:05:18,723 - INFO - RSI value: 76.86, Signal: SELL
+2025-07-18 02:05:19,139 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:05:20,034 - INFO - TRADE: BTC/USDT | RSI: 76.86 | Signal: SELL | Price: 120735.0 | Quantity: 0.01 | SL: 1 | TP: 2
+2025-07-18 02:05:20,041 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:05:34,384 - INFO - Running trade check at 2025-07-18 02:05:34
+2025-07-18 02:05:34,384 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:05:34,388 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:05:34,388 - INFO - Using real-time WebSocket price data
+2025-07-18 02:05:34,388 - INFO - No trade signal generated
+2025-07-18 02:05:50,168 - INFO - Running trade check at 2025-07-18 02:05:50
+2025-07-18 02:05:52,250 - INFO - Account balance: 7042.08478273 USDT
+2025-07-18 02:05:52,673 - INFO - RSI value: 76.86, Signal: SELL
+2025-07-18 02:05:53,094 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:05:53,998 - INFO - TRADE: BTC/USDT | RSI: 76.86 | Signal: SELL | Price: 120841.6 | Quantity: 0.01 | SL: 1 | TP: 2
+2025-07-18 02:06:04,526 - INFO - Running trade check at 2025-07-18 02:06:04
+2025-07-18 02:06:04,526 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:06:04,528 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:06:04,528 - INFO - Using real-time WebSocket price data
+2025-07-18 02:06:04,529 - INFO - No trade signal generated
+2025-07-18 02:06:24,145 - INFO - Running trade check at 2025-07-18 02:06:24
+2025-07-18 02:06:26,376 - INFO - Account balance: 5885.0547678 USDT
+2025-07-18 02:06:26,689 - INFO - RSI value: 76.86, Signal: SELL
+2025-07-18 02:06:27,110 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:06:28,147 - INFO - TRADE: BTC/USDT | RSI: 76.86 | Signal: SELL | Price: 120232.2 | Quantity: 0.01 | SL: 1 | TP: 2
+2025-07-18 02:06:34,671 - INFO - Running trade check at 2025-07-18 02:06:34
+2025-07-18 02:06:34,671 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:06:34,674 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:06:34,674 - INFO - Using real-time WebSocket price data
+2025-07-18 02:06:34,674 - INFO - No trade signal generated
+2025-07-18 02:06:58,306 - INFO - Running trade check at 2025-07-18 02:06:58
+2025-07-18 02:07:01,294 - INFO - Account balance: 4688.90701593 USDT
+2025-07-18 02:07:01,463 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 02:07:01,874 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:07:02,664 - INFO - TRADE: BTC/USDT | RSI: 76.87 | Signal: SELL | Price: 120232.3 | Quantity: 0.01 | SL: 1 | TP: 2
+2025-07-18 02:07:04,808 - INFO - Running trade check at 2025-07-18 02:07:04
+2025-07-18 02:07:04,808 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:07:04,811 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:07:04,811 - INFO - Using real-time WebSocket price data
+2025-07-18 02:07:04,811 - INFO - No trade signal generated
+2025-07-18 02:07:32,831 - INFO - Running trade check at 2025-07-18 02:07:32
+2025-07-18 02:07:34,930 - INFO - Running trade check at 2025-07-18 02:07:34
+2025-07-18 02:07:34,930 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:07:34,932 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:07:34,932 - INFO - Using real-time WebSocket price data
+2025-07-18 02:07:34,932 - INFO - No trade signal generated
+2025-07-18 02:07:35,393 - INFO - Account balance: 3478.647873 USDT
+2025-07-18 02:07:35,618 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 02:07:36,174 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:07:36,849 - INFO - TRADE: BTC/USDT | RSI: 76.87 | Signal: SELL | Price: 120232.2 | Quantity: 0.01 | SL: 1 | TP: 2
+2025-07-18 02:08:05,073 - INFO - Running trade check at 2025-07-18 02:08:05
+2025-07-18 02:08:05,073 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:08:05,076 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:08:05,076 - INFO - Using real-time WebSocket price data
+2025-07-18 02:08:05,076 - INFO - No trade signal generated
+2025-07-18 02:08:35,192 - INFO - Running trade check at 2025-07-18 02:08:35
+2025-07-18 02:08:35,192 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:08:35,194 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:08:35,194 - INFO - Using real-time WebSocket price data
+2025-07-18 02:08:35,194 - INFO - No trade signal generated
+2025-07-18 02:09:05,327 - INFO - Running trade check at 2025-07-18 02:09:05
+2025-07-18 02:09:05,327 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:09:05,328 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:09:05,329 - INFO - Using real-time WebSocket price data
+2025-07-18 02:09:05,329 - INFO - No trade signal generated
+2025-07-18 02:09:35,462 - INFO - Running trade check at 2025-07-18 02:09:35
+2025-07-18 02:09:35,462 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:09:35,463 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:09:35,463 - INFO - Using real-time WebSocket price data
+2025-07-18 02:09:35,463 - INFO - No trade signal generated
+2025-07-18 02:10:05,620 - INFO - Running trade check at 2025-07-18 02:10:05
+2025-07-18 02:10:05,620 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:10:05,621 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:10:05,621 - INFO - Using real-time WebSocket price data
+2025-07-18 02:10:05,621 - INFO - No trade signal generated
+2025-07-18 02:10:06,008 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:10:06,012 - INFO - Running trade check at 2025-07-18 02:10:06
+2025-07-18 02:10:09,534 - INFO - Account balance: 2299.77902414 USDT
+2025-07-18 02:10:09,842 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 02:10:10,037 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:10:11,144 - INFO - TRADE: BTC/USDT | RSI: 76.87 | Signal: SELL | Price: 120529.0 | Quantity: 0.01 | SL: 1 | TP: 2
+2025-07-18 02:10:11,152 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:10:35,766 - INFO - Running trade check at 2025-07-18 02:10:35
+2025-07-18 02:10:35,766 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:10:35,769 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:10:35,769 - INFO - Using real-time WebSocket price data
+2025-07-18 02:10:35,769 - INFO - No trade signal generated
+2025-07-18 02:10:41,279 - INFO - Running trade check at 2025-07-18 02:10:41
+2025-07-18 02:10:44,809 - INFO - Account balance: 1105.6904993 USDT
+2025-07-18 02:10:45,336 - INFO - RSI value: 76.87, Signal: SELL
+2025-07-18 02:10:45,547 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:10:46,304 - ERROR - Failed to place order
+2025-07-18 02:11:05,899 - INFO - Running trade check at 2025-07-18 02:11:05
+2025-07-18 02:11:05,899 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:11:05,902 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:11:05,902 - INFO - Using real-time WebSocket price data
+2025-07-18 02:11:05,902 - INFO - No trade signal generated
+2025-07-18 02:11:16,450 - INFO - Running trade check at 2025-07-18 02:11:16
+2025-07-18 02:11:20,365 - INFO - Account balance: 1109.44097489 USDT
+2025-07-18 02:11:20,837 - INFO - RSI value: 76.86, Signal: SELL
+2025-07-18 02:11:21,039 - INFO - Using REST API for price data (WebSocket data not available)
+2025-07-18 02:11:21,932 - ERROR - Failed to place order
+2025-07-18 02:11:36,025 - INFO - Running trade check at 2025-07-18 02:11:36
+2025-07-18 02:11:36,025 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:11:36,029 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:11:36,029 - INFO - Using real-time WebSocket price data
+2025-07-18 02:11:36,029 - INFO - No trade signal generated
+2025-07-18 02:12:06,171 - INFO - Running trade check at 2025-07-18 02:12:06
+2025-07-18 02:12:06,172 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:12:06,175 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:12:06,175 - INFO - Using real-time WebSocket price data
+2025-07-18 02:12:06,175 - INFO - No trade signal generated
+2025-07-18 02:12:36,304 - INFO - Running trade check at 2025-07-18 02:12:36
+2025-07-18 02:12:36,304 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:12:36,307 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:12:36,307 - INFO - Using real-time WebSocket price data
+2025-07-18 02:12:36,307 - INFO - No trade signal generated
+2025-07-18 02:13:06,433 - INFO - Running trade check at 2025-07-18 02:13:06
+2025-07-18 02:13:06,433 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:13:06,435 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:13:06,435 - INFO - Using real-time WebSocket price data
+2025-07-18 02:13:06,435 - INFO - No trade signal generated
+2025-07-18 02:13:36,570 - INFO - Running trade check at 2025-07-18 02:13:36
+2025-07-18 02:13:36,570 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:13:36,575 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:13:36,575 - INFO - Using real-time WebSocket price data
+2025-07-18 02:13:36,575 - INFO - No trade signal generated
+2025-07-18 02:14:06,699 - INFO - Running trade check at 2025-07-18 02:14:06
+2025-07-18 02:14:06,699 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:14:06,701 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:14:06,701 - INFO - Using real-time WebSocket price data
+2025-07-18 02:14:06,701 - INFO - No trade signal generated
+2025-07-18 02:14:36,828 - INFO - Running trade check at 2025-07-18 02:14:36
+2025-07-18 02:14:36,828 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:14:36,833 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:14:36,833 - INFO - Using real-time WebSocket price data
+2025-07-18 02:14:36,833 - INFO - No trade signal generated
+2025-07-18 02:15:07,000 - INFO - Running trade check at 2025-07-18 02:15:07
+2025-07-18 02:15:07,001 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:15:07,004 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:15:07,004 - INFO - Using real-time WebSocket price data
+2025-07-18 02:15:07,004 - INFO - No trade signal generated
+2025-07-18 02:15:37,155 - INFO - Running trade check at 2025-07-18 02:15:37
+2025-07-18 02:15:37,155 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:15:37,158 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:15:37,158 - INFO - Using real-time WebSocket price data
+2025-07-18 02:15:37,158 - INFO - No trade signal generated
+2025-07-18 02:16:00,396 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 02:16:00,401 - INFO - Running trade check at 2025-07-18 02:16:00
+2025-07-18 02:16:01,083 - INFO - Account balance: 0.0 USDT
+2025-07-18 02:16:01,286 - ERROR - An unexpected error occurred in check_and_trade: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-07-18 02:16:01,289 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:16:07,295 - INFO - Running trade check at 2025-07-18 02:16:07
+2025-07-18 02:16:07,296 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:16:07,302 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:16:07,302 - INFO - Using real-time WebSocket price data
+2025-07-18 02:16:07,302 - INFO - No trade signal generated
+2025-07-18 02:16:37,434 - INFO - Running trade check at 2025-07-18 02:16:37
+2025-07-18 02:16:37,434 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:16:37,444 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:16:37,444 - INFO - Using real-time WebSocket price data
+2025-07-18 02:16:37,444 - INFO - No trade signal generated
+2025-07-18 02:17:01,852 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:17:01,856 - INFO - Running trade check at 2025-07-18 02:17:01
+2025-07-18 02:17:05,349 - INFO - Managing open buy position for BTC/USDT. Entry: 120467.7566666, Size: 0.06
+2025-07-18 02:17:05,945 - INFO - Current Price: 120235.10, TP: 122877.11, SL: 119263.08
+2025-07-18 02:17:05,945 - INFO - Holding position. No action needed.
+2025-07-18 02:17:05,953 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:17:07,541 - INFO - Running trade check at 2025-07-18 02:17:07
+2025-07-18 02:17:07,541 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:17:07,545 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:17:07,545 - INFO - Using real-time WebSocket price data
+2025-07-18 02:17:07,545 - INFO - No trade signal generated
+2025-07-18 02:17:36,044 - INFO - Running trade check at 2025-07-18 02:17:36
+2025-07-18 02:17:37,636 - INFO - Running trade check at 2025-07-18 02:17:37
+2025-07-18 02:17:37,636 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:17:37,637 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:17:37,637 - INFO - Using real-time WebSocket price data
+2025-07-18 02:17:37,637 - INFO - No trade signal generated
+2025-07-18 02:17:39,247 - INFO - Managing open buy position for BTC/USDT. Entry: 120467.7566666, Size: 0.06
+2025-07-18 02:17:39,450 - INFO - Current Price: 120236.10, TP: 122877.11, SL: 119263.08
+2025-07-18 02:17:39,450 - INFO - Holding position. No action needed.
+2025-07-18 02:18:07,746 - INFO - Running trade check at 2025-07-18 02:18:07
+2025-07-18 02:18:07,746 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:18:07,748 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:18:07,748 - INFO - Using real-time WebSocket price data
+2025-07-18 02:18:07,748 - INFO - No trade signal generated
+2025-07-18 02:18:09,566 - INFO - Running trade check at 2025-07-18 02:18:09
+2025-07-18 02:18:12,645 - INFO - Managing open buy position for BTC/USDT. Entry: 120467.7566666, Size: 0.06
+2025-07-18 02:18:13,059 - INFO - Current Price: 120236.10, TP: 122877.11, SL: 119263.08
+2025-07-18 02:18:13,059 - INFO - Holding position. No action needed.
+2025-07-18 02:18:37,877 - INFO - Running trade check at 2025-07-18 02:18:37
+2025-07-18 02:18:37,878 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:18:37,881 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:18:37,881 - INFO - Using real-time WebSocket price data
+2025-07-18 02:18:37,881 - INFO - No trade signal generated
+2025-07-18 02:18:43,200 - INFO - Running trade check at 2025-07-18 02:18:43
+2025-07-18 02:18:46,460 - INFO - Managing open buy position for BTC/USDT. Entry: 120467.7566666, Size: 0.06
+2025-07-18 02:18:46,930 - INFO - Current Price: 120931.60, TP: 122877.11, SL: 119263.08
+2025-07-18 02:18:46,930 - INFO - Holding position. No action needed.
+2025-07-18 02:19:08,019 - INFO - Running trade check at 2025-07-18 02:19:08
+2025-07-18 02:19:08,020 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:19:08,022 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:19:08,022 - INFO - Using real-time WebSocket price data
+2025-07-18 02:19:08,022 - INFO - No trade signal generated
+2025-07-18 02:19:17,089 - INFO - Running trade check at 2025-07-18 02:19:17
+2025-07-18 02:19:19,993 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:19:20,175 - INFO - Account balance: 8212.91653452 USDT
+2025-07-18 02:19:20,357 - ERROR - An unexpected error occurred in check_and_trade: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-07-18 02:19:38,144 - INFO - Running trade check at 2025-07-18 02:19:38
+2025-07-18 02:19:38,144 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:19:38,148 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:19:38,148 - INFO - Using real-time WebSocket price data
+2025-07-18 02:19:38,148 - INFO - No trade signal generated
+2025-07-18 02:19:49,520 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:19:49,524 - INFO - Running trade check at 2025-07-18 02:19:49
+2025-07-18 02:19:52,005 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:19:52,411 - INFO - Account balance: 8212.91656218 USDT
+2025-07-18 02:19:52,813 - ERROR - An unexpected error occurred in check_and_trade: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-07-18 02:19:52,819 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:20:08,284 - INFO - Running trade check at 2025-07-18 02:20:08
+2025-07-18 02:20:08,285 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:20:08,288 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:20:08,288 - INFO - Using real-time WebSocket price data
+2025-07-18 02:20:08,288 - INFO - No trade signal generated
+2025-07-18 02:20:22,955 - INFO - Running trade check at 2025-07-18 02:20:22
+2025-07-18 02:20:25,834 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:20:26,014 - INFO - Account balance: 8212.91651201 USDT
+2025-07-18 02:20:26,462 - ERROR - An unexpected error occurred in check_and_trade: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-07-18 02:20:38,404 - INFO - Running trade check at 2025-07-18 02:20:38
+2025-07-18 02:20:38,404 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:20:38,406 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:20:38,406 - INFO - Using real-time WebSocket price data
+2025-07-18 02:20:38,406 - INFO - No trade signal generated
+2025-07-18 02:21:08,541 - INFO - Running trade check at 2025-07-18 02:21:08
+2025-07-18 02:21:08,541 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:21:08,542 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:21:08,542 - INFO - Using real-time WebSocket price data
+2025-07-18 02:21:08,542 - INFO - No trade signal generated
+2025-07-18 02:21:21,606 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:21:21,610 - INFO - Running trade check at 2025-07-18 02:21:21
+2025-07-18 02:21:25,044 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:21:25,470 - INFO - Account balance: 8212.91651178 USDT
+2025-07-18 02:21:25,898 - INFO - RSI value: 59.85, Signal: HOLD
+2025-07-18 02:21:25,898 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:21:25,904 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:21:38,658 - INFO - Running trade check at 2025-07-18 02:21:38
+2025-07-18 02:21:38,659 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:21:38,662 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:21:38,662 - INFO - Using real-time WebSocket price data
+2025-07-18 02:21:38,662 - INFO - No trade signal generated
+2025-07-18 02:21:56,027 - INFO - Running trade check at 2025-07-18 02:21:56
+2025-07-18 02:21:58,427 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:21:58,870 - INFO - Account balance: 8212.91659177 USDT
+2025-07-18 02:21:59,059 - INFO - RSI value: 59.85, Signal: HOLD
+2025-07-18 02:21:59,059 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:22:08,797 - INFO - Running trade check at 2025-07-18 02:22:08
+2025-07-18 02:22:08,797 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:22:08,800 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:22:08,800 - INFO - Using real-time WebSocket price data
+2025-07-18 02:22:08,800 - INFO - No trade signal generated
+2025-07-18 02:22:29,190 - INFO - Running trade check at 2025-07-18 02:22:29
+2025-07-18 02:22:32,437 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:22:32,612 - INFO - Account balance: 8212.91653123 USDT
+2025-07-18 02:22:33,050 - INFO - RSI value: 59.85, Signal: HOLD
+2025-07-18 02:22:33,050 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:22:38,929 - INFO - Running trade check at 2025-07-18 02:22:38
+2025-07-18 02:22:38,929 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:22:38,930 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:22:38,930 - INFO - Using real-time WebSocket price data
+2025-07-18 02:22:38,930 - INFO - No trade signal generated
+2025-07-18 02:23:03,168 - INFO - Running trade check at 2025-07-18 02:23:03
+2025-07-18 02:23:06,114 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:23:06,284 - INFO - Account balance: 8212.91648539 USDT
+2025-07-18 02:23:06,463 - INFO - RSI value: 67.16, Signal: HOLD
+2025-07-18 02:23:06,463 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:23:09,046 - INFO - Running trade check at 2025-07-18 02:23:09
+2025-07-18 02:23:09,046 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:23:09,048 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:23:09,048 - INFO - Using real-time WebSocket price data
+2025-07-18 02:23:09,048 - INFO - No trade signal generated
+2025-07-18 02:23:36,608 - INFO - Running trade check at 2025-07-18 02:23:36
+2025-07-18 02:23:39,186 - INFO - Running trade check at 2025-07-18 02:23:39
+2025-07-18 02:23:39,186 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:23:39,189 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:23:39,189 - INFO - Using real-time WebSocket price data
+2025-07-18 02:23:39,189 - INFO - No trade signal generated
+2025-07-18 02:23:39,276 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:23:39,702 - INFO - Account balance: 8212.91654271 USDT
+2025-07-18 02:23:40,177 - INFO - RSI value: 67.16, Signal: HOLD
+2025-07-18 02:23:40,177 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:24:09,324 - INFO - Running trade check at 2025-07-18 02:24:09
+2025-07-18 02:24:09,324 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:24:09,328 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:24:09,328 - INFO - Using real-time WebSocket price data
+2025-07-18 02:24:09,328 - INFO - No trade signal generated
+2025-07-18 02:24:33,180 - INFO - Starting BTC trading bot in LIVE mode
+2025-07-18 02:24:33,184 - INFO - Running trade check at 2025-07-18 02:24:33
+2025-07-18 02:24:33,550 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:24:33,891 - INFO - Account balance: 0.0 USDT
+2025-07-18 02:24:34,054 - WARNING - Could not retrieve klines for BTC/USDT.
+2025-07-18 02:24:34,055 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:24:39,450 - INFO - Running trade check at 2025-07-18 02:24:39
+2025-07-18 02:24:39,450 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:24:39,454 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:24:39,454 - INFO - Using real-time WebSocket price data
+2025-07-18 02:24:39,454 - INFO - No trade signal generated
+2025-07-18 02:24:53,025 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:24:53,030 - INFO - Running trade check at 2025-07-18 02:24:53
+2025-07-18 02:24:55,191 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:24:55,588 - INFO - Account balance: 8212.91652908 USDT
+2025-07-18 02:24:55,981 - INFO - RSI value: 68.00, Signal: HOLD
+2025-07-18 02:24:55,981 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:24:55,986 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:25:09,568 - INFO - Running trade check at 2025-07-18 02:25:09
+2025-07-18 02:25:09,568 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:25:09,571 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:25:09,571 - INFO - Using real-time WebSocket price data
+2025-07-18 02:25:09,571 - INFO - No trade signal generated
+2025-07-18 02:25:26,131 - INFO - Running trade check at 2025-07-18 02:25:26
+2025-07-18 02:25:29,125 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:25:29,576 - INFO - Account balance: 8212.9165391 USDT
+2025-07-18 02:25:30,097 - INFO - RSI value: 68.00, Signal: HOLD
+2025-07-18 02:25:30,098 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:25:39,708 - INFO - Running trade check at 2025-07-18 02:25:39
+2025-07-18 02:25:39,708 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:25:39,709 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:25:39,709 - INFO - Using real-time WebSocket price data
+2025-07-18 02:25:39,709 - INFO - No trade signal generated
+2025-07-18 02:26:00,252 - INFO - Running trade check at 2025-07-18 02:26:00
+2025-07-18 02:26:03,280 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:26:03,438 - INFO - Account balance: 8212.91652661 USDT
+2025-07-18 02:26:03,888 - INFO - RSI value: 68.00, Signal: HOLD
+2025-07-18 02:26:03,888 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:26:09,842 - INFO - Running trade check at 2025-07-18 02:26:09
+2025-07-18 02:26:09,842 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:26:09,844 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:26:09,844 - INFO - Using real-time WebSocket price data
+2025-07-18 02:26:09,844 - INFO - No trade signal generated
+2025-07-18 02:26:34,043 - INFO - Running trade check at 2025-07-18 02:26:34
+2025-07-18 02:26:36,959 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:26:37,139 - INFO - Account balance: 8212.91649937 USDT
+2025-07-18 02:26:37,323 - INFO - RSI value: 68.00, Signal: HOLD
+2025-07-18 02:26:37,323 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:26:39,989 - INFO - Running trade check at 2025-07-18 02:26:39
+2025-07-18 02:26:39,989 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:26:39,991 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:26:39,991 - INFO - Using real-time WebSocket price data
+2025-07-18 02:26:39,992 - INFO - No trade signal generated
+2025-07-18 02:27:04,983 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:27:04,987 - INFO - Running trade check at 2025-07-18 02:27:04
+2025-07-18 02:27:08,493 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:27:08,934 - INFO - Account balance: 8212.91651504 USDT
+2025-07-18 02:27:09,368 - INFO - RSI value: 68.00, Signal: SELL
+2025-07-18 02:27:10,122 - INFO - Running trade check at 2025-07-18 02:27:10
+2025-07-18 02:27:10,122 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:27:10,127 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:27:10,127 - INFO - Using real-time WebSocket price data
+2025-07-18 02:27:10,127 - INFO - No trade signal generated
+2025-07-18 02:27:10,131 - INFO - Successfully placed new SELL order for BTC/USDT.
+2025-07-18 02:27:10,139 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:27:40,258 - INFO - Running trade check at 2025-07-18 02:27:40
+2025-07-18 02:27:40,259 - INFO - Running trade check at 2025-07-18 02:27:40
+2025-07-18 02:27:40,259 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:27:40,262 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:27:40,262 - INFO - Using real-time WebSocket price data
+2025-07-18 02:27:40,262 - INFO - No trade signal generated
+2025-07-18 02:27:43,251 - INFO - Managing open buy position for BTC/USDT. Entry: 120345.8, Size: 0.001
+2025-07-18 02:27:44,027 - INFO - Current Price: 120345.80, TP: 122752.72, SL: 119142.34
+2025-07-18 02:27:44,027 - INFO - Holding position. No action needed.
+2025-07-18 02:28:10,384 - INFO - Running trade check at 2025-07-18 02:28:10
+2025-07-18 02:28:10,385 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:28:10,388 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:28:10,388 - INFO - Using real-time WebSocket price data
+2025-07-18 02:28:10,388 - INFO - No trade signal generated
+2025-07-18 02:28:40,549 - INFO - Running trade check at 2025-07-18 02:28:40
+2025-07-18 02:28:40,550 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:28:40,562 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:28:40,562 - INFO - Using real-time WebSocket price data
+2025-07-18 02:28:40,562 - INFO - No trade signal generated
+2025-07-18 02:29:10,708 - INFO - Running trade check at 2025-07-18 02:29:10
+2025-07-18 02:29:10,708 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:29:10,715 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:29:10,715 - INFO - Using real-time WebSocket price data
+2025-07-18 02:29:10,715 - INFO - No trade signal generated
+2025-07-18 02:29:40,855 - INFO - Running trade check at 2025-07-18 02:29:40
+2025-07-18 02:29:40,855 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:29:40,861 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:29:40,861 - INFO - Using real-time WebSocket price data
+2025-07-18 02:29:40,861 - INFO - No trade signal generated
+2025-07-18 02:30:10,993 - INFO - Running trade check at 2025-07-18 02:30:10
+2025-07-18 02:30:10,993 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:30:10,997 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:30:10,997 - INFO - Using real-time WebSocket price data
+2025-07-18 02:30:10,997 - INFO - No trade signal generated
+2025-07-18 02:30:32,224 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 02:30:32,228 - INFO - Running trade check at 2025-07-18 02:30:32
+2025-07-18 02:30:35,237 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:30:35,449 - INFO - Account balance: 8212.82028999 USDT
+2025-07-18 02:30:35,878 - INFO - RSI: 50.69, MA: 118878.36, Signal: HOLD
+2025-07-18 02:30:35,878 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:30:35,887 - INFO - Bot scheduled to run every 30 seconds
+2025-07-18 02:30:41,121 - INFO - Running trade check at 2025-07-18 02:30:41
+2025-07-18 02:30:41,121 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:30:41,129 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:30:41,129 - INFO - Using real-time WebSocket price data
+2025-07-18 02:30:41,129 - INFO - No trade signal generated
+2025-07-18 02:31:06,037 - INFO - Running trade check at 2025-07-18 02:31:06
+2025-07-18 02:31:09,442 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:31:10,019 - INFO - Account balance: 8212.82022107 USDT
+2025-07-18 02:31:10,456 - INFO - RSI: 50.69, MA: 118878.36, Signal: HOLD
+2025-07-18 02:31:10,456 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:31:11,262 - INFO - Running trade check at 2025-07-18 02:31:11
+2025-07-18 02:31:11,263 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:31:11,266 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:31:11,266 - INFO - Using real-time WebSocket price data
+2025-07-18 02:31:11,266 - INFO - No trade signal generated
+2025-07-18 02:31:40,614 - INFO - Running trade check at 2025-07-18 02:31:40
+2025-07-18 02:31:41,398 - INFO - Running trade check at 2025-07-18 02:31:41
+2025-07-18 02:31:41,399 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:31:41,405 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:31:41,405 - INFO - Using real-time WebSocket price data
+2025-07-18 02:31:41,405 - INFO - No trade signal generated
+2025-07-18 02:31:43,817 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 02:31:44,156 - INFO - Account balance: 8212.82034487 USDT
+2025-07-18 02:31:44,739 - INFO - RSI: 64.19, MA: 118898.35, Signal: HOLD
+2025-07-18 02:31:44,740 - INFO - Signal is HOLD. No action taken.
+2025-07-18 02:32:11,541 - INFO - Running trade check at 2025-07-18 02:32:11
+2025-07-18 02:32:11,542 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:32:11,545 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:32:11,545 - INFO - Using real-time WebSocket price data
+2025-07-18 02:32:11,545 - INFO - No trade signal generated
+2025-07-18 02:32:41,676 - INFO - Running trade check at 2025-07-18 02:32:41
+2025-07-18 02:32:41,676 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:32:41,678 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:32:41,678 - INFO - Using real-time WebSocket price data
+2025-07-18 02:32:41,679 - INFO - No trade signal generated
+2025-07-18 02:33:11,808 - INFO - Running trade check at 2025-07-18 02:33:11
+2025-07-18 02:33:11,808 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:33:11,812 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:33:11,812 - INFO - Using real-time WebSocket price data
+2025-07-18 02:33:11,812 - INFO - No trade signal generated
+2025-07-18 02:33:41,954 - INFO - Running trade check at 2025-07-18 02:33:41
+2025-07-18 02:33:41,955 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:33:41,969 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:33:41,969 - INFO - Using real-time WebSocket price data
+2025-07-18 02:33:41,969 - INFO - No trade signal generated
+2025-07-18 02:34:12,108 - INFO - Running trade check at 2025-07-18 02:34:12
+2025-07-18 02:34:12,109 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:34:12,111 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:34:12,111 - INFO - Using real-time WebSocket price data
+2025-07-18 02:34:12,112 - INFO - No trade signal generated
+2025-07-18 02:34:42,240 - INFO - Running trade check at 2025-07-18 02:34:42
+2025-07-18 02:34:42,240 - INFO - Account balance: 1000.0 USDT
+2025-07-18 02:34:42,244 - INFO - RSI value: 37.20, Signal: HOLD
+2025-07-18 02:34:42,244 - INFO - Using real-time WebSocket price data
+2025-07-18 02:34:42,244 - INFO - No trade signal generated
+2025-07-18 12:04:38,682 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 12:04:38,686 - INFO - Running trade check at 2025-07-18 12:04:38
+2025-07-18 12:04:42,059 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 12:04:42,423 - INFO - Account balance: 8212.8202584 USDT
+2025-07-18 12:04:42,658 - INFO - RSI: 52.16, MA: 120404.76, Signal: HOLD
+2025-07-18 12:04:42,658 - INFO - Signal is HOLD. No action taken.
+2025-07-18 12:04:42,669 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 12:06:43,989 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 12:06:43,993 - INFO - Running trade check at 2025-07-18 12:06:43
+2025-07-18 12:06:47,144 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 12:06:47,356 - INFO - Account balance: 8212.82021654 USDT
+2025-07-18 12:06:47,790 - INFO - RSI: 54.57, MA: 120407.74, Signal: HOLD
+2025-07-18 12:06:47,790 - INFO - Signal is HOLD. No action taken.
+2025-07-18 12:06:47,804 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 13:19:48,275 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 13:19:48,279 - INFO - Running trade check at 2025-07-18 13:19:48
+2025-07-18 13:19:50,928 - INFO - Managing open short position for BTC/USDT. Entry: 119970.7, Size: 0.001
+2025-07-18 13:19:51,172 - INFO - Current Price: 119753.10, TP: 117571.29, SL: 121170.41
+2025-07-18 13:19:51,173 - INFO - Holding position. No action needed.
+2025-07-18 13:19:51,192 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 13:26:54,003 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 13:26:54,008 - INFO - Running trade check at 2025-07-18 13:26:54
+2025-07-18 13:26:59,743 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 13:26:59,974 - INFO - Account balance: 15000.47813984 USDT
+2025-07-18 13:27:00,226 - INFO - RSI: 41.07, MA: 120408.74, Signal: HOLD
+2025-07-18 13:27:00,226 - INFO - Signal is HOLD. No action taken.
+2025-07-18 13:27:00,238 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 13:31:31,135 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 13:31:31,139 - INFO - Running trade check at 2025-07-18 13:31:31
+2025-07-18 13:31:33,469 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 13:31:33,683 - INFO - Account balance: 15000.47813984 USDT
+2025-07-18 13:31:33,901 - INFO - RSI: 36.30, MA: 120384.72, Signal: HOLD
+2025-07-18 13:31:33,901 - INFO - Signal is HOLD. No action taken.
+2025-07-18 13:31:33,912 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 13:36:33,979 - INFO - Running trade check at 2025-07-18 13:36:33
+2025-07-18 13:36:37,016 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 13:36:37,533 - INFO - Account balance: 15000.47813984 USDT
+2025-07-18 13:36:38,332 - INFO - RSI: 34.98, MA: 120382.54, Signal: HOLD
+2025-07-18 13:36:38,332 - INFO - Signal is HOLD. No action taken.
+2025-07-18 13:41:38,539 - INFO - Running trade check at 2025-07-18 13:41:38
+2025-07-18 13:41:43,633 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 13:41:43,916 - INFO - Account balance: 15000.47813984 USDT
+2025-07-18 13:41:44,148 - INFO - RSI: 35.63, MA: 120383.64, Signal: HOLD
+2025-07-18 13:41:44,149 - INFO - Signal is HOLD. No action taken.
+2025-07-18 13:52:10,836 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 13:52:10,840 - INFO - Running trade check at 2025-07-18 13:52:10
+2025-07-18 13:52:13,769 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 13:52:13,994 - INFO - Account balance: 15000.47813984 USDT
+2025-07-18 13:52:14,965 - INFO - RSI: 37.52, MA: 120365.18, Signal: HOLD
+2025-07-18 13:52:14,965 - INFO - Signal is HOLD. No action taken.
+2025-07-18 13:52:14,980 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 18:45:41,065 - INFO - Starting BTC trading bot in MOCK mode
+2025-07-18 18:45:41,070 - INFO - Running trade check at 2025-07-18 18:45:41
+2025-07-18 18:45:41,070 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 18:45:41,070 - INFO - Account balance: 1000.0 USDT
+2025-07-18 18:45:41,082 - INFO - SMC Signal: SELL
+2025-07-18 18:45:41,082 - INFO - High-Confluence SELL Setup Found!
+2025-07-18 18:45:41,082 - INFO -   Entry: 100.00
+2025-07-18 18:45:41,082 - INFO -   Stop Loss: 101.21
+2025-07-18 18:45:41,082 - INFO -   Take Profit: 98.89
+2025-07-18 18:45:41,082 - INFO -   Risk/Reward Ratio: 0.92:1
+2025-07-18 18:45:41,082 - WARNING - Trade setup ignored. RR ratio 0.92:1 is below the 5:1 minimum.
+2025-07-18 18:45:41,082 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 18:49:54,827 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 18:49:54,831 - INFO - Running trade check at 2025-07-18 18:49:54
+2025-07-18 18:49:58,614 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 18:49:59,071 - INFO - Account balance: 8212.8202333 USDT
+2025-07-18 18:49:59,497 - INFO - RSI: 48.99, MA: 119716.57, Signal: HOLD
+2025-07-18 18:49:59,497 - INFO - Signal is HOLD. No action taken.
+2025-07-18 18:49:59,503 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 19:15:35,513 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 19:15:35,518 - INFO - Running trade check at 2025-07-18 19:15:35
+2025-07-18 19:15:40,268 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 19:15:40,779 - INFO - Account balance: 8212.82034218 USDT
+2025-07-18 19:15:41,018 - INFO - RSI: 39.04, MA: 119667.70, Signal: HOLD
+2025-07-18 19:15:41,018 - INFO - Signal is HOLD. No action taken.
+2025-07-18 19:15:41,031 - INFO - Bot scheduled to run every 300 seconds
+2025-07-18 19:20:41,194 - INFO - Running trade check at 2025-07-18 19:20:41
+2025-07-18 19:20:44,727 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 19:20:45,218 - INFO - Account balance: 8212.82027444 USDT
+2025-07-18 19:20:45,680 - INFO - RSI: 41.84, MA: 119670.80, Signal: HOLD
+2025-07-18 19:20:45,680 - INFO - Signal is HOLD. No action taken.
+2025-07-18 19:25:45,923 - INFO - Running trade check at 2025-07-18 19:25:45
+2025-07-18 19:25:48,828 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 19:25:49,269 - INFO - Account balance: 8212.82028127 USDT
+2025-07-18 19:25:49,908 - INFO - RSI: 39.27, MA: 119667.95, Signal: HOLD
+2025-07-18 19:25:49,908 - INFO - Signal is HOLD. No action taken.
+2025-07-18 19:28:16,377 - INFO - Starting BTC trading bot in TESTNET mode
+2025-07-18 19:28:16,381 - INFO - Running trade check at 2025-07-18 19:28:16
+2025-07-18 19:28:19,139 - INFO - No open position for BTC/USDT. Looking for a new trade.
+2025-07-18 19:28:19,543 - INFO - Account balance: 8212.82024929 USDT
+2025-07-18 19:28:19,732 - INFO - RSI: 39.70, MA: 119668.41, Signal: HOLD
+2025-07-18 19:28:19,733 - INFO - Signal is HOLD. No action taken.
+2025-07-18 19:28:19,748 - INFO - Bot scheduled to run every 300 seconds
