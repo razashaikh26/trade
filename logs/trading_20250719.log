@@ -56,3 +56,22 @@
 2025-07-19 16:34:43,878 - INFO - SMC Signal: HOLD
 2025-07-19 16:34:43,878 - INFO - Signal is HOLD. No action taken.
 2025-07-19 16:34:43,889 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:47:33,067 - INFO - Starting 1000SHIBUSDT trading bot in MOCK mode
+2025-07-19 16:47:33,071 - INFO - Running trade check at 2025-07-19 16:47:33
+2025-07-19 16:47:33,071 - INFO - No open position for 1000SHIBUSDT. Looking for a new trade.
+2025-07-19 16:47:33,071 - INFO - Account balance: 1000.0 USDT
+2025-07-19 16:47:33,085 - INFO - SMC Signal: SELL
+2025-07-19 16:47:33,085 - INFO - High-Confluence SELL Setup Found!
+2025-07-19 16:47:33,085 - INFO -   Entry: 100.00
+2025-07-19 16:47:33,085 - INFO -   Stop Loss: 101.21
+2025-07-19 16:47:33,085 - INFO -   Take Profit: 98.89
+2025-07-19 16:47:33,085 - INFO -   Risk/Reward Ratio: 0.92:1
+2025-07-19 16:47:33,085 - WARNING - Trade setup ignored. RR ratio 0.92:1 is below the 5:1 minimum.
+2025-07-19 16:47:33,085 - INFO - Bot scheduled to run every 300 seconds
+2025-07-19 16:48:26,365 - INFO - Starting 1000SHIBUSDT trading bot in TESTNET mode (Real Data)
+2025-07-19 16:48:26,369 - INFO - Running trade check at 2025-07-19 16:48:26
+2025-07-19 16:48:29,713 - INFO - No open position for 1000SHIBUSDT. Looking for a new trade.
+2025-07-19 16:48:29,945 - INFO - Account balance: 8212.70447312 USDT
+2025-07-19 16:48:30,384 - INFO - SMC Signal: HOLD
+2025-07-19 16:48:30,384 - INFO - Signal is HOLD. No action taken.
+2025-07-19 16:48:30,395 - INFO - Bot scheduled to run every 300 seconds
