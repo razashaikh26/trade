@@ -61,9 +61,8 @@ class BinanceClient:
                 return 0.0
                 
         except Exception as e:
-            print(f"Error getting balance: {e}")
-            # If there's an error, return mock balance to continue testing
-            return 100.0  # Return small test balance
+            print(f"CRITICAL ERROR: Could not get account balance. Check API keys and permissions. Error: {e}")
+            raise e # Re-raise the exception to stop the bot
     
     def get_klines(self, symbol, interval, limit=100):
         """Get historical klines (candlestick data)"""
@@ -243,12 +242,14 @@ class BinanceClient:
             return []
         
         try:
-            # Fetch income history. 'REALIZED_PNL' is what we want for closed trades.
-            income_history = self.client.fetch_income_history(
-                symbol=symbol,
-                since=start_time,
-                limit=1000, # Max limit
-                params={'incomeType': 'REALIZED_PNL'}
+            # Fetch income history using the explicit private API method for futures
+            income_history = self.client.fapiPrivateGetIncome(
+                params={
+                    'symbol': symbol,
+                    'incomeType': 'REALIZED_PNL',
+                    'startTime': start_time,
+                    'limit': 1000
+                }
             )
             return income_history
         except Exception as e:
