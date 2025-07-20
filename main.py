@@ -193,6 +193,32 @@ def check_and_trade(mock_mode=False, testnet=False):
                             logger.error("❌ Failed to close SHORT position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
                             logger.error(f"   This is a critical error - position should have been closed!")
+                            
+                            # Try alternative closure methods
+                            logger.info("🔄 Attempting alternative position closure methods...")
+                            
+                            # Method 1: Try with smaller quantity (in case of precision issues)
+                            try:
+                                smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
+                                logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
+                                alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'market', reduce_only=True)
+                                if alt_order:
+                                    logger.info(f"✅ Partial closure successful with smaller quantity")
+                                else:
+                                    logger.error(f"❌ Alternative method 1 failed")
+                            except Exception as e:
+                                logger.error(f"❌ Alternative method 1 exception: {e}")
+                            
+                            # Method 2: Check if position still exists
+                            try:
+                                current_positions = binance.get_open_positions(symbol)
+                                if current_positions:
+                                    logger.info(f"🔍 Position still exists: {current_positions}")
+                                else:
+                                    logger.info(f"🔍 No open positions found - may have been closed elsewhere")
+                            except Exception as e:
+                                logger.error(f"❌ Could not check positions: {e}")
+                        
                         # CRITICAL: Always return here - never continue to new trade logic
                         return
                     elif current_price >= (stop_loss - tolerance):
@@ -209,6 +235,32 @@ def check_and_trade(mock_mode=False, testnet=False):
                             logger.error("❌ Failed to close SHORT position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
                             logger.error(f"   This is a critical error - position should have been closed!")
+                            
+                            # Try alternative closure methods
+                            logger.info("🔄 Attempting alternative position closure methods...")
+                            
+                            # Method 1: Try with smaller quantity (in case of precision issues)
+                            try:
+                                smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
+                                logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
+                                alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'market', reduce_only=True)
+                                if alt_order:
+                                    logger.info(f"✅ Partial closure successful with smaller quantity")
+                                else:
+                                    logger.error(f"❌ Alternative method 1 failed")
+                            except Exception as e:
+                                logger.error(f"❌ Alternative method 1 exception: {e}")
+                            
+                            # Method 2: Check if position still exists
+                            try:
+                                current_positions = binance.get_open_positions(symbol)
+                                if current_positions:
+                                    logger.info(f"🔍 Position still exists: {current_positions}")
+                                else:
+                                    logger.info(f"🔍 No open positions found - may have been closed elsewhere")
+                            except Exception as e:
+                                logger.error(f"❌ Could not check positions: {e}")
+                        
                         # CRITICAL: Always return here - never continue to new trade logic
                         return
                 else:  # long
@@ -218,6 +270,14 @@ def check_and_trade(mock_mode=False, testnet=False):
                         logger.info(f"   Condition: {current_price:.4f} >= {take_profit:.4f} (±{tolerance}) = True")
                         # Close long position by selling (reduce_only=True)
                         logger.info(f"🔄 Attempting to close LONG position: SELL {abs(position_size)} {symbol}")
+                        
+                        # Enhanced debugging before order placement
+                        logger.info(f"🔍 Pre-order debugging:")
+                        logger.info(f"   - Symbol: {symbol}")
+                        logger.info(f"   - Position size: {abs(position_size)}")
+                        logger.info(f"   - Current price: {current_price:.4f}")
+                        logger.info(f"   - Testnet mode: {testnet}")
+                        
                         order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             profit = (current_price - entry_price) * abs(position_size)
@@ -227,6 +287,32 @@ def check_and_trade(mock_mode=False, testnet=False):
                             logger.error("❌ Failed to close LONG position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
                             logger.error(f"   This is a critical error - position should have been closed!")
+                            
+                            # Try alternative closure methods
+                            logger.info("🔄 Attempting alternative position closure methods...")
+                            
+                            # Method 1: Try with smaller quantity (in case of precision issues)
+                            try:
+                                smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
+                                logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
+                                alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'market', reduce_only=True)
+                                if alt_order:
+                                    logger.info(f"✅ Partial closure successful with smaller quantity")
+                                else:
+                                    logger.error(f"❌ Alternative method 1 failed")
+                            except Exception as e:
+                                logger.error(f"❌ Alternative method 1 exception: {e}")
+                            
+                            # Method 2: Check if position still exists
+                            try:
+                                current_positions = binance.get_open_positions(symbol)
+                                if current_positions:
+                                    logger.info(f"🔍 Position still exists: {current_positions}")
+                                else:
+                                    logger.info(f"🔍 No open positions found - may have been closed elsewhere")
+                            except Exception as e:
+                                logger.error(f"❌ Could not check positions: {e}")
+                        
                         # CRITICAL: Always return here - never continue to new trade logic
                         return
                     elif current_price <= (stop_loss + tolerance):
@@ -234,6 +320,14 @@ def check_and_trade(mock_mode=False, testnet=False):
                         logger.info(f"   Condition: {current_price:.4f} <= {stop_loss:.4f} (±{tolerance}) = True")
                         # Close long position by selling (reduce_only=True)
                         logger.info(f"🔄 Attempting to close LONG position: SELL {abs(position_size)} {symbol}")
+                        
+                        # Enhanced debugging before order placement
+                        logger.info(f"🔍 Pre-order debugging:")
+                        logger.info(f"   - Symbol: {symbol}")
+                        logger.info(f"   - Position size: {abs(position_size)}")
+                        logger.info(f"   - Current price: {current_price:.4f}")
+                        logger.info(f"   - Testnet mode: {testnet}")
+                        
                         order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             loss = (entry_price - current_price) * abs(position_size)
@@ -243,6 +337,32 @@ def check_and_trade(mock_mode=False, testnet=False):
                             logger.error("❌ Failed to close LONG position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
                             logger.error(f"   This is a critical error - position should have been closed!")
+                            
+                            # Try alternative closure methods
+                            logger.info("🔄 Attempting alternative position closure methods...")
+                            
+                            # Method 1: Try with smaller quantity (in case of precision issues)
+                            try:
+                                smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
+                                logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
+                                alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'market', reduce_only=True)
+                                if alt_order:
+                                    logger.info(f"✅ Partial closure successful with smaller quantity")
+                                else:
+                                    logger.error(f"❌ Alternative method 1 failed")
+                            except Exception as e:
+                                logger.error(f"❌ Alternative method 1 exception: {e}")
+                            
+                            # Method 2: Check if position still exists
+                            try:
+                                current_positions = binance.get_open_positions(symbol)
+                                if current_positions:
+                                    logger.info(f"🔍 Position still exists: {current_positions}")
+                                else:
+                                    logger.info(f"🔍 No open positions found - may have been closed elsewhere")
+                            except Exception as e:
+                                logger.error(f"❌ Could not check positions: {e}")
+                        
                         # CRITICAL: Always return here - never continue to new trade logic
                         return
                 

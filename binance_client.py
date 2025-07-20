@@ -357,9 +357,16 @@ class BinanceClient:
                 params['stopPrice'] = stop_loss
                 params['takeProfitPrice'] = take_profit # Binance often requires both or neither
 
-            # Log order details for debugging
+            # Enhanced logging for debugging
             print(f"🔄 Attempting to place order: {side} {quantity} {symbol} (reduce_only={reduce_only})")
             print(f"   Order type: {order_type}, Price: {price}, Params: {params}")
+            if self.testnet:
+                print(f"   🧪 TESTNET MODE: Order will be placed on testnet")
+            
+            # Check if we have an active connection
+            if hasattr(self, 'connection_failed') and self.connection_failed:
+                print(f"❌ Cannot place order: Connection to Binance failed")
+                return None
 
             order = self.client.create_order(
                 symbol=symbol,
@@ -373,9 +380,22 @@ class BinanceClient:
             print(f"✅ Order placed successfully: {order.get('id', 'N/A')}")
             return order
         except Exception as e:
-            print(f"❌ Error placing order: {e}")
+            error_msg = str(e)
+            print(f"❌ Error placing order: {error_msg}")
             print(f"   Symbol: {symbol}, Side: {side}, Quantity: {quantity}, Type: {order_type}")
             print(f"   Reduce Only: {reduce_only}, Params: {params}")
+            
+            # Enhanced error analysis
+            if "insufficient" in error_msg.lower():
+                print(f"💡 DIAGNOSIS: Insufficient balance or position size issue")
+            elif "permission" in error_msg.lower() or "unauthorized" in error_msg.lower():
+                print(f"💡 DIAGNOSIS: API permission issue - check testnet API keys")
+            elif "symbol" in error_msg.lower():
+                print(f"💡 DIAGNOSIS: Symbol format issue - check if {symbol} is valid for testnet")
+            elif "network" in error_msg.lower() or "timeout" in error_msg.lower():
+                print(f"💡 DIAGNOSIS: Network connectivity issue")
+            else:
+                print(f"💡 DIAGNOSIS: Unknown error - full details: {error_msg}")
             
             # Attempt to place a simple order if the complex one fails
             try:
@@ -393,7 +413,8 @@ class BinanceClient:
                 print("✅ Simple order placed successfully. You must set SL/TP manually.")
                 return order
             except Exception as e2:
-                print(f"❌ Failed to place even a simple order: {e2}")
+                error_msg2 = str(e2)
+                print(f"❌ Failed to place even a simple order: {error_msg2}")
                 print(f"   This might be a connection issue, insufficient balance, or API restriction")
                 
                 # Try one more time with minimal parameters for market orders
@@ -409,7 +430,17 @@ class BinanceClient:
                         print("✅ Minimal market order placed successfully!")
                         return minimal_order
                     except Exception as e3:
-                        print(f"❌ All order attempts failed. Final error: {e3}")
+                        error_msg3 = str(e3)
+                        print(f"❌ All order attempts failed. Final error: {error_msg3}")
+                        
+                        # Critical debugging for testnet
+                        if self.testnet:
+                            print(f"🧪 TESTNET DEBUGGING:")
+                            print(f"   - Check if testnet API keys are correctly set")
+                            print(f"   - Verify testnet has sufficient balance")
+                            print(f"   - Confirm symbol {symbol} exists on testnet")
+                            print(f"   - Check if position actually exists to close")
+                        
                         return None
                 return None
     
