@@ -103,13 +103,38 @@ def check_and_trade(mock_mode=False, testnet=False):
                 # Get position details from the position info
                 position_info = open_position.get('info', {})
                 entry_price = float(position_info.get('entryPrice', 0))
-                position_size = float(open_position.get('contracts', 0))
-                side = 'short' if position_size < 0 else 'long'
+                
+                # CRITICAL FIX: Use positionAmt from info to determine side correctly
+                position_amt = float(position_info.get('positionAmt', 0))
+                position_size = abs(position_amt)  # Always use absolute value for size
+                
+                # Determine side from positionAmt (negative = short, positive = long)
+                side = 'short' if position_amt < 0 else 'long'
+                
+                # Double-check with the parsed 'side' field if available
+                parsed_side = open_position.get('side', '').lower()
+                if parsed_side in ['long', 'short']:
+                    side = parsed_side
+                
+                # ADDITIONAL SAFETY: Cross-validate position side detection for live trading
+                if not testnet and not binance.mock_mode:  # Live trading only
+                    if position_amt != 0:
+                        detected_side = 'short' if position_amt < 0 else 'long'
+                        if side != detected_side:
+                            logger.warning(f"⚠️ LIVE TRADING SAFETY: Position side mismatch detected!")
+                            logger.warning(f"   Position amount: {position_amt}")
+                            logger.warning(f"   Detected from amount: {detected_side}")
+                            logger.warning(f"   Parsed side field: {parsed_side}")
+                            logger.warning(f"   Using detected side: {detected_side}")
+                            side = detected_side  # Use the amount-based detection as primary
                 
                 # Get current account balance
                 balance = binance.get_account_balance()
                 
-                logger.info(f"Managing open {side} position for {symbol}. Entry: {entry_price:.4f}, Size: {abs(position_size)}")
+                logger.info(f"Managing open {side.upper()} position for {symbol}. Entry: {entry_price:.4f}, Size: {position_size}")
+                logger.info(f"Position amount: {position_amt} (negative=SHORT, positive=LONG)")
+                if not testnet and not binance.mock_mode:
+                    logger.info(f"🔴 LIVE TRADING MODE - Position side validation: {side.upper()}")
                 logger.info(f"Account balance: {balance:.2f} USDT")
                 
                 # Calculate TP and SL based on strategy - Enhanced with ATR
