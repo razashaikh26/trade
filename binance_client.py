@@ -357,6 +357,10 @@ class BinanceClient:
                 params['stopPrice'] = stop_loss
                 params['takeProfitPrice'] = take_profit # Binance often requires both or neither
 
+            # Log order details for debugging
+            print(f"🔄 Attempting to place order: {side} {quantity} {symbol} (reduce_only={reduce_only})")
+            print(f"   Order type: {order_type}, Price: {price}, Params: {params}")
+
             order = self.client.create_order(
                 symbol=symbol,
                 type=order_type, 
@@ -366,24 +370,47 @@ class BinanceClient:
                 params=params
             )
 
+            print(f"✅ Order placed successfully: {order.get('id', 'N/A')}")
             return order
         except Exception as e:
-            print(f"Error placing order: {e}")
+            print(f"❌ Error placing order: {e}")
+            print(f"   Symbol: {symbol}, Side: {side}, Quantity: {quantity}, Type: {order_type}")
+            print(f"   Reduce Only: {reduce_only}, Params: {params}")
+            
             # Attempt to place a simple order if the complex one fails
             try:
-                print("Attempting to place order without SL/TP...")
+                print("🔄 Attempting to place order without SL/TP...")
+                simple_params = {'reduceOnly': reduce_only} if reduce_only else {}
+                
                 order = self.client.create_order(
                     symbol=symbol,
                     type=order_type,
                     side=side,
                     amount=quantity,
                     price=price,
-                    params={'reduceOnly': reduce_only}  # Still use reduceOnly for simple orders
+                    params=simple_params
                 )
-                print("Simple order placed successfully. You must set SL/TP manually.")
+                print("✅ Simple order placed successfully. You must set SL/TP manually.")
                 return order
             except Exception as e2:
-                print(f"Failed to place even a simple order: {e2}")
+                print(f"❌ Failed to place even a simple order: {e2}")
+                print(f"   This might be a connection issue, insufficient balance, or API restriction")
+                
+                # Try one more time with minimal parameters for market orders
+                if order_type.lower() == 'market':
+                    try:
+                        print("🔄 Final attempt with minimal market order...")
+                        minimal_order = self.client.create_market_order(
+                            symbol=symbol,
+                            side=side,
+                            amount=quantity,
+                            params={'reduceOnly': reduce_only} if reduce_only else {}
+                        )
+                        print("✅ Minimal market order placed successfully!")
+                        return minimal_order
+                    except Exception as e3:
+                        print(f"❌ All order attempts failed. Final error: {e3}")
+                        return None
                 return None
     
     def get_income_history(self, symbol: str, start_time: int) -> List[Dict]:

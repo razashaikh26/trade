@@ -1,4 +1,4 @@
-# Mock Trade Chart Verification Manual
+x# Mock Trade Chart Verification Manual
 
 ## Overview
 Your trading bot currently uses **mock data** (synthetic price data) when running in mock mode. This data is generated using random price movements and doesn't reflect real market conditions. This manual will help you verify your trades against real market data.

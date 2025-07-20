@@ -99,6 +99,7 @@ def check_and_trade(mock_mode=False, testnet=False):
                     break
 
             if open_position:
+                # CRITICAL: If there's an open position, ONLY manage it - never look for new trades
                 # Get position details from the position info
                 position_info = open_position.get('info', {})
                 entry_price = float(position_info.get('entryPrice', 0))
@@ -182,23 +183,33 @@ def check_and_trade(mock_mode=False, testnet=False):
                         logger.info(f"✅ Take Profit hit for SHORT position! Closing at {current_price:.4f}")
                         logger.info(f"   Condition: {current_price:.4f} <= {take_profit:.4f} (±{tolerance}) = True")
                         # Close short position by buying back (reduce_only=True)
+                        logger.info(f"🔄 Attempting to close SHORT position: BUY {abs(position_size)} {symbol}")
                         order_result = binance.place_order(symbol, 'BUY', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             profit = (entry_price - current_price) * abs(position_size)
                             logger.info(f"💰 Profit: ${profit:.2f}")
+                            logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
                         else:
                             logger.error("❌ Failed to close SHORT position")
+                            logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
+                            logger.error(f"   This is a critical error - position should have been closed!")
+                        # CRITICAL: Always return here - never continue to new trade logic
                         return
                     elif current_price >= (stop_loss - tolerance):
                         logger.info(f"🛑 Stop Loss hit for SHORT position! Closing at {current_price:.4f}")
                         logger.info(f"   Condition: {current_price:.4f} >= {stop_loss:.4f} (±{tolerance}) = True")
                         # Close short position by buying back (reduce_only=True)
+                        logger.info(f"🔄 Attempting to close SHORT position: BUY {abs(position_size)} {symbol}")
                         order_result = binance.place_order(symbol, 'BUY', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             loss = (current_price - entry_price) * abs(position_size)
                             logger.info(f"💸 Loss: ${loss:.2f}")
+                            logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
                         else:
                             logger.error("❌ Failed to close SHORT position")
+                            logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
+                            logger.error(f"   This is a critical error - position should have been closed!")
+                        # CRITICAL: Always return here - never continue to new trade logic
                         return
                 else:  # long
                     # For LONG: TP when price goes UP, SL when price goes DOWN
@@ -206,30 +217,45 @@ def check_and_trade(mock_mode=False, testnet=False):
                         logger.info(f"✅ Take Profit hit for LONG position! Closing at {current_price:.4f}")
                         logger.info(f"   Condition: {current_price:.4f} >= {take_profit:.4f} (±{tolerance}) = True")
                         # Close long position by selling (reduce_only=True)
+                        logger.info(f"🔄 Attempting to close LONG position: SELL {abs(position_size)} {symbol}")
                         order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             profit = (current_price - entry_price) * abs(position_size)
                             logger.info(f"💰 Profit: ${profit:.2f}")
+                            logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
                         else:
                             logger.error("❌ Failed to close LONG position")
+                            logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
+                            logger.error(f"   This is a critical error - position should have been closed!")
+                        # CRITICAL: Always return here - never continue to new trade logic
                         return
                     elif current_price <= (stop_loss + tolerance):
                         logger.info(f"🛑 Stop Loss hit for LONG position! Closing at {current_price:.4f}")
                         logger.info(f"   Condition: {current_price:.4f} <= {stop_loss:.4f} (±{tolerance}) = True")
                         # Close long position by selling (reduce_only=True)
+                        logger.info(f"🔄 Attempting to close LONG position: SELL {abs(position_size)} {symbol}")
                         order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             loss = (entry_price - current_price) * abs(position_size)
                             logger.info(f"💸 Loss: ${loss:.2f}")
+                            logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
                         else:
                             logger.error("❌ Failed to close LONG position")
+                            logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
+                            logger.error(f"   This is a critical error - position should have been closed!")
+                        # CRITICAL: Always return here - never continue to new trade logic
                         return
                 
                 logger.info("Holding position. No action needed.")
+                # CRITICAL: Always return here when managing an open position
+                # This ensures the bot NEVER looks for new trades while a position is open
                 return
                 
         except Exception as e:
             logger.error(f"❌ Error checking positions: {e}")
+            # CRITICAL: If we can't check positions, don't risk opening new ones
+            logger.error("Cannot verify position status - skipping all trading to prevent conflicts")
+            return
         
         # If no open positions, show balance and look for new trading opportunities
         balance = binance.get_account_balance()
