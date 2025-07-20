@@ -35,22 +35,16 @@ class TechnicalIndicators:
             current_price: Current market price
             atr_value: Current ATR value
             multiplier: ATR multiplier for SL/TP distance
-            testnet: If True, use very tight levels for testing
+            testnet: If True, use half of the main ATR distance for testing
         
         Returns:
             Dictionary with dynamic levels
         """
-        if testnet:
-            # Use very tight levels for testnet testing (0.1% distance)
-            tight_distance = current_price * 0.001  # 0.1% of current price
-            return {
-                'long_stop_loss': current_price - tight_distance,
-                'long_take_profit': current_price + tight_distance,
-                'short_stop_loss': current_price + tight_distance,
-                'short_take_profit': current_price - tight_distance
-            }
-        
         atr_distance = atr_value * multiplier
+        
+        if testnet:
+            # Use half of the main ATR distance for testnet
+            atr_distance = atr_distance * 0.5
         
         return {
             'long_stop_loss': current_price - atr_distance,
@@ -68,22 +62,16 @@ class TechnicalIndicators:
             entry_price: Position entry price
             atr_value: Current ATR value
             multiplier: ATR multiplier for SL/TP distance
-            testnet: If True, use very tight levels for testing
+            testnet: If True, use half of the main ATR distance for testing
         
         Returns:
             Dictionary with dynamic levels based on entry price
         """
-        if testnet:
-            # Use very tight levels for testnet testing (0.1% distance from entry)
-            tight_distance = entry_price * 0.001  # 0.1% of entry price
-            return {
-                'long_stop_loss': entry_price - tight_distance,
-                'long_take_profit': entry_price + tight_distance,
-                'short_stop_loss': entry_price + tight_distance,
-                'short_take_profit': entry_price - tight_distance
-            }
-        
         atr_distance = atr_value * multiplier
+        
+        if testnet:
+            # Use half of the main ATR distance for testnet
+            atr_distance = atr_distance * 0.5
         
         return {
             'long_stop_loss': entry_price - atr_distance,

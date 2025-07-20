@@ -226,7 +226,11 @@ def check_and_trade(mock_mode=False, testnet=False):
                             try:
                                 smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
                                 logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
-                                alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'market', reduce_only=True)
+                                if testnet:
+                                    logger.info(f"🧪 TESTNET: Using limit order for alternative closure")
+                                    alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'limit', price=current_price, reduce_only=True)
+                                else:
+                                    alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'market', reduce_only=True)
                                 if alt_order:
                                     logger.info(f"✅ Partial closure successful with smaller quantity")
                                 else:
@@ -268,7 +272,11 @@ def check_and_trade(mock_mode=False, testnet=False):
                             try:
                                 smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
                                 logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
-                                alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'market', reduce_only=True)
+                                if testnet:
+                                    logger.info(f"🧪 TESTNET: Using limit order for alternative closure")
+                                    alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'limit', price=current_price, reduce_only=True)
+                                else:
+                                    alt_order = binance.place_order(symbol, 'BUY', smaller_qty, 'market', reduce_only=True)
                                 if alt_order:
                                     logger.info(f"✅ Partial closure successful with smaller quantity")
                                 else:
@@ -303,7 +311,12 @@ def check_and_trade(mock_mode=False, testnet=False):
                         logger.info(f"   - Current price: {current_price:.4f}")
                         logger.info(f"   - Testnet mode: {testnet}")
                         
-                        order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
+                        # Use limit orders for testnet to avoid PERCENT_PRICE filter issues
+                        if testnet:
+                            logger.info(f"🧪 TESTNET: Using limit order at current price to avoid filter restrictions")
+                            order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'limit', price=current_price, reduce_only=True)
+                        else:
+                            order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             profit = (current_price - entry_price) * abs(position_size)
                             logger.info(f"💰 Profit: ${profit:.2f}")
@@ -320,7 +333,11 @@ def check_and_trade(mock_mode=False, testnet=False):
                             try:
                                 smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
                                 logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
-                                alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'market', reduce_only=True)
+                                if testnet:
+                                    logger.info(f"🧪 TESTNET: Using limit order for alternative closure")
+                                    alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'limit', price=current_price, reduce_only=True)
+                                else:
+                                    alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'market', reduce_only=True)
                                 if alt_order:
                                     logger.info(f"✅ Partial closure successful with smaller quantity")
                                 else:
@@ -353,7 +370,12 @@ def check_and_trade(mock_mode=False, testnet=False):
                         logger.info(f"   - Current price: {current_price:.4f}")
                         logger.info(f"   - Testnet mode: {testnet}")
                         
-                        order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
+                        # Use limit orders for testnet to avoid PERCENT_PRICE filter issues
+                        if testnet:
+                            logger.info(f"🧪 TESTNET: Using limit order at current price to avoid filter restrictions")
+                            order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'limit', price=current_price, reduce_only=True)
+                        else:
+                            order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
                         if order_result:
                             loss = (entry_price - current_price) * abs(position_size)
                             logger.info(f"💸 Loss: ${loss:.2f}")
@@ -370,7 +392,11 @@ def check_and_trade(mock_mode=False, testnet=False):
                             try:
                                 smaller_qty = round(abs(position_size) * 0.99, 6)  # 99% of position
                                 logger.info(f"🔄 Trying with smaller quantity: {smaller_qty}")
-                                alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'market', reduce_only=True)
+                                if testnet:
+                                    logger.info(f"🧪 TESTNET: Using limit order for alternative closure")
+                                    alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'limit', price=current_price, reduce_only=True)
+                                else:
+                                    alt_order = binance.place_order(symbol, 'SELL', smaller_qty, 'market', reduce_only=True)
                                 if alt_order:
                                     logger.info(f"✅ Partial closure successful with smaller quantity")
                                 else:
