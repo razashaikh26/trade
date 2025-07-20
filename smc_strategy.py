@@ -2,11 +2,13 @@ import pandas as pd
 import numpy as np
 from typing import Tuple, Dict, List, Optional
 import pandas_ta as ta
+from technical_indicators import TechnicalIndicators
 
 class SMCStrategy:
     """
     Advanced Smart Money Concepts (SMC) and ICT Trading Strategy
     Incorporates Order Blocks, Fair Value Gaps, Liquidity Analysis, and Market Structure
+    Enhanced with ATR-based dynamic levels and candlestick pattern confirmation
     """
     
     def __init__(self, config):
@@ -15,13 +17,18 @@ class SMCStrategy:
         self.order_block_strength = 3  # Minimum touches for valid order block
         self.fvg_threshold = 0.001  # Minimum gap size as percentage
         self.liquidity_threshold = 0.002  # Minimum liquidity zone size
+        self.tech_indicators = TechnicalIndicators()
         
     def _is_market_tradeable(self, df: pd.DataFrame) -> Tuple[bool, str]:
         """Check if the market has enough volume and volatility to trade"""
         # Volatility Check (ATR)
-        atr = df.ta.atr(length=14).iloc[-1]
+        atr = self.tech_indicators.calculate_atr(df, period=self.config.ATR_PERIOD)
+        if atr.empty or pd.isna(atr.iloc[-1]):
+            return False, "Unable to calculate ATR"
+            
+        current_atr = atr.iloc[-1]
         current_price = df['close'].iloc[-1]
-        atr_percent = (atr / current_price) * 100
+        atr_percent = (current_atr / current_price) * 100
         
         if atr_percent < self.config.MIN_ATR_PERCENT:
             return False, f"Low volatility (ATR: {atr_percent:.2f}%)"
@@ -69,6 +76,7 @@ class SMCStrategy:
             
         # Check for Break of Structure (BOS) or Change of Character (CHoCH)
         current_price = df['close'].iloc[-1]
+        
         bos = False
         choch = False
         
@@ -276,221 +284,215 @@ class SMCStrategy:
             
         return {"zone": zone, "fib_levels": fib_levels}
     
-    def generate_smc_signal(self, df: pd.DataFrame) -> Tuple[str, Dict]:
-        """Generate trading signal based on SMC analysis"""
+    def get_trading_signal(self, df: pd.DataFrame) -> Dict:
+        """
+        Enhanced main method to get trading signals with ATR-based levels and pattern confirmation
+        """
         if len(df) < 50:
-            return "HOLD", {"reason": "Insufficient data"}
-
-        # 1. Check if market is tradeable first
-        is_tradeable, reason = self._is_market_tradeable(df)
-        if not is_tradeable:
-            return "HOLD", {"reason": reason}
+            return {"signal": "HOLD", "reason": "Insufficient data", "confidence": 0}
         
-        # 2. Perform all SMC analysis
-        market_structure = self.identify_market_structure(df)
-        order_blocks = self.identify_order_blocks(df)
-        fvgs = self.identify_fair_value_gaps(df)
-        liquidity = self.identify_liquidity_zones(df)
-        premium_discount = self.calculate_premium_discount(df)
+        # Check if market is tradeable
+        tradeable, reason = self._is_market_tradeable(df)
+        if not tradeable:
+            return {"signal": "HOLD", "reason": reason, "confidence": 0}
         
+        # Calculate ATR and volatility metrics
+        atr = self.tech_indicators.calculate_atr(df, period=self.config.ATR_PERIOD)
+        atr_ma = atr.rolling(window=self.config.ATR_MA_PERIOD).mean()
+        
+        current_atr = atr.iloc[-1] if not atr.empty else 0
+        current_atr_ma = atr_ma.iloc[-1] if not atr_ma.empty else current_atr
         current_price = df['close'].iloc[-1]
         
-        analysis = {
+        # Get volatility state
+        volatility_state = self.tech_indicators.get_market_volatility_state(current_atr, current_atr_ma)
+        
+        # Check for engulfing patterns if enabled
+        engulfing_patterns = {}
+        if getattr(self.config, 'USE_ENGULFING_FILTER', False):
+            engulfing_patterns = self.tech_indicators.detect_engulfing_patterns(df)
+        
+        # Get base SMC signal
+        base_signal = self._get_base_smc_signal(df)
+        
+        if base_signal["signal"] == "HOLD":
+            return base_signal
+        
+        # Apply engulfing pattern filter
+        if getattr(self.config, 'USE_ENGULFING_FILTER', False):
+            signal_direction = base_signal["signal"]
+            
+            # For BUY signals, check for bullish engulfing confirmation
+            if signal_direction == "BUY" and not engulfing_patterns.get('bullish_engulfing', False):
+                return {
+                    "signal": "HOLD", 
+                    "reason": "BUY signal but no bullish engulfing confirmation",
+                    "confidence": 0
+                }
+            
+            # For SELL signals, check for bearish engulfing confirmation
+            if signal_direction == "SELL" and not engulfing_patterns.get('bearish_engulfing', False):
+                return {
+                    "signal": "HOLD", 
+                    "reason": "SELL signal but no bearish engulfing confirmation",
+                    "confidence": 0
+                }
+        
+        # Calculate dynamic ATR-based levels
+        dynamic_levels = {}
+        if getattr(self.config, 'USE_DYNAMIC_ATR_LEVELS', False) and current_atr > 0:
+            atr_multiplier = self.tech_indicators.calculate_dynamic_atr_multiplier(volatility_state)
+            dynamic_levels = self.tech_indicators.atr_based_levels(
+                current_price, current_atr, atr_multiplier
+            )
+        
+        # Calculate adaptive position size
+        adaptive_position_size = None
+        if getattr(self.config, 'USE_ADAPTIVE_POSITION_SIZE', False):
+            # This would need account balance - will be calculated in main.py
+            adaptive_position_size = {
+                'current_atr': current_atr,
+                'atr_ma': current_atr_ma,
+                'volatility_state': volatility_state
+            }
+        
+        # Enhanced signal with new features
+        enhanced_signal = {
+            **base_signal,
+            'atr_data': {
+                'current_atr': current_atr,
+                'atr_ma': current_atr_ma,
+                'volatility_state': volatility_state,
+                'atr_percent': (current_atr / current_price) * 100
+            },
+            'engulfing_patterns': engulfing_patterns,
+            'dynamic_levels': dynamic_levels,
+            'adaptive_sizing': adaptive_position_size
+        }
+        
+        return enhanced_signal
+    
+    def _get_base_smc_signal(self, df: pd.DataFrame) -> Dict:
+        """
+        Get base SMC trading signal (original logic)
+        """
+        # Market structure analysis
+        market_structure = self.identify_market_structure(df)
+        
+        # Order block analysis
+        order_blocks = self.identify_order_blocks(df)
+        
+        # Fair Value Gap analysis
+        fvgs = self.identify_fair_value_gaps(df)
+        
+        # Liquidity analysis
+        liquidity_zones = self.identify_liquidity_zones(df)
+        
+        # RSI analysis
+        rsi_signal = self._analyze_rsi(df)
+        
+        # Moving average trend
+        ma_trend = self._analyze_moving_average(df)
+        
+        # Combine all signals
+        signal_strength = 0
+        reasons = []
+        
+        # Market structure signals
+        if market_structure["bos"] or market_structure["choch"]:
+            if market_structure["trend"] == "BULLISH":
+                signal_strength += 2
+                reasons.append("Bullish market structure break")
+            elif market_structure["trend"] == "BEARISH":
+                signal_strength -= 2
+                reasons.append("Bearish market structure break")
+        
+        # Order block signals
+        current_price = df['close'].iloc[-1]
+        for ob in order_blocks:
+            if ob["type"] == "bullish" and current_price <= ob["high"] and current_price >= ob["low"]:
+                signal_strength += 1
+                reasons.append("Price at bullish order block")
+            elif ob["type"] == "bearish" and current_price <= ob["high"] and current_price >= ob["low"]:
+                signal_strength -= 1
+                reasons.append("Price at bearish order block")
+        
+        # Fair Value Gap signals
+        for fvg in fvgs:
+            if fvg["type"] == "bullish" and current_price >= fvg["low"] and current_price <= fvg["high"]:
+                signal_strength += 1
+                reasons.append("Price in bullish FVG")
+            elif fvg["type"] == "bearish" and current_price >= fvg["low"] and current_price <= fvg["high"]:
+                signal_strength -= 1
+                reasons.append("Price in bearish FVG")
+        
+        # RSI signals
+        if rsi_signal["signal"] == "BUY":
+            signal_strength += 1
+            reasons.append(f"RSI oversold: {rsi_signal['value']:.1f}")
+        elif rsi_signal["signal"] == "SELL":
+            signal_strength -= 1
+            reasons.append(f"RSI overbought: {rsi_signal['value']:.1f}")
+        
+        # Moving average signals
+        if ma_trend["signal"] == "BUY":
+            signal_strength += 1
+            reasons.append("Price above MA trend")
+        elif ma_trend["signal"] == "SELL":
+            signal_strength -= 1
+            reasons.append("Price below MA trend")
+        
+        # Determine final signal
+        if signal_strength >= 3:
+            signal = "BUY"
+            confidence = min(signal_strength * 20, 100)
+        elif signal_strength <= -3:
+            signal = "SELL" 
+            confidence = min(abs(signal_strength) * 20, 100)
+        else:
+            signal = "HOLD"
+            confidence = 0
+        
+        return {
+            "signal": signal,
+            "confidence": confidence,
+            "reason": "; ".join(reasons) if reasons else "No clear signal",
             "market_structure": market_structure,
             "order_blocks": order_blocks,
             "fvgs": fvgs,
-            "liquidity": liquidity,
-            "premium_discount": premium_discount,
-            "current_price": current_price
+            "liquidity_zones": liquidity_zones,
+            "rsi": rsi_signal,
+            "ma_trend": ma_trend,
+            "signal_strength": signal_strength
         }
+
+    def _analyze_rsi(self, df: pd.DataFrame) -> Dict:
+        """Analyze RSI for overbought/oversold conditions"""
+        import pandas_ta as ta
         
-        # Signal generation logic
-        signal = self._evaluate_confluence(analysis)
+        # Use proper pandas-ta syntax
+        rsi = ta.rsi(df['close'], length=14)
+        current_rsi = rsi.iloc[-1]
         
-        return signal, analysis
-    
-    def _evaluate_confluence(self, analysis: Dict) -> str:
-        """Evaluate confluence of SMC factors for signal generation"""
-        bullish_factors = 0
-        bearish_factors = 0
-        
-        # Market structure
-        if analysis["market_structure"]["trend"] == "BULLISH":
-            bullish_factors += 2
-        elif analysis["market_structure"]["trend"] == "BEARISH":
-            bearish_factors += 2
-            
-        # Change of Character
-        if analysis["market_structure"]["choch"]:
-            if analysis["market_structure"]["trend"] == "BULLISH":
-                bearish_factors += 3  # CHoCH suggests reversal
-            else:
-                bullish_factors += 3
-        
-        # Order Blocks
-        current_price = analysis["current_price"]
-        for ob in analysis["order_blocks"]:
-            if ob["strength"] >= 2:  # Strong order block
-                if (ob["type"] == "BULLISH" and 
-                    ob["low"] <= current_price <= ob["high"]):
-                    bullish_factors += 3
-                elif (ob["type"] == "BEARISH" and 
-                      ob["low"] <= current_price <= ob["high"]):
-                    bearish_factors += 3
-        
-        # Fair Value Gaps
-        for fvg in analysis["fvgs"]:
-            if fvg["gap_size"] > 0.002:  # Significant gap
-                if (fvg["type"] == "BULLISH" and 
-                    fvg["low"] <= current_price <= fvg["high"]):
-                    bullish_factors += 2
-                elif (fvg["type"] == "BEARISH" and 
-                      fvg["low"] <= current_price <= fvg["high"]):
-                    bearish_factors += 2
-        
-        # Premium/Discount
-        if analysis["premium_discount"]["zone"] == "DISCOUNT":
-            bullish_factors += 1  # Buy in discount
-        elif analysis["premium_discount"]["zone"] == "PREMIUM":
-            bearish_factors += 1  # Sell in premium
-        
-        # Liquidity considerations
-        # Look for liquidity sweeps (price taking out stops then reversing)
-        buy_side_liq = analysis["liquidity"]["buy_side"]
-        sell_side_liq = analysis["liquidity"]["sell_side"]
-        
-        if buy_side_liq and current_price > buy_side_liq[0]["level"]:
-            bearish_factors += 2  # Swept buy stops, expect reversal down
-        if sell_side_liq and current_price < sell_side_liq[0]["level"]:
-            bullish_factors += 2  # Swept sell stops, expect reversal up
-        
-        # Decision logic (require high confluence)
-        if bullish_factors >= 5 and bullish_factors > bearish_factors + 2:
-            return "BUY"
-        elif bearish_factors >= 5 and bearish_factors > bullish_factors + 2:
-            return "SELL"
+        if current_rsi < 30:
+            return {"signal": "BUY", "value": current_rsi}
+        elif current_rsi > 70:
+            return {"signal": "SELL", "value": current_rsi}
         else:
-            return "HOLD"
-    
-    def calculate_risk_reward_levels(self, signal: str, analysis: Dict) -> Dict:
-        """Calculate entry, SL, and TP levels with minimum 1:5 RR"""
-        if signal == "HOLD":
-            return {}
-            
-        current_price = analysis["current_price"]
+            return {"signal": "NEUTRAL", "value": current_rsi}
+
+    def _analyze_moving_average(self, df: pd.DataFrame) -> Dict:
+        """Analyze moving average trend"""
+        short_ma = df['close'].rolling(window=20).mean()
+        long_ma = df['close'].rolling(window=50).mean()
         
-        if signal == "BUY":
-            # Entry at current price or better
-            entry = current_price
-            
-            # Stop loss BELOW entry (correct for LONG)
-            sl_candidates = []
-            
-            # Check order blocks
-            for ob in analysis["order_blocks"]:
-                if ob["type"] == "BULLISH" and ob["low"] < current_price:
-                    sl_candidates.append(ob["low"] * 0.999)  # Slightly below
-            
-            # Check swing lows
-            if analysis["market_structure"]["swing_lows"]:
-                recent_low = min(analysis["market_structure"]["swing_lows"][-2:])
-                if recent_low < current_price:
-                    sl_candidates.append(recent_low * 0.999)
-            
-            if not sl_candidates:
-                # Use percentage-based SL as fallback (BELOW entry for LONG)
-                sl = current_price * (1 - self.config.STOP_LOSS_PERCENT / 100)
-            else:
-                sl = max(sl_candidates)  # Tightest stop loss (highest value below entry)
-            
-            # Take profit ABOVE entry (correct for LONG)
-            risk = entry - sl
-            min_reward = risk * 5  # 1:5 risk/reward ratio
-            tp = entry + min_reward  # ADD reward to entry for LONG
-            
-            # Check if TP hits resistance
-            resistance_levels = []
-            for ob in analysis["order_blocks"]:
-                if ob["type"] == "BEARISH" and ob["high"] > current_price:
-                    resistance_levels.append(ob["high"])
-            
-            if resistance_levels:
-                nearest_resistance = min(resistance_levels)
-                if tp > nearest_resistance:
-                    tp = nearest_resistance * 0.999  # Just below resistance
-            
-            # SANITY CHECK for LONG position
-            if tp <= entry or sl >= entry:
-                print(f"ERROR: Invalid TP/SL for LONG position! Entry: {entry}, TP: {tp}, SL: {sl}")
-                # Auto-correct using percentage-based approach
-                sl = entry * (1 - self.config.STOP_LOSS_PERCENT / 100)
-                tp = entry * (1 + self.config.TAKE_PROFIT_PERCENT / 100)
-                print(f"Auto-corrected: Entry: {entry}, TP: {tp}, SL: {sl}")
-            
-            rr_ratio = (tp - entry) / (entry - sl) if entry != sl else 0
-            
-            return {
-                "entry": round(entry, 2),
-                "stop_loss": round(sl, 2),
-                "take_profit": round(tp, 2),
-                "rr_ratio": round(rr_ratio, 2)
-            }
-            
-        elif signal == "SELL":
-            # Entry at current price or better
-            entry = current_price
-            
-            # Stop loss ABOVE entry (correct for SHORT)
-            sl_candidates = []
-            
-            # Check order blocks
-            for ob in analysis["order_blocks"]:
-                if ob["type"] == "BEARISH" and ob["high"] > current_price:
-                    sl_candidates.append(ob["high"] * 1.001)  # Slightly above
-            
-            # Check swing highs
-            if analysis["market_structure"]["swing_highs"]:
-                recent_high = max(analysis["market_structure"]["swing_highs"][-2:])
-                if recent_high > current_price:
-                    sl_candidates.append(recent_high * 1.001)
-            
-            if not sl_candidates:
-                # Use percentage-based SL as fallback (ABOVE entry for SHORT)
-                sl = current_price * (1 + self.config.STOP_LOSS_PERCENT / 100)
-            else:
-                sl = min(sl_candidates)  # Tightest stop loss (lowest value above entry)
-            
-            # Take profit BELOW entry (correct for SHORT)
-            risk = sl - entry
-            min_reward = risk * 5  # 1:5 risk/reward ratio
-            tp = entry - min_reward  # SUBTRACT reward from entry for SHORT
-            
-            # Check if TP hits support
-            support_levels = []
-            for ob in analysis["order_blocks"]:
-                if ob["type"] == "BULLISH" and ob["low"] < current_price:
-                    support_levels.append(ob["low"])
-            
-            if support_levels:
-                nearest_support = max(support_levels)
-                if tp < nearest_support:
-                    tp = nearest_support * 1.001  # Just above support
-            
-            # SANITY CHECK for SHORT position
-            if tp >= entry or sl <= entry:
-                print(f"ERROR: Invalid TP/SL for SHORT position! Entry: {entry}, TP: {tp}, SL: {sl}")
-                # Auto-correct using percentage-based approach
-                sl = entry * (1 + self.config.STOP_LOSS_PERCENT / 100)
-                tp = entry * (1 - self.config.TAKE_PROFIT_PERCENT / 100)
-                print(f"Auto-corrected: Entry: {entry}, TP: {tp}, SL: {sl}")
-            
-            rr_ratio = (entry - tp) / (sl - entry) if sl != entry else 0
-            
-            return {
-                "entry": round(entry, 2),
-                "stop_loss": round(sl, 2),
-                "take_profit": round(tp, 2),
-                "rr_ratio": round(rr_ratio, 2)
-            }
+        current_price = df['close'].iloc[-1]
+        short_ma_value = short_ma.iloc[-1]
+        long_ma_value = long_ma.iloc[-1]
         
-        return {}
+        if current_price > short_ma_value and short_ma_value > long_ma_value:
+            return {"signal": "BUY", "short_ma": short_ma_value, "long_ma": long_ma_value}
+        elif current_price < short_ma_value and short_ma_value < long_ma_value:
+            return {"signal": "SELL", "short_ma": short_ma_value, "long_ma": long_ma_value}
+        else:
+            return {"signal": "NEUTRAL", "short_ma": short_ma_value, "long_ma": long_ma_value}

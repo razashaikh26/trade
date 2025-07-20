@@ -13,11 +13,37 @@ RISK_PERCENT = 8.0  # Higher percentage needed for small accounts to meet minimu
 # The execution interval in seconds
 BOT_SLEEP_TIME_SECS = 300  # 5 minutes
 
+# LEGACY FIXED PERCENTAGES (kept for fallback)
 # The percentage for take-profit from the entry price
 TAKE_PROFIT_PERCENT = 3.0  # Slightly higher TP for better risk/reward
 
 # The percentage for stop-loss from the entry price
 STOP_LOSS_PERCENT = 1.5  # Tighter SL for small account protection
+
+# --- NEW ATR-BASED DYNAMIC SETTINGS ---
+# Enable ATR-based dynamic stop loss and take profit
+USE_DYNAMIC_ATR_LEVELS = True
+
+# ATR calculation period
+ATR_PERIOD = 14
+
+# ATR multiplier for stop loss calculation (will be adjusted based on volatility)
+ATR_STOP_MULTIPLIER = 2.0
+
+# Risk/Reward ratio for take profit (TP = SL * RISK_REWARD_RATIO)
+RISK_REWARD_RATIO = 1.5
+
+# ATR moving average period for volatility comparison
+ATR_MA_PERIOD = 50
+
+# Enable candlestick pattern confirmation
+USE_ENGULFING_FILTER = True
+
+# Enable volatility-adjusted position sizing
+USE_ADAPTIVE_POSITION_SIZE = True
+
+# Maximum position size multiplier in low volatility
+MAX_POSITION_MULTIPLIER = 2.0
 
 # --- FILTERS ---
 # Minimum volatility (ATR as a percentage of price) to consider a trade
