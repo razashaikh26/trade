@@ -49,6 +49,28 @@ class TechnicalIndicators:
         }
     
     @staticmethod
+    def atr_based_levels_for_position(entry_price: float, atr_value: float, multiplier: float = 2.0) -> Dict[str, float]:
+        """
+        Calculate dynamic stop loss and take profit levels for existing positions based on entry price
+        
+        Args:
+            entry_price: Position entry price
+            atr_value: Current ATR value
+            multiplier: ATR multiplier for SL/TP distance
+        
+        Returns:
+            Dictionary with dynamic levels based on entry price
+        """
+        atr_distance = atr_value * multiplier
+        
+        return {
+            'long_stop_loss': entry_price - atr_distance,
+            'long_take_profit': entry_price + (atr_distance * 1.5),  # 1.5:1 risk/reward
+            'short_stop_loss': entry_price + atr_distance,
+            'short_take_profit': entry_price - (atr_distance * 1.5)
+        }
+    
+    @staticmethod
     def detect_engulfing_patterns(df: pd.DataFrame) -> Dict[str, bool]:
         """
         Detect bullish and bearish engulfing candlestick patterns

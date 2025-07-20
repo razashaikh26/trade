@@ -126,7 +126,7 @@ def check_and_trade(mock_mode=False, testnet=False):
                             atr_multiplier = tech_indicators.calculate_dynamic_atr_multiplier(volatility_state)
                             
                             # Calculate dynamic levels based on entry price
-                            dynamic_levels = tech_indicators.atr_based_levels(entry_price, current_atr, atr_multiplier)
+                            dynamic_levels = tech_indicators.atr_based_levels_for_position(entry_price, current_atr, atr_multiplier)
                             
                             if side.lower() == 'short':
                                 take_profit = dynamic_levels['short_take_profit']
@@ -138,6 +138,7 @@ def check_and_trade(mock_mode=False, testnet=False):
                                 logger.info(f"🎯 Dynamic ATR levels (LONG) - Volatility: {volatility_state}")
                             
                             logger.info(f"ATR: {current_atr:.6f}, Multiplier: {atr_multiplier}x")
+                            logger.info(f"📊 Entry-based levels - SL: {stop_loss:.4f}, TP: {take_profit:.4f}")
                         else:
                             # Fallback to fixed percentages
                             logger.warning("⚠️ Could not calculate ATR, using fixed percentages")
@@ -165,34 +166,46 @@ def check_and_trade(mock_mode=False, testnet=False):
                         take_profit = entry_price * (1 + config.TAKE_PROFIT_PERCENT / 100)
                         stop_loss = entry_price * (1 - config.STOP_LOSS_PERCENT / 100)
 
-                logger.info(f"Current Price: {current_price:.2f}, TP: {take_profit:.2f}, SL: {stop_loss:.2f}")
+                logger.info(f"Current Price: {current_price:.4f}, TP: {take_profit:.4f}, SL: {stop_loss:.4f}")
+                
+                # Debug: Show exact comparison values
+                logger.info(f"🔍 Debug - Entry: {entry_price:.4f}, Current: {current_price:.4f}")
+                logger.info(f"🔍 Debug - Side: {side}, TP: {take_profit:.4f}, SL: {stop_loss:.4f}")
                 
                 # Check if TP or SL should be triggered
                 if side.lower() == 'short':
                     if current_price <= take_profit:
                         logger.info(f"✅ Take Profit hit for SHORT position! Closing at {current_price:.4f}")
+                        logger.info(f"   Condition: {current_price:.4f} <= {take_profit:.4f} = {current_price <= take_profit}")
                         # Close short position by buying back
                         binance.place_order(symbol, 'BUY', abs(position_size), 'market')
-                        logger.info(f"💰 Profit: {(entry_price - current_price) * abs(position_size):.2f}")
+                        profit = (entry_price - current_price) * abs(position_size)
+                        logger.info(f"💰 Profit: {profit:.2f}")
                         return
                     elif current_price >= stop_loss:
                         logger.info(f"🛑 Stop Loss hit for SHORT position! Closing at {current_price:.4f}")
+                        logger.info(f"   Condition: {current_price:.4f} >= {stop_loss:.4f} = {current_price >= stop_loss}")
                         # Close short position by buying back
                         binance.place_order(symbol, 'BUY', abs(position_size), 'market')
-                        logger.info(f"💸 Loss: {(current_price - entry_price) * abs(position_size):.2f}")
+                        loss = (current_price - entry_price) * abs(position_size)
+                        logger.info(f"💸 Loss: {loss:.2f}")
                         return
                 else:  # long
                     if current_price >= take_profit:
                         logger.info(f"✅ Take Profit hit for LONG position! Closing at {current_price:.4f}")
+                        logger.info(f"   Condition: {current_price:.4f} >= {take_profit:.4f} = {current_price >= take_profit}")
                         # Close long position by selling
                         binance.place_order(symbol, 'SELL', abs(position_size), 'market')
-                        logger.info(f"💰 Profit: {(current_price - entry_price) * abs(position_size):.2f}")
+                        profit = (current_price - entry_price) * abs(position_size)
+                        logger.info(f"💰 Profit: {profit:.2f}")
                         return
                     elif current_price <= stop_loss:
                         logger.info(f"🛑 Stop Loss hit for LONG position! Closing at {current_price:.4f}")
+                        logger.info(f"   Condition: {current_price:.4f} <= {stop_loss:.4f} = {current_price <= stop_loss}")
                         # Close long position by selling
                         binance.place_order(symbol, 'SELL', abs(position_size), 'market')
-                        logger.info(f"💸 Loss: {(entry_price - current_price) * abs(position_size):.2f}")
+                        loss = (entry_price - current_price) * abs(position_size)
+                        logger.info(f"💸 Loss: {loss:.2f}")
                         return
                 
                 logger.info("Holding position. No action needed.")
