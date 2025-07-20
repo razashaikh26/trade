@@ -5,19 +5,19 @@
 SYMBOLS = ['DOGEUSDT']
 
 # The maximum leverage to use for futures trading
-MAX_LEVERAGE = 10
+MAX_LEVERAGE = 5  # Reduced leverage for small account safety
 
 # The percentage of your account balance to risk on a single trade
-RISK_PERCENT = 1.0  # e.g., 1.0 means 1% of your account balance
+RISK_PERCENT = 8.0  # Higher percentage needed for small accounts to meet minimum order size
 
 # The execution interval in seconds
 BOT_SLEEP_TIME_SECS = 300  # 5 minutes
 
 # The percentage for take-profit from the entry price
-TAKE_PROFIT_PERCENT = 2.5  # Adjusted for DOGE volatility
+TAKE_PROFIT_PERCENT = 3.0  # Slightly higher TP for better risk/reward
 
 # The percentage for stop-loss from the entry price
-STOP_LOSS_PERCENT = 1.2  # Adjusted for DOGE price movements
+STOP_LOSS_PERCENT = 1.5  # Tighter SL for small account protection
 
 # --- FILTERS ---
 # Minimum volatility (ATR as a percentage of price) to consider a trade
@@ -39,7 +39,15 @@ RSI_OVERBOUGHT = 70    # Standard overbought threshold
 # Execution settings
 CHECK_INTERVAL = 5     # Check every 5 minutes
 
-# Risk management - OPTIMIZED FOR DOGE
-MAX_TRADES_PER_DAY = 6   # Slightly more trades for DOGE
-MAX_DAILY_LOSS = 15     # $15 max daily loss for DOGE
-MIN_BALANCE = 1       # Minimum account balance in USD
+# Risk management - OPTIMIZED FOR SMALL ACCOUNT (1000 INR ≈ $12 USD)
+MAX_TRADES_PER_DAY = 3   # Conservative for small account
+MAX_DAILY_LOSS = 2.0     # $2 max daily loss (about 17% of account)
+MIN_BALANCE = 8.0        # Minimum $8 balance to keep trading
+
+# DOGE-specific settings
+MIN_ORDER_SIZE_DOGE = 20  # Binance minimum order size for DOGE
+MIN_ORDER_VALUE_USD = 5   # Minimum order value in USD (Binance requirement)
+
+# Position sizing for small accounts
+POSITION_SIZE_METHOD = 'fixed_percentage'  # Use percentage-based sizing
+SMALL_ACCOUNT_MODE = True  # Enable small account optimizations

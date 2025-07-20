@@ -182,32 +182,67 @@ def check_and_trade(mock_mode=False, testnet=False):
             logger.info(f"🧠 Strategy signal: {signal}")
             
             if signal in ['BUY', 'SELL']:
-                # Calculate position size
+                # Calculate position size for small account
                 balance = binance.get_account_balance()
                 logger.info(f"💰 Account balance: {balance:.2f} USDT")
                 
+                # Check if balance is sufficient for trading
+                if balance < config.MIN_BALANCE:
+                    logger.warning(f"⚠️ Balance too low ({balance:.2f} USDT). Minimum required: {config.MIN_BALANCE} USDT")
+                    return
+                
                 # Calculate position size based on risk percentage
                 risk_amount = balance * (config.RISK_PERCENT / 100)
-                position_size = risk_amount / current_price
+                position_size_by_risk = risk_amount / current_price
+                
+                # Ensure minimum order size for DOGE (20 DOGE minimum)
+                min_order_size = config.MIN_ORDER_SIZE_DOGE
+                min_order_value = config.MIN_ORDER_VALUE_USD
+                min_position_by_value = min_order_value / current_price
+                
+                # Use the larger of: risk-based size, minimum DOGE size, or minimum USD value
+                position_size = max(position_size_by_risk, min_order_size, min_position_by_value)
+                
+                # Check if we can afford this position
+                order_value = position_size * current_price
+                if order_value > balance * 0.95:  # Leave 5% buffer
+                    # Reduce position size to fit account
+                    position_size = (balance * 0.95) / current_price
+                    logger.warning(f"⚠️ Reducing position size to fit account balance")
+                
+                # Final check: ensure we still meet minimum requirements
+                final_order_value = position_size * current_price
+                if position_size < min_order_size or final_order_value < min_order_value:
+                    logger.warning(f"⚠️ Cannot place order: Position size {position_size:.1f} DOGE (${final_order_value:.2f}) below minimum requirements")
+                    logger.warning(f"   Minimum: {min_order_size} DOGE or ${min_order_value} USD")
+                    return
                 
                 # Round position size to appropriate decimal places
-                position_size = round(position_size, 3)
+                position_size = round(position_size, 1)  # DOGE allows 1 decimal place
                 
-                logger.info(f"📊 Calculated position size: {position_size} {symbol} (Risk: {risk_amount:.2f})")
+                logger.info(f"📊 Position size: {position_size} DOGE (${final_order_value:.2f}) - Risk: ${risk_amount:.2f}")
                 
                 if position_size > 0:
                     if signal == 'BUY':
-                        logger.info(f"🚀 Executing LONG order for {symbol} at {current_price:.4f}")
+                        logger.info(f"🚀 Executing LONG order for {position_size} {symbol} at {current_price:.4f}")
                         order = binance.place_order(symbol, 'BUY', position_size, 'market')
                         if order:
-                            logger.info(f"✅ LONG order placed successfully: {order}")
+                            logger.info(f"✅ LONG order placed successfully")
+                            # Calculate and log TP/SL levels
+                            tp_price = current_price * (1 + config.TAKE_PROFIT_PERCENT / 100)
+                            sl_price = current_price * (1 - config.STOP_LOSS_PERCENT / 100)
+                            logger.info(f"🎯 TP: {tp_price:.4f}, SL: {sl_price:.4f}")
                     else:  # SELL
-                        logger.info(f"🔻 Executing SHORT order for {symbol} at {current_price:.4f}")
+                        logger.info(f"🔻 Executing SHORT order for {position_size} {symbol} at {current_price:.4f}")
                         order = binance.place_order(symbol, 'SELL', position_size, 'market')
                         if order:
-                            logger.info(f"✅ SHORT order placed successfully: {order}")
+                            logger.info(f"✅ SHORT order placed successfully")
+                            # Calculate and log TP/SL levels
+                            tp_price = current_price * (1 - config.TAKE_PROFIT_PERCENT / 100)
+                            sl_price = current_price * (1 + config.STOP_LOSS_PERCENT / 100)
+                            logger.info(f"🎯 TP: {tp_price:.4f}, SL: {sl_price:.4f}")
                 else:
-                    logger.warning("⚠️ Position size too small to trade")
+                    logger.warning("⚠️ Position size calculation error")
             else:
                 logger.info("⏸️ No trading signal. Waiting for next opportunity...")
                 
