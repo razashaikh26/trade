@@ -172,40 +172,57 @@ def check_and_trade(mock_mode=False, testnet=False):
                 logger.info(f"🔍 Debug - Entry: {entry_price:.4f}, Current: {current_price:.4f}")
                 logger.info(f"🔍 Debug - Side: {side}, TP: {take_profit:.4f}, SL: {stop_loss:.4f}")
                 
-                # Check if TP or SL should be triggered
+                # Add tolerance for floating-point precision (0.0001 = 1 pip for most crypto pairs)
+                tolerance = 0.0001
+                
+                # Check if TP or SL should be triggered with tolerance
                 if side.lower() == 'short':
-                    if current_price <= take_profit:
+                    # For SHORT: TP when price goes DOWN, SL when price goes UP
+                    if current_price <= (take_profit + tolerance):
                         logger.info(f"✅ Take Profit hit for SHORT position! Closing at {current_price:.4f}")
-                        logger.info(f"   Condition: {current_price:.4f} <= {take_profit:.4f} = {current_price <= take_profit}")
-                        # Close short position by buying back
-                        binance.place_order(symbol, 'BUY', abs(position_size), 'market')
-                        profit = (entry_price - current_price) * abs(position_size)
-                        logger.info(f"💰 Profit: {profit:.2f}")
+                        logger.info(f"   Condition: {current_price:.4f} <= {take_profit:.4f} (±{tolerance}) = True")
+                        # Close short position by buying back (reduce_only=True)
+                        order_result = binance.place_order(symbol, 'BUY', abs(position_size), 'market', reduce_only=True)
+                        if order_result:
+                            profit = (entry_price - current_price) * abs(position_size)
+                            logger.info(f"💰 Profit: ${profit:.2f}")
+                        else:
+                            logger.error("❌ Failed to close SHORT position")
                         return
-                    elif current_price >= stop_loss:
+                    elif current_price >= (stop_loss - tolerance):
                         logger.info(f"🛑 Stop Loss hit for SHORT position! Closing at {current_price:.4f}")
-                        logger.info(f"   Condition: {current_price:.4f} >= {stop_loss:.4f} = {current_price >= stop_loss}")
-                        # Close short position by buying back
-                        binance.place_order(symbol, 'BUY', abs(position_size), 'market')
-                        loss = (current_price - entry_price) * abs(position_size)
-                        logger.info(f"💸 Loss: {loss:.2f}")
+                        logger.info(f"   Condition: {current_price:.4f} >= {stop_loss:.4f} (±{tolerance}) = True")
+                        # Close short position by buying back (reduce_only=True)
+                        order_result = binance.place_order(symbol, 'BUY', abs(position_size), 'market', reduce_only=True)
+                        if order_result:
+                            loss = (current_price - entry_price) * abs(position_size)
+                            logger.info(f"💸 Loss: ${loss:.2f}")
+                        else:
+                            logger.error("❌ Failed to close SHORT position")
                         return
                 else:  # long
-                    if current_price >= take_profit:
+                    # For LONG: TP when price goes UP, SL when price goes DOWN
+                    if current_price >= (take_profit - tolerance):
                         logger.info(f"✅ Take Profit hit for LONG position! Closing at {current_price:.4f}")
-                        logger.info(f"   Condition: {current_price:.4f} >= {take_profit:.4f} = {current_price >= take_profit}")
-                        # Close long position by selling
-                        binance.place_order(symbol, 'SELL', abs(position_size), 'market')
-                        profit = (current_price - entry_price) * abs(position_size)
-                        logger.info(f"💰 Profit: {profit:.2f}")
+                        logger.info(f"   Condition: {current_price:.4f} >= {take_profit:.4f} (±{tolerance}) = True")
+                        # Close long position by selling (reduce_only=True)
+                        order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
+                        if order_result:
+                            profit = (current_price - entry_price) * abs(position_size)
+                            logger.info(f"💰 Profit: ${profit:.2f}")
+                        else:
+                            logger.error("❌ Failed to close LONG position")
                         return
-                    elif current_price <= stop_loss:
+                    elif current_price <= (stop_loss + tolerance):
                         logger.info(f"🛑 Stop Loss hit for LONG position! Closing at {current_price:.4f}")
-                        logger.info(f"   Condition: {current_price:.4f} <= {stop_loss:.4f} = {current_price <= stop_loss}")
-                        # Close long position by selling
-                        binance.place_order(symbol, 'SELL', abs(position_size), 'market')
-                        loss = (entry_price - current_price) * abs(position_size)
-                        logger.info(f"💸 Loss: {loss:.2f}")
+                        logger.info(f"   Condition: {current_price:.4f} <= {stop_loss:.4f} (±{tolerance}) = True")
+                        # Close long position by selling (reduce_only=True)
+                        order_result = binance.place_order(symbol, 'SELL', abs(position_size), 'market', reduce_only=True)
+                        if order_result:
+                            loss = (entry_price - current_price) * abs(position_size)
+                            logger.info(f"💸 Loss: ${loss:.2f}")
+                        else:
+                            logger.error("❌ Failed to close LONG position")
                         return
                 
                 logger.info("Holding position. No action needed.")
@@ -220,6 +237,19 @@ def check_and_trade(mock_mode=False, testnet=False):
             logger.info(f"Account balance: {balance:.2f} USDT (MOCK DATA)")
         else:
             logger.info(f"Account balance: {balance:.2f} USDT")
+        
+        # CRITICAL: Double-check no positions exist before opening new ones
+        try:
+            positions_check = binance.get_open_positions(symbol)
+            for pos in positions_check:
+                contracts = float(pos.get('contracts', 0))
+                if contracts != 0:
+                    logger.warning(f"⚠️ SAFETY CHECK: Found existing position with {contracts} contracts. Skipping new position opening.")
+                    return
+        except Exception as e:
+            logger.error(f"❌ Error in safety position check: {e}")
+            return
+        
         logger.info(f"🔍 Analyzing {symbol} for new trading opportunities...")
         
         # Get market data for analysis

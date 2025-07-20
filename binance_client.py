@@ -304,7 +304,7 @@ class BinanceClient:
             print(f"Error getting latest price: {e}")
             return None
     
-    def place_order(self, symbol, side, quantity, order_type='market', price=None, stop_loss=None, take_profit=None):
+    def place_order(self, symbol, side, quantity, order_type='market', price=None, stop_loss=None, take_profit=None, reduce_only=False):
         """Place an order on Binance with optional SL/TP for futures"""
         # Handle mock mode
         if self.mock_mode:
@@ -323,22 +323,32 @@ class BinanceClient:
                 'status': 'closed',
                 'timestamp': int(time.time() * 1000),
                 'datetime': datetime.now().isoformat(),
-                'info': {'mock': True, 'stopLoss': stop_loss, 'takeProfit': take_profit}
+                'info': {'mock': True, 'stopLoss': stop_loss, 'takeProfit': take_profit, 'reduceOnly': reduce_only}
             }
             
             # Simulate balance change
             cost = quantity * price
             if side.lower() == 'buy':
-                self.mock_balance['USDT'] -= cost
-            else:
-                self.mock_balance['USDT'] += cost
+                if reduce_only:
+                    # Closing a short position
+                    self.mock_balance['USDT'] += cost
+                else:
+                    # Opening a long position
+                    self.mock_balance['USDT'] -= cost
+            else:  # sell
+                if reduce_only:
+                    # Closing a long position
+                    self.mock_balance['USDT'] += cost
+                else:
+                    # Opening a short position
+                    self.mock_balance['USDT'] -= cost
             
             return mock_order
 
         # Real mode for futures trading
         try:
             params = {
-                'reduceOnly': False
+                'reduceOnly': reduce_only  # CRITICAL: Use reduce_only parameter to close positions
             }
 
             # For futures, we can often set SL/TP in the same order request
@@ -367,7 +377,8 @@ class BinanceClient:
                     type=order_type,
                     side=side,
                     amount=quantity,
-                    price=price
+                    price=price,
+                    params={'reduceOnly': reduce_only}  # Still use reduceOnly for simple orders
                 )
                 print("Simple order placed successfully. You must set SL/TP manually.")
                 return order
