@@ -27,7 +27,7 @@ class TechnicalIndicators:
         return atr
     
     @staticmethod
-    def atr_based_levels(current_price: float, atr_value: float, multiplier: float = 2.0) -> Dict[str, float]:
+    def atr_based_levels(current_price: float, atr_value: float, multiplier: float = 2.0, testnet: bool = False) -> Dict[str, float]:
         """
         Calculate dynamic stop loss and take profit levels based on ATR
         
@@ -35,10 +35,21 @@ class TechnicalIndicators:
             current_price: Current market price
             atr_value: Current ATR value
             multiplier: ATR multiplier for SL/TP distance
+            testnet: If True, use very tight levels for testing
         
         Returns:
             Dictionary with dynamic levels
         """
+        if testnet:
+            # Use very tight levels for testnet testing (0.1% distance)
+            tight_distance = current_price * 0.001  # 0.1% of current price
+            return {
+                'long_stop_loss': current_price - tight_distance,
+                'long_take_profit': current_price + tight_distance,
+                'short_stop_loss': current_price + tight_distance,
+                'short_take_profit': current_price - tight_distance
+            }
+        
         atr_distance = atr_value * multiplier
         
         return {
@@ -49,18 +60,29 @@ class TechnicalIndicators:
         }
     
     @staticmethod
-    def atr_based_levels_for_position(entry_price: float, atr_value: float, multiplier: float = 2.0) -> Dict[str, float]:
+    def atr_based_levels_for_position(entry_price: float, atr_value: float, multiplier: float = 2.0, testnet: bool = False) -> Dict[str, float]:
         """
-        Calculate dynamic stop loss and take profit levels for existing positions based on entry price
+        Calculate dynamic stop loss and take profit levels based on entry price and ATR
         
         Args:
             entry_price: Position entry price
             atr_value: Current ATR value
             multiplier: ATR multiplier for SL/TP distance
+            testnet: If True, use very tight levels for testing
         
         Returns:
             Dictionary with dynamic levels based on entry price
         """
+        if testnet:
+            # Use very tight levels for testnet testing (0.1% distance from entry)
+            tight_distance = entry_price * 0.001  # 0.1% of entry price
+            return {
+                'long_stop_loss': entry_price - tight_distance,
+                'long_take_profit': entry_price + tight_distance,
+                'short_stop_loss': entry_price + tight_distance,
+                'short_take_profit': entry_price - tight_distance
+            }
+        
         atr_distance = atr_value * multiplier
         
         return {

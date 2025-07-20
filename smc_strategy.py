@@ -11,8 +11,9 @@ class SMCStrategy:
     Enhanced with ATR-based dynamic levels and candlestick pattern confirmation
     """
     
-    def __init__(self, config):
+    def __init__(self, config, testnet=False):
         self.config = config
+        self.testnet = testnet
         self.lookback_period = 50
         self.order_block_strength = 3  # Minimum touches for valid order block
         self.fvg_threshold = 0.001  # Minimum gap size as percentage
@@ -343,7 +344,7 @@ class SMCStrategy:
         if getattr(self.config, 'USE_DYNAMIC_ATR_LEVELS', False) and current_atr > 0:
             atr_multiplier = self.tech_indicators.calculate_dynamic_atr_multiplier(volatility_state)
             dynamic_levels = self.tech_indicators.atr_based_levels(
-                current_price, current_atr, atr_multiplier
+                current_price, current_atr, atr_multiplier, testnet=self.testnet
             )
         
         # Calculate adaptive position size

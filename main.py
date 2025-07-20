@@ -30,7 +30,7 @@ def initialize(mock_mode=False, testnet=False):
     """Initialize the trading bot"""
     # Create instances of required classes
     binance = BinanceClient(mock_mode=mock_mode, testnet=testnet)
-    strategy = SMCStrategy(config=config)
+    strategy = SMCStrategy(config=config, testnet=testnet)
     risk_manager = RiskManager(
         max_trades_per_day=config.MAX_TRADES_PER_DAY,
         max_daily_loss=config.MAX_DAILY_LOSS,
@@ -55,7 +55,7 @@ def check_and_trade(mock_mode=False, testnet=False):
         # Initialize clients if not already done
         if not hasattr(check_and_trade, 'binance_client'):
             check_and_trade.binance_client = BinanceClient(mock_mode=mock_mode, testnet=testnet)
-            check_and_trade.strategy = SMCStrategy(config)
+            check_and_trade.strategy = SMCStrategy(config, testnet=testnet)
             check_and_trade.risk_manager = RiskManager(
                 max_trades_per_day=getattr(config, 'MAX_TRADES_PER_DAY', 10),
                 max_daily_loss=getattr(config, 'MAX_DAILY_LOSS', 100.0),
@@ -127,7 +127,7 @@ def check_and_trade(mock_mode=False, testnet=False):
                             atr_multiplier = tech_indicators.calculate_dynamic_atr_multiplier(volatility_state)
                             
                             # Calculate dynamic levels based on entry price
-                            dynamic_levels = tech_indicators.atr_based_levels_for_position(entry_price, current_atr, atr_multiplier)
+                            dynamic_levels = tech_indicators.atr_based_levels_for_position(entry_price, current_atr, atr_multiplier, testnet=testnet)
                             
                             if side.lower() == 'short':
                                 take_profit = dynamic_levels['short_take_profit']
