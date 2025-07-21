@@ -77,3 +77,15 @@ MIN_ORDER_VALUE_USD = 5   # Minimum order value in USD (Binance requirement)
 # Position sizing for small accounts
 POSITION_SIZE_METHOD = 'fixed_percentage'  # Use percentage-based sizing
 SMALL_ACCOUNT_MODE = True  # Enable small account optimizations
+
+# Email Notification Settings
+ENABLE_EMAIL_NOTIFICATIONS = True  # Set to False to disable email notifications
+EMAIL_RECEIVER = "razavcf@gmail.com,varunloni54@gmail.com"  # Email address to receive notifications
+SMTP_SERVER = "smtp.gmail.com"  # SMTP server address
+SMTP_PORT = 587  # SMTP port (587 for TLS)
+EMAIL_SENDER = "razavcf1@gmail.com"  # Email address sending the notifications
+EMAIL_PASSWORD = "azlb ycmn lbha hqcq"  # App password for the sender email
+EMAIL_USE_TLS = True  # Use TLS for secure connection
+
+# Email notification content
+EMAIL_SUBJECT_PREFIX = "[Trading Bot] "  # Prefix for all email subjects

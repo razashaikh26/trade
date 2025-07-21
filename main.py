@@ -15,6 +15,7 @@ from risk_manager import RiskManager
 from logger import Logger
 from technical_indicators import TechnicalIndicators
 import config
+from email_notifier import EmailNotifier
 
 # Global logger instance to prevent multiple instances
 _logger_instance = None
@@ -45,6 +46,9 @@ def check_and_trade(mock_mode=False, testnet=False):
     logger = get_logger()
     
     try:
+        # Initialize email notifier if enabled
+        email_notifier = EmailNotifier() if config.ENABLE_EMAIL_NOTIFICATIONS else None
+        
         # Log the start of trade check with timestamp
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         logger.info(f"Running trade check at {current_time}")
@@ -214,6 +218,17 @@ def check_and_trade(mock_mode=False, testnet=False):
                             profit = (entry_price - current_price) * abs(position_size)
                             logger.info(f"💰 Profit: ${profit:.2f}")
                             logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
+                            
+                            # Send email notification for closed position
+                            if email_notifier:
+                                email_notifier.send_trade_notification(
+                                    symbol=symbol,
+                                    action='CLOSE SHORT',
+                                    price=current_price,
+                                    quantity=abs(position_size),
+                                    order_id=str(order_result.get('id', 'N/A')),
+                                    notes=f"Take Profit Hit | Profit: ${profit:.2f}"
+                                )
                         else:
                             logger.error("❌ Failed to close SHORT position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
@@ -260,6 +275,17 @@ def check_and_trade(mock_mode=False, testnet=False):
                             loss = (current_price - entry_price) * abs(position_size)
                             logger.info(f"💸 Loss: ${loss:.2f}")
                             logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
+                            
+                            # Send email notification for closed position
+                            if email_notifier:
+                                email_notifier.send_trade_notification(
+                                    symbol=symbol,
+                                    action='CLOSE SHORT',
+                                    price=current_price,
+                                    quantity=abs(position_size),
+                                    order_id=str(order_result.get('id', 'N/A')),
+                                    notes=f"Stop Loss Hit | Loss: ${loss:.2f}"
+                                )
                         else:
                             logger.error("❌ Failed to close SHORT position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
@@ -321,6 +347,17 @@ def check_and_trade(mock_mode=False, testnet=False):
                             profit = (current_price - entry_price) * abs(position_size)
                             logger.info(f"💰 Profit: ${profit:.2f}")
                             logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
+                            
+                            # Send email notification for closed position
+                            if email_notifier:
+                                email_notifier.send_trade_notification(
+                                    symbol=symbol,
+                                    action='CLOSE LONG',
+                                    price=current_price,
+                                    quantity=abs(position_size),
+                                    order_id=str(order_result.get('id', 'N/A')),
+                                    notes=f"Take Profit Hit | Profit: ${profit:.2f}"
+                                )
                         else:
                             logger.error("❌ Failed to close LONG position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
@@ -380,6 +417,17 @@ def check_and_trade(mock_mode=False, testnet=False):
                             loss = (entry_price - current_price) * abs(position_size)
                             logger.info(f"💸 Loss: ${loss:.2f}")
                             logger.info(f"✅ Position closed successfully. Order ID: {order_result.get('id', 'N/A')}")
+                            
+                            # Send email notification for closed position
+                            if email_notifier:
+                                email_notifier.send_trade_notification(
+                                    symbol=symbol,
+                                    action='CLOSE LONG',
+                                    price=current_price,
+                                    quantity=abs(position_size),
+                                    order_id=str(order_result.get('id', 'N/A')),
+                                    notes=f"Stop Loss Hit | Loss: ${loss:.2f}"
+                                )
                         else:
                             logger.error("❌ Failed to close LONG position")
                             logger.error(f"   Entry: {entry_price:.4f}, Current: {current_price:.4f}, Size: {abs(position_size)}")
@@ -548,11 +596,37 @@ def check_and_trade(mock_mode=False, testnet=False):
                     order = binance.place_order(symbol, 'BUY', position_size, 'market')
                     if order:
                         logger.info(f"✅ LONG order placed successfully")
+                        
+                        # Send email notification for new position
+                        if email_notifier:
+                            email_notifier.send_trade_notification(
+                                symbol=symbol,
+                                action='OPEN LONG',
+                                price=current_price,
+                                quantity=position_size,
+                                order_id=str(order.get('id', 'N/A')),
+                                notes=f"New position opened"
+                            )
+                    else:
+                        logger.error(f"❌ Failed to place LONG order for {position_size} {symbol}")
                 else:  # SELL
                     logger.info(f"🔻 Executing SHORT order for {position_size} {symbol} at {current_price:.4f}")
                     order = binance.place_order(symbol, 'SELL', position_size, 'market')
                     if order:
                         logger.info(f"✅ SHORT order placed successfully")
+                        
+                        # Send email notification for new position
+                        if email_notifier:
+                            email_notifier.send_trade_notification(
+                                symbol=symbol,
+                                action='OPEN SHORT',
+                                price=current_price,
+                                quantity=position_size,
+                                order_id=str(order.get('id', 'N/A')),
+                                notes=f"New position opened"
+                            )
+                    else:
+                        logger.error(f"❌ Failed to place SHORT order for {position_size} {symbol}")
             else:
                 logger.warning("⚠️ Position size calculation error")
         else:
