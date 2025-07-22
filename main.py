@@ -531,8 +531,10 @@ def check_and_trade(mock_mode=False, testnet=False):
         
         if signal in ["BUY", "SELL"]:
             # Check risk management
-            if not risk_manager.can_trade():
-                logger.warning("⚠️ Risk management prevents trading")
+            balance = binance.get_account_balance()
+            can_trade_result = risk_manager.can_trade(balance, binance, config.SYMBOLS)
+            if not can_trade_result[0]:  # can_trade returns (bool, message)
+                logger.warning(f"⚠️ Risk management prevents trading: {can_trade_result[1]}")
                 return
             
             # Calculate position size with adaptive sizing if enabled

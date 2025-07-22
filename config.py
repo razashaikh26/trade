@@ -8,59 +8,59 @@ SYMBOLS = ['DOGEUSDT']
 MAX_LEVERAGE = 5  # Reduced leverage for small account safety
 
 # The percentage of your account balance to risk on a single trade
-RISK_PERCENT = 8.0  # Higher percentage needed for small accounts to meet minimum order size
+RISK_PERCENT = 5.0  # Reduced from 8.0 for better risk management
 
 # The execution interval in seconds
 BOT_SLEEP_TIME_SECS = 300  # 5 minutes
 
 # LEGACY FIXED PERCENTAGES (kept for fallback)
 # The percentage for take-profit from the entry price
-TAKE_PROFIT_PERCENT = 3.0  # Slightly higher TP for better risk/reward
+TAKE_PROFIT_PERCENT = 2.5  # Slightly reduced TP for better win rate
 
 # The percentage for stop-loss from the entry price
-STOP_LOSS_PERCENT = 1.5  # Tighter SL for small account protection
+STOP_LOSS_PERCENT = 1.25  # Tighter SL for better risk management
 
 # --- NEW ATR-BASED DYNAMIC SETTINGS ---
 # Enable ATR-based dynamic stop loss and take profit
 USE_DYNAMIC_ATR_LEVELS = True
 
 # ATR calculation period
-ATR_PERIOD = 14
+ATR_PERIOD = 10  # Reduced from 14 for more responsive ATR
 
 # ATR multiplier for stop loss calculation (will be adjusted based on volatility)
-ATR_STOP_MULTIPLIER = 2.0
+ATR_STOP_MULTIPLIER = 1.8  # Slightly reduced from 2.0
 
 # Risk/Reward ratio for take profit (TP = SL * RISK_REWARD_RATIO)
-RISK_REWARD_RATIO = 1.5
+RISK_REWARD_RATIO = 1.8  # Increased from 1.5 for better reward/risk
 
 # ATR moving average period for volatility comparison
-ATR_MA_PERIOD = 50
+ATR_MA_PERIOD = 20  # Reduced from 50 for more responsive volatility measurement
 
 # Enable candlestick pattern confirmation
-USE_ENGULFING_FILTER = True
+USE_ENGULFING_FILTER = False
 
 # Enable volatility-adjusted position sizing
 USE_ADAPTIVE_POSITION_SIZE = True
 
 # Maximum position size multiplier in low volatility
-MAX_POSITION_MULTIPLIER = 2.0
+MAX_POSITION_MULTIPLIER = 1.5  # Reduced from 2.0 for better risk control
 
 # --- FILTERS ---
 # Minimum volatility (ATR as a percentage of price) to consider a trade
-MIN_ATR_PERCENT = 0.5  # e.g., 0.5% - avoids flat markets
+MIN_ATR_PERCENT = 0.3  # Reduced from 0.5% to allow more trades
 
 # Minimum volume (compared to its moving average) to consider a trade
-MIN_VOLUME_RATIO = 0.8 # e.g., 0.8 - current volume must be at least 80% of the average
+MIN_VOLUME_RATIO = 0.05  # Ultra-low to handle DOGE's inconsistent volume patterns
 
 # STRATEGY SETTINGS
 # -- Moving Average --
-MA_PERIOD = 50           # Period for the trend-following moving average
+MA_PERIOD = 20  # Reduced from 50 for more trend signals
 
 # -- RSI --
 RSI_TIMEFRAME = '15m'  # 15-minute candles
-RSI_LENGTH = 14        # A more standard RSI period for smoother signals
-RSI_OVERSOLD = 30      # Standard oversold threshold
-RSI_OVERBOUGHT = 70    # Standard overbought threshold
+RSI_LENGTH = 10        # Reduced from 14 for more signals
+RSI_OVERSOLD = 32      # Slightly increased from 30
+RSI_OVERBOUGHT = 68    # Slightly reduced from 70
 
 # Execution settings
 CHECK_INTERVAL = 5     # Check every 5 minutes
@@ -72,7 +72,7 @@ MIN_BALANCE = 8.0        # Minimum $8 balance to keep trading
 
 # DOGE-specific settings
 MIN_ORDER_SIZE_DOGE = 20  # Binance minimum order size for DOGE
-MIN_ORDER_VALUE_USD = 5   # Minimum order value in USD (Binance requirement)
+MIN_ORDER_VALUE_USD = 5.0   # Minimum order value in USD (Binance requirement)
 
 # Position sizing for small accounts
 POSITION_SIZE_METHOD = 'fixed_percentage'  # Use percentage-based sizing

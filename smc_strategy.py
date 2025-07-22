@@ -444,12 +444,12 @@ class SMCStrategy:
             reasons.append("Price below MA trend")
         
         # Determine final signal
-        if signal_strength >= 3:
+        if signal_strength >= 1:  # Lowered from 2 to allow single strong signals
             signal = "BUY"
-            confidence = min(signal_strength * 20, 100)
-        elif signal_strength <= -3:
+            confidence = min(signal_strength * 50, 100)  # Higher multiplier for single signals
+        elif signal_strength <= -1:  # Lowered from -2 to allow single strong signals
             signal = "SELL" 
-            confidence = min(abs(signal_strength) * 20, 100)
+            confidence = min(abs(signal_strength) * 50, 100)  # Higher multiplier for single signals
         else:
             signal = "HOLD"
             confidence = 0
@@ -471,29 +471,29 @@ class SMCStrategy:
         """Analyze RSI for overbought/oversold conditions"""
         import pandas_ta as ta
         
-        # Use proper pandas-ta syntax
-        rsi = ta.rsi(df['close'], length=14)
+        # Use configured RSI settings instead of hardcoded values
+        rsi = ta.rsi(df['close'], length=self.config.RSI_LENGTH)
         current_rsi = rsi.iloc[-1]
         
-        if current_rsi < 30:
+        if current_rsi < self.config.RSI_OVERSOLD:
             return {"signal": "BUY", "value": current_rsi}
-        elif current_rsi > 70:
+        elif current_rsi > self.config.RSI_OVERBOUGHT:
             return {"signal": "SELL", "value": current_rsi}
         else:
             return {"signal": "NEUTRAL", "value": current_rsi}
 
     def _analyze_moving_average(self, df: pd.DataFrame) -> Dict:
         """Analyze moving average trend"""
-        short_ma = df['close'].rolling(window=20).mean()
-        long_ma = df['close'].rolling(window=50).mean()
+        # Use configured MA period instead of hardcoded values
+        ma = df['close'].rolling(window=self.config.MA_PERIOD).mean()
         
         current_price = df['close'].iloc[-1]
-        short_ma_value = short_ma.iloc[-1]
-        long_ma_value = long_ma.iloc[-1]
+        ma_value = ma.iloc[-1]
         
-        if current_price > short_ma_value and short_ma_value > long_ma_value:
-            return {"signal": "BUY", "short_ma": short_ma_value, "long_ma": long_ma_value}
-        elif current_price < short_ma_value and short_ma_value < long_ma_value:
-            return {"signal": "SELL", "short_ma": short_ma_value, "long_ma": long_ma_value}
+        # Simplified logic: just check if price is above/below MA
+        if current_price > ma_value:
+            return {"signal": "BUY", "ma_value": ma_value}
+        elif current_price < ma_value:
+            return {"signal": "SELL", "ma_value": ma_value}
         else:
-            return {"signal": "NEUTRAL", "short_ma": short_ma_value, "long_ma": long_ma_value}
+            return {"signal": "NEUTRAL", "ma_value": ma_value}
