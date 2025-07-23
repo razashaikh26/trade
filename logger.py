@@ -10,7 +10,7 @@ class Logger:
         
         # Set up logger
         self.logger = logging.getLogger('trading_bot')
-        self.logger.setLevel(logging.INFO)
+        self.logger.setLevel(logging.DEBUG)  # Set to DEBUG level to capture all messages
         
         # Clear existing handlers to prevent duplicates
         if self.logger.handlers:
@@ -23,6 +23,10 @@ class Logger:
         # Create console handler
         console_handler = logging.StreamHandler()
         
+        # Set level for handlers (DEBUG for file, INFO for console)
+        file_handler.setLevel(logging.DEBUG)
+        console_handler.setLevel(logging.INFO)
+        
         # Create formatter
         formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         file_handler.setFormatter(formatter)
@@ -34,6 +38,10 @@ class Logger:
         
         # Prevent propagation to avoid duplicate messages
         self.logger.propagate = False
+    
+    def debug(self, message):
+        """Log debug message"""
+        self.logger.debug(message)
     
     def info(self, message):
         """Log info message"""

@@ -1,580 +1,966 @@
 import pandas as pd
 import numpy as np
-from typing import Tuple, Dict, List, Optional
-import pandas_ta as ta
+from datetime import datetime, timedelta
+import simple_indicators as talib  # Use our simple indicators instead of TA-Lib
 from technical_indicators import TechnicalIndicators
-import logging
 
 class SMCStrategy:
-    """
-    Advanced Smart Money Concepts (SMC) and ICT Trading Strategy
-    Incorporates Order Blocks, Fair Value Gaps, Liquidity Analysis, and Market Structure
-    Enhanced with ATR-based dynamic levels and candlestick pattern confirmation
-    """
-    
-    def __init__(self, config, testnet=False):
+    def __init__(self, config):
         self.config = config
-        self.testnet = testnet
-        self.lookback_period = 50
-        self.order_block_strength = 3  # Minimum touches for valid order block
-        self.fvg_threshold = 0.001  # Minimum gap size as percentage
-        self.liquidity_threshold = 0.002  # Minimum liquidity zone size
         self.tech_indicators = TechnicalIndicators()
+        self.consecutive_losses = 0
+        self.daily_pnl = 0
+        self.last_trade_time = 0
+        self.open_positions = {}
         
-    def _is_market_tradeable(self, df: pd.DataFrame) -> Tuple[bool, str]:
-        """Check if market conditions are suitable for trading"""
+    def analyze_market(self, df, symbol):
+        """Enhanced market analysis with multiple confirmations"""
         try:
-            # Check if we have enough data
-            if len(df) < 20:  # Minimum required candles
-                logging.warning("⚠️ Not enough data points for analysis")
-                return False, "Insufficient data"
-
-            # Get current price and ATR
-            current_price = df['close'].iloc[-1]
-            atr = self.tech_indicators.calculate_atr(df, period=14)
-            current_atr = atr.iloc[-1]
+            if len(df) < 50:
+                return 'HOLD', 0, 'Insufficient data for analysis'
             
-            # Calculate ATR as percentage of price
-            atr_percent = (current_atr / current_price) * 100
+            # Check daily loss limit
+            if self.daily_pnl <= -self.config.DAILY_LOSS_LIMIT:
+                return 'HOLD', 0, f'Daily loss limit reached: {self.daily_pnl:.2f}%'
             
-            logging.info(f"📊 Market Tradeability Check:")
-            logging.info(f"   Current Price: {current_price:.6f}")
-            logging.info(f"   ATR: {current_atr:.6f} ({atr_percent:.2f}% of price)")
-            logging.info(f"   Minimum ATR% required: {self.config.MIN_ATR_PERCENT}%")
+            # Check time between trades
+            import time
+            current_time = time.time()
+            if current_time - self.last_trade_time < self.config.MIN_TIME_BETWEEN_TRADES:
+                return 'HOLD', 0, 'Minimum time between trades not met'
             
-            # Check ATR volatility
-            if atr_percent < self.config.MIN_ATR_PERCENT:
-                logging.warning(f"   ⚠️ Low volatility (ATR: {atr_percent:.2f}% < {self.config.MIN_ATR_PERCENT}%)")
-                return False, f"Low volatility (ATR: {atr_percent:.2f}%)"
+            # Check maximum concurrent positions
+            if len(self.open_positions) >= self.config.MAX_CONCURRENT_POSITIONS:
+                return 'HOLD', 0, 'Maximum concurrent positions reached'
             
-            # Check volume
-            volume_ma = df['volume'].rolling(window=20).mean()
-            current_volume = df['volume'].iloc[-1]
-            volume_ratio = current_volume / volume_ma.iloc[-1] if volume_ma.iloc[-1] > 0 else 0
+            # Calculate technical indicators
+            signals = self._calculate_enhanced_signals(df)
             
-            logging.info(f"   Current Volume: {current_volume:.2f}")
-            logging.info(f"   20-period Avg Volume: {volume_ma.iloc[-1]:.2f}")
-            logging.info(f"   Volume Ratio: {volume_ratio:.4f} (Min: {self.config.MIN_VOLUME_RATIO})")
+            # Market regime detection
+            regime = self._detect_market_regime(df) if self.config.USE_MARKET_REGIME else 'unknown'
             
-            if volume_ratio < self.config.MIN_VOLUME_RATIO:
-                logging.warning(f"   ⚠️ Volume below threshold: {volume_ratio:.4f} < {self.config.MIN_VOLUME_RATIO}")
-                return False, f"Volume below threshold ({volume_ratio:.2f} < {self.config.MIN_VOLUME_RATIO})"
-            
-            # Check if market is open (not during weekends or holidays)
-            # This is a simplified check - you might want to use a proper market calendar
-            current_time = pd.Timestamp.now()
-            if current_time.weekday() >= 5:  # Weekend
-                logging.warning(f"   ⚠️ Market closed (weekend)")
-                return False, "Market closed (weekend)"
-            
-            # Check if within trading hours (24/7 for crypto)
-            logging.info("   ✅ Market is tradeable")
-            return True, "Market is tradeable"
-            
-        except Exception as e:
-            logging.error(f"❌ Error checking market tradeability: {str(e)}", exc_info=True)
-            return False, f"Error: {str(e)}"
-    
-    def identify_market_structure(self, df: pd.DataFrame) -> Dict:
-        """Identify market structure: HH, HL, LH, LL"""
-        if len(df) < 20:
-            return {"trend": "UNKNOWN", "bos": False, "choch": False}
-            
-        # Calculate swing highs and lows
-        highs = df['high'].rolling(window=5, center=True).max() == df['high']
-        lows = df['low'].rolling(window=5, center=True).min() == df['low']
-        
-        swing_highs = df[highs]['high'].tail(3)
-        swing_lows = df[lows]['low'].tail(3)
-        
-        if len(swing_highs) < 2 or len(swing_lows) < 2:
-            return {"trend": "UNKNOWN", "bos": False, "choch": False}
-        
-        # Determine trend
-        recent_highs = swing_highs.tail(2)
-        recent_lows = swing_lows.tail(2)
-        
-        higher_highs = recent_highs.iloc[-1] > recent_highs.iloc[-2]
-        higher_lows = recent_lows.iloc[-1] > recent_lows.iloc[-2]
-        lower_highs = recent_highs.iloc[-1] < recent_highs.iloc[-2]
-        lower_lows = recent_lows.iloc[-1] < recent_lows.iloc[-2]
-        
-        if higher_highs and higher_lows:
-            trend = "BULLISH"
-        elif lower_highs and lower_lows:
-            trend = "BEARISH"
-        else:
-            trend = "RANGING"
-            
-        # Check for Break of Structure (BOS) or Change of Character (CHoCH)
-        current_price = df['close'].iloc[-1]
-        
-        bos = False
-        choch = False
-        
-        if trend == "BULLISH" and len(swing_lows) >= 2:
-            last_low = swing_lows.iloc[-2]
-            if current_price < last_low:
-                choch = True
-        elif trend == "BEARISH" and len(swing_highs) >= 2:
-            last_high = swing_highs.iloc[-2]
-            if current_price > last_high:
-                choch = True
-                
-        return {
-            "trend": trend,
-            "bos": bos,
-            "choch": choch,
-            "swing_highs": swing_highs.tolist(),
-            "swing_lows": swing_lows.tolist()
-        }
-    
-    def identify_order_blocks(self, df: pd.DataFrame) -> List[Dict]:
-        """Identify institutional order blocks"""
-        order_blocks = []
-        
-        if len(df) < 20:
-            return order_blocks
-            
-        # Look for strong moves (>1% in single candle)
-        df['body_size'] = abs(df['close'] - df['open']) / df['open']
-        strong_moves = df[df['body_size'] > 0.01]
-        
-        for i, idx in enumerate(strong_moves.index[-10:]):  # Last 10 strong moves
-            idx_pos = df.index.get_loc(idx)
-            if idx_pos < 5 or idx_pos >= len(df) - 1:
-                continue
-                
-            candle = df.loc[idx]
-            
-            # Bullish order block (strong green candle)
-            if candle['close'] > candle['open']:
-                ob_high = candle['high']
-                ob_low = candle['low']
-                ob_type = "BULLISH"
-                
-                # Check if price has returned to this zone
-                future_data = df.iloc[idx_pos+1:]
-                if len(future_data) > 0 and future_data['low'].min() <= ob_high:
-                    order_blocks.append({
-                        "type": ob_type,
-                        "high": ob_high,
-                        "low": ob_low,
-                        "index": idx_pos,
-                        "strength": self._calculate_ob_strength(df, idx_pos, ob_high, ob_low)
-                    })
-            
-            # Bearish order block (strong red candle)
-            elif candle['close'] < candle['open']:
-                ob_high = candle['high']
-                ob_low = candle['low']
-                ob_type = "BEARISH"
-                
-                # Check if price has returned to this zone
-                future_data = df.iloc[idx_pos+1:]
-                if len(future_data) > 0 and future_data['high'].max() >= ob_low:
-                    order_blocks.append({
-                        "type": ob_type,
-                        "high": ob_high,
-                        "low": ob_low,
-                        "index": idx_pos,
-                        "strength": self._calculate_ob_strength(df, idx_pos, ob_high, ob_low)
-                    })
-        
-        # Sort by strength and return top 5
-        return sorted(order_blocks, key=lambda x: x['strength'], reverse=True)[:5]
-    
-    def _calculate_ob_strength(self, df: pd.DataFrame, idx: int, high: float, low: float) -> float:
-        """Calculate order block strength based on reactions"""
-        if idx >= len(df) - 5:
-            return 0
-            
-        future_data = df.iloc[idx+1:idx+10]
-        reactions = 0
-        
-        for _, candle in future_data.iterrows():
-            if low <= candle['low'] <= high or low <= candle['high'] <= high:
-                reactions += 1
-                
-        return reactions
-    
-    def identify_fair_value_gaps(self, df: pd.DataFrame) -> List[Dict]:
-        """Identify Fair Value Gaps (imbalances)"""
-        fvgs = []
-        
-        if len(df) < 3:
-            return fvgs
-            
-        for i in range(1, len(df) - 1):
-            prev_candle = df.iloc[i-1]
-            curr_candle = df.iloc[i]
-            next_candle = df.iloc[i+1]
-            
-            # Bullish FVG (gap up)
-            if (prev_candle['high'] < next_candle['low'] and 
-                curr_candle['close'] > curr_candle['open']):
-                gap_size = (next_candle['low'] - prev_candle['high']) / prev_candle['high']
-                if gap_size > self.fvg_threshold:
-                    fvgs.append({
-                        "type": "BULLISH",
-                        "high": next_candle['low'],
-                        "low": prev_candle['high'],
-                        "index": i,
-                        "gap_size": gap_size
-                    })
-            
-            # Bearish FVG (gap down)
-            elif (prev_candle['low'] > next_candle['high'] and 
-                  curr_candle['close'] < curr_candle['open']):
-                gap_size = (prev_candle['low'] - next_candle['high']) / next_candle['high']
-                if gap_size > self.fvg_threshold:
-                    fvgs.append({
-                        "type": "BEARISH",
-                        "high": prev_candle['low'],
-                        "low": next_candle['high'],
-                        "index": i,
-                        "gap_size": gap_size
-                    })
-        
-        return fvgs[-5:]  # Return last 5 FVGs
-    
-    def identify_liquidity_zones(self, df: pd.DataFrame) -> Dict:
-        """Identify buy-side and sell-side liquidity"""
-        if len(df) < 20:
-            return {"buy_side": [], "sell_side": []}
-            
-        # Find recent highs and lows that likely have stops
-        highs = df['high'].rolling(window=10, center=True).max() == df['high']
-        lows = df['low'].rolling(window=10, center=True).min() == df['low']
-        
-        recent_highs = df[highs]['high'].tail(5)
-        recent_lows = df[lows]['low'].tail(5)
-        
-        buy_side_liquidity = []  # Above highs (buy stops)
-        sell_side_liquidity = []  # Below lows (sell stops)
-        
-        for high in recent_highs:
-            buy_side_liquidity.append({
-                "level": high,
-                "type": "BUY_STOPS",
-                "strength": self._calculate_liquidity_strength(df, high, "high")
-            })
-            
-        for low in recent_lows:
-            sell_side_liquidity.append({
-                "level": low,
-                "type": "SELL_STOPS", 
-                "strength": self._calculate_liquidity_strength(df, low, "low")
-            })
-        
-        return {
-            "buy_side": sorted(buy_side_liquidity, key=lambda x: x['strength'], reverse=True),
-            "sell_side": sorted(sell_side_liquidity, key=lambda x: x['strength'], reverse=True)
-        }
-    
-    def _calculate_liquidity_strength(self, df: pd.DataFrame, level: float, level_type: str) -> float:
-        """Calculate liquidity strength based on touches and volume"""
-        touches = 0
-        
-        if level_type == "high":
-            touches = len(df[df['high'] >= level * 0.999])  # Within 0.1%
-        else:
-            touches = len(df[df['low'] <= level * 1.001])   # Within 0.1%
-            
-        return touches
-    
-    def calculate_premium_discount(self, df: pd.DataFrame) -> Dict:
-        """Calculate premium/discount zones using Fibonacci"""
-        if len(df) < 50:
-            return {"zone": "UNKNOWN", "fib_levels": {}}
-            
-        # Get recent swing high and low
-        recent_data = df.tail(50)
-        swing_high = recent_data['high'].max()
-        swing_low = recent_data['low'].min()
-        current_price = df['close'].iloc[-1]
-        
-        # Calculate Fibonacci levels
-        diff = swing_high - swing_low
-        fib_levels = {
-            "0.0": swing_low,
-            "0.236": swing_low + (diff * 0.236),
-            "0.382": swing_low + (diff * 0.382),
-            "0.5": swing_low + (diff * 0.5),
-            "0.618": swing_low + (diff * 0.618),
-            "0.786": swing_low + (diff * 0.786),
-            "1.0": swing_high
-        }
-        
-        # Determine if current price is in premium or discount
-        if current_price > fib_levels["0.618"]:
-            zone = "PREMIUM"
-        elif current_price < fib_levels["0.382"]:
-            zone = "DISCOUNT"
-        else:
-            zone = "EQUILIBRIUM"
-            
-        return {"zone": zone, "fib_levels": fib_levels}
-    
-    def get_trading_signal(self, df: pd.DataFrame) -> Dict:
-        """
-        Generate trading signals with enhanced entry conditions
-        """
-        try:
-            # Add technical indicators
-            df = df.copy()
-            
-            # Calculate RSI using pandas_ta's rsi function
-            df['rsi'] = ta.rsi(df['close'], length=self.config.RSI_LENGTH)
-            
-            # Calculate SMA using pandas_ta's sma function
-            df['sma_20'] = ta.sma(df['close'], length=20)
-            
-            # Add volume confirmation
-            df = TechnicalIndicators.add_volume_confirmation(df)
-            
-            # Detect candlestick patterns
-            df = TechnicalIndicators.detect_candlestick_patterns(df)
-            
-            # Get market regime
-            market_regime = TechnicalIndicators.get_market_regime(df)
-            
-            # Initialize signal
-            signal = "HOLD"
-            confidence = 0
-            reasons = []
-            
-            # Get latest data point
-            latest = df.iloc[-1]
+            # Trend confirmation
+            trend_confirmed = self._confirm_trend(df) if self.config.USE_TREND_CONFIRMATION else True
             
             # Volume confirmation
-            volume_confirmed = latest.get('volume_confirmed', False)
+            volume_confirmed = self._confirm_volume(df)
             
-            # Check for buy signals
-            buy_conditions = [
-                latest['rsi'] < self.config.RSI_OVERSOLD if pd.notna(latest['rsi']) else False,
-                latest['close'] > latest['sma_20'] if pd.notna(latest['sma_20']) else False,
-                latest.get('bullish_engulfing', False) or latest.get('hammer', False),
-                volume_confirmed
-            ]
+            # Volatility filter
+            volatility_ok = self._check_volatility(df)
             
-            # Check for sell signals
-            sell_conditions = [
-                latest['rsi'] > self.config.RSI_OVERBOUGHT if pd.notna(latest['rsi']) else False,
-                latest['close'] < latest['sma_20'] if pd.notna(latest['sma_20']) else False,
-                latest.get('bearish_engulfing', False) or latest.get('shooting_star', False),
-                volume_confirmed
-            ]
+            # RSI divergence check
+            rsi_signal = self._check_rsi_divergence(df)
             
-            # Adjust confidence based on number of conditions met
-            buy_score = sum([1 for cond in buy_conditions if cond is True])
-            sell_score = sum([1 for cond in sell_conditions if cond is True])
+            # Candlestick pattern confirmation
+            pattern_confirmed = True
+            if self.config.USE_ENGULFING_FILTER:
+                pattern_confirmed = self._check_engulfing_pattern(df)
             
-            # Generate signal based on conditions and market regime
-            if buy_score >= 3:  # At least 3 out of 4 conditions
-                signal = "BUY"
-                confidence = min(100, 50 + (buy_score * 10))  # 80-90% confidence
-                reasons.append(f"Bullish setup: {buy_score}/4 conditions met")
-                
-                # Adjust for market regime
-                if market_regime == 'trending':
-                    confidence += 5
-                    reasons.append("Trending market favors trend-following")
-                
-            elif sell_score >= 3:
-                signal = "SELL"
-                confidence = min(100, 50 + (sell_score * 10))
-                reasons.append(f"Bearish setup: {sell_score}/4 conditions met")
-                
-                # Adjust for market regime
-                if market_regime == 'trending':
-                    confidence += 5
-                    reasons.append("Trending market favors trend-following")
+            # Combine all signals for final decision
+            final_signal, confidence, analysis = self._combine_signals(
+                signals, regime, trend_confirmed, volume_confirmed, 
+                volatility_ok, rsi_signal, pattern_confirmed
+            )
             
-            # Add market regime to reasons
-            reasons.append(f"Market regime: {market_regime.upper()}")
-            
-            # Add volume status
-            reasons.append(f"Volume {'confirmed' if volume_confirmed else 'below average'}")
-            
-            # Add RSI value if available
-            if pd.notna(latest['rsi']):
-                reasons.append(f"RSI: {latest['rsi']:.1f}")
-            
-            # Log the final decision
-            logging.info(f"Signal: {signal} (Confidence: {confidence}%)")
-            for reason in reasons:
-                logging.info(f" - {reason}")
-            
-            return {
-                'signal': signal,
-                'confidence': confidence,
-                'reasons': reasons,
-                'market_regime': market_regime,
-                'volume_confirmed': volume_confirmed,
-                'rsi': latest.get('rsi'),
-                'price': latest['close']
-            }
+            return final_signal, confidence, analysis
             
         except Exception as e:
-            logging.error(f"Error generating trading signal: {e}", exc_info=True)
-            return {
-                'signal': 'HOLD',
-                'confidence': 0,
-                'reasons': [f"Error: {str(e)}"]
-            }
-
-    def _get_base_smc_signal(self, df: pd.DataFrame) -> Dict:
-        """Generate base trading signal using Smart Money Concepts"""
-        # Market structure analysis
-        market_structure = self.identify_market_structure(df)
-        logging.info(f"🔍 Market Structure: {market_structure}")
+            return 'HOLD', 0, f'Error in market analysis: {str(e)}'
+    
+    def _calculate_enhanced_signals(self, df):
+        """Calculate multiple technical indicator signals"""
+        signals = {}
         
-        # Order block analysis
-        order_blocks = self.identify_order_blocks(df)
-        logging.info(f"🔍 Order Blocks: {len(order_blocks)} found")
+        # SMC Structure Analysis (Advanced)
+        signals['smc'] = self._analyze_smc_structure(df)
         
-        # Fair Value Gap analysis
-        fvgs = self.identify_fair_value_gaps(df)
-        logging.info(f"🔍 Fair Value Gaps: {len(fvgs)} found")
+        # BEGINNER-FRIENDLY STRATEGIES
+        if self.config.USE_RSI_BUY_LOW_SELL_HIGH:
+            signals['rsi_buy_low_sell_high'] = self._analyze_rsi_buy_low_sell_high(df)
         
-        # RSI analysis
-        rsi_signal = self._analyze_rsi(df)
+        if self.config.USE_SMA_EMA_CROSSOVER:
+            signals['sma_ema_crossover'] = self._analyze_sma_ema_crossover(df)
         
-        # Moving average trend
-        ma_trend = self._analyze_moving_average(df)
+        if self.config.USE_MACD_CROSSOVER:
+            signals['macd_crossover'] = self._analyze_macd_crossover(df)
         
-        # Combine all signals
-        signal_strength = 0
-        reasons = []
+        if self.config.USE_SUPPORT_RESISTANCE:
+            signals['support_resistance'] = self._analyze_support_resistance(df)
         
-        # 1. Market structure signals (strongest weight)
-        if market_structure["bos"] or market_structure["choch"]:
-            if market_structure["trend"] == "BULLISH":
-                signal_strength += 3  # Increased from 2
-                reasons.append("Bullish market structure break")
-                logging.info("✅ Added +3 for Bullish market structure break")
-            elif market_structure["trend"] == "BEARISH":
-                signal_strength -= 3  # Increased from 2
-                reasons.append("Bearish market structure break")
-                logging.info("✅ Added -3 for Bearish market structure break")
+        if self.config.USE_VOLUME_SPIKE_FILTER:
+            signals['volume_spike'] = self._analyze_volume_spike(df)
         
-        # 2. RSI signals (strong weight)
-        if rsi_signal["signal"] == "BUY":
-            # Add more weight if RSI is significantly oversold
-            rsi_value = rsi_signal["value"]
-            rsi_strength = max(1, (self.config.RSI_OVERSOLD - rsi_value) / 2)
-            signal_strength += rsi_strength
-            reasons.append(f"RSI oversold: {rsi_value:.1f} (strength: +{rsi_strength:.1f})")
-            logging.info(f"✅ Added +{rsi_strength:.1f} for RSI oversold: {rsi_value:.1f}")
-        elif rsi_signal["signal"] == "SELL":
-            rsi_value = rsi_signal["value"]
-            rsi_strength = max(1, (rsi_value - self.config.RSI_OVERBOUGHT) / 2)
-            signal_strength -= rsi_strength
-            reasons.append(f"RSI overbought: {rsi_value:.1f} (strength: -{rsi_strength:.1f})")
-            logging.info(f"✅ Added -{rsi_strength:.1f} for RSI overbought: {rsi_value:.1f}")
+        # ADVANCED STRATEGIES (from previous implementation)
+        if self.config.USE_TREND_CONFIRMATION:
+            signals['ma'] = self._analyze_moving_averages(df)
         
-        # 3. Moving average signals (medium weight)
-        if ma_trend["signal"] == "BUY":
-            signal_strength += 1.5  # Increased from 1
-            reasons.append("Price above MA trend")
-            logging.info(f"✅ Added +1.5 for Price above MA ({ma_trend['ma_value']:.6f})")
-        elif ma_trend["signal"] == "SELL":
-            signal_strength -= 1.5  # Increased from 1
-            reasons.append("Price below MA trend")
-            logging.info(f"✅ Added -1.5 for Price below MA ({ma_trend['ma_value']:.6f})")
+        signals['rsi'] = self._analyze_rsi(df)
+        signals['macd'] = self._analyze_macd(df)
+        signals['bb'] = self._analyze_bollinger_bands(df)
+        signals['stoch'] = self._analyze_stochastic(df)
         
-        # 4. Order block signals (weaker weight)
-        current_price = df['close'].iloc[-1]
-        for ob in order_blocks:
-            if ob["type"] == "bullish" and current_price <= ob["high"] and current_price >= ob["low"]:
-                signal_strength += 0.5  # Reduced from 1
-                reasons.append("Price at bullish order block")
-                logging.info(f"✅ Added +0.5 for Bullish order block at {ob['low']}-{ob['high']}")
-            elif ob["type"] == "bearish" and current_price <= ob["high"] and current_price >= ob["low"]:
-                signal_strength -= 0.5  # Reduced from 1
-                reasons.append("Price at bearish order block")
-                logging.info(f"✅ Added -0.5 for Bearish order block at {ob['low']}-{ob['high']}")
+        return signals
+    
+    # BEGINNER-FRIENDLY STRATEGY IMPLEMENTATIONS
+    
+    def _analyze_rsi_buy_low_sell_high(self, df):
+        """RSI-Based Buy Low, Sell High Strategy (Beginner Friendly & Reliable)"""
+        try:
+            rsi = talib.RSI(df['close'].values, timeperiod=self.config.RSI_PERIOD)
+            current_rsi = rsi[-1]
+            
+            # Look at RSI trend over last few periods
+            rsi_trend = rsi[-self.config.RSI_LOOKBACK_PERIODS:]
+            
+            score = 0
+            
+            # Strong buy signals (oversold conditions)
+            if current_rsi <= self.config.RSI_EXTREME_OVERSOLD:
+                score += 3  # Very strong buy signal
+            elif current_rsi <= self.config.RSI_BUY_LOW_THRESHOLD:
+                score += 2  # Strong buy signal
+            elif current_rsi <= 40:
+                score += 1  # Mild buy signal
+            
+            # Strong sell signals (overbought conditions)
+            elif current_rsi >= self.config.RSI_EXTREME_OVERBOUGHT:
+                score -= 3  # Very strong sell signal
+            elif current_rsi >= self.config.RSI_SELL_HIGH_THRESHOLD:
+                score -= 2  # Strong sell signal
+            elif current_rsi >= 60:
+                score -= 1  # Mild sell signal
+            
+            # RSI trend confirmation
+            if len(rsi_trend) >= 2:
+                if current_rsi < self.config.RSI_BUY_LOW_THRESHOLD and rsi_trend[-1] > rsi_trend[-2]:
+                    score += 0.5  # RSI turning up from oversold
+                elif current_rsi > self.config.RSI_SELL_HIGH_THRESHOLD and rsi_trend[-1] < rsi_trend[-2]:
+                    score -= 0.5  # RSI turning down from overbought
+            
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_sma_ema_crossover(self, df):
+        """SMA/EMA Crossover Strategy (Trend Following)"""
+        try:
+            if self.config.USE_EMA_OVER_SMA:
+                # Use EMA crossover
+                fast_ma = talib.EMA(df['close'].values, timeperiod=self.config.EMA_FAST_PERIOD)
+                slow_ma = talib.EMA(df['close'].values, timeperiod=self.config.EMA_SLOW_PERIOD)
+            else:
+                # Use SMA crossover
+                fast_ma = talib.SMA(df['close'].values, timeperiod=self.config.SMA_FAST_PERIOD)
+                slow_ma = talib.SMA(df['close'].values, timeperiod=self.config.SMA_SLOW_PERIOD)
+            
+            score = 0
+            
+            # Current crossover status
+            if fast_ma[-1] > slow_ma[-1]:
+                score += 1  # Bullish crossover
+            else:
+                score -= 1  # Bearish crossover
+            
+            # Check for recent crossover (more reliable signal)
+            confirmation_periods = self.config.CROSSOVER_CONFIRMATION_PERIODS
+            if len(fast_ma) > confirmation_periods:
+                # Bullish crossover confirmation
+                if (fast_ma[-1] > slow_ma[-1] and 
+                    fast_ma[-confirmation_periods] <= slow_ma[-confirmation_periods]):
+                    score += 2  # Strong bullish signal
+                
+                # Bearish crossover confirmation
+                elif (fast_ma[-1] < slow_ma[-1] and 
+                      fast_ma[-confirmation_periods] >= slow_ma[-confirmation_periods]):
+                    score -= 2  # Strong bearish signal
+            
+            # MA slope confirmation
+            if len(fast_ma) >= 2:
+                if fast_ma[-1] > fast_ma[-2]:  # Fast MA trending up
+                    score += 0.5
+                else:  # Fast MA trending down
+                    score -= 0.5
+            
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_macd_crossover(self, df):
+        """MACD Signal Line Crossover Strategy"""
+        try:
+            macd, macd_signal, macd_hist = talib.MACD(
+                df['close'].values,
+                fastperiod=self.config.MACD_FAST,
+                slowperiod=self.config.MACD_SLOW,
+                signalperiod=self.config.MACD_SIGNAL
+            )
+            
+            score = 0
+            
+            if len(macd) > 1:
+                # MACD line vs Signal line crossover
+                if macd[-1] > macd_signal[-1]:
+                    score += self.config.MACD_SIGNAL_CROSSOVER_WEIGHT
+                else:
+                    score -= self.config.MACD_SIGNAL_CROSSOVER_WEIGHT
+                
+                # Recent crossover detection (stronger signal)
+                if (macd[-1] > macd_signal[-1] and macd[-2] <= macd_signal[-2]):
+                    score += 1.5  # Bullish crossover
+                elif (macd[-1] < macd_signal[-1] and macd[-2] >= macd_signal[-2]):
+                    score -= 1.5  # Bearish crossover
+                
+                # MACD zero line cross
+                if macd[-1] > 0:
+                    score += self.config.MACD_ZERO_LINE_WEIGHT
+                else:
+                    score -= self.config.MACD_ZERO_LINE_WEIGHT
+                
+                # MACD histogram momentum
+                if macd_hist[-1] > macd_hist[-2]:
+                    score += self.config.MACD_HISTOGRAM_WEIGHT
+                else:
+                    score -= self.config.MACD_HISTOGRAM_WEIGHT
+            
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_support_resistance(self, df):
+        """Support & Resistance Zones Strategy (S/R Bounce)"""
+        try:
+            if len(df) < self.config.SR_LOOKBACK_PERIODS:
+                return 0
+            
+            current_price = df['close'].iloc[-1]
+            
+            # Find support and resistance levels
+            support_levels = self._find_support_levels(df)
+            resistance_levels = self._find_resistance_levels(df)
+            
+            score = 0
+            
+            # Check for support bounce (buy signal)
+            for support in support_levels:
+                price_diff = abs(current_price - support['level']) / support['level']
+                if price_diff <= self.config.SR_TOUCH_TOLERANCE:
+                    # Price is near support level
+                    bounce_strength = support['strength'] * self.config.SR_STRENGTH_MULTIPLIER
+                    
+                    # Check for bounce confirmation
+                    if self._confirm_support_bounce(df, support['level']):
+                        score += bounce_strength
+                        break
+            
+            # Check for resistance rejection (sell signal)
+            for resistance in resistance_levels:
+                price_diff = abs(current_price - resistance['level']) / resistance['level']
+                if price_diff <= self.config.SR_TOUCH_TOLERANCE:
+                    # Price is near resistance level
+                    rejection_strength = resistance['strength'] * self.config.SR_STRENGTH_MULTIPLIER
+                    
+                    # Check for rejection confirmation
+                    if self._confirm_resistance_rejection(df, resistance['level']):
+                        score -= rejection_strength
+                        break
+            
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_volume_spike(self, df):
+        """Volume Spike Confirmation (Anti-Fakeout Filter)"""
+        try:
+            if 'volume' not in df.columns or len(df) < self.config.VOLUME_SPIKE_LOOKBACK:
+                return 0
+            
+            current_volume = df['volume'].iloc[-1]
+            avg_volume = df['volume'].rolling(window=self.config.VOLUME_SPIKE_LOOKBACK).mean().iloc[-1]
+            
+            # Check minimum volume requirement
+            if current_volume < self.config.MIN_VOLUME_FOR_TRADE:
+                return -1  # Penalize low volume
+            
+            volume_ratio = current_volume / avg_volume if avg_volume > 0 else 0
+            
+            score = 0
+            
+            # Volume spike confirmation
+            if volume_ratio >= self.config.VOLUME_SPIKE_MULTIPLIER:
+                score += 2  # Strong volume confirmation
+            elif volume_ratio >= 1.2:
+                score += 1  # Moderate volume confirmation
+            elif volume_ratio < 0.8:
+                score -= 1  # Below average volume (penalty)
+            
+            # Volume trend analysis
+            if len(df) >= 3:
+                recent_volumes = df['volume'].tail(3).values
+                if recent_volumes[-1] > recent_volumes[-2] > recent_volumes[-3]:
+                    score += 0.5  # Increasing volume trend
+                elif recent_volumes[-1] < recent_volumes[-2] < recent_volumes[-3]:
+                    score -= 0.5  # Decreasing volume trend
+            
+            return score
+            
+        except Exception:
+            return 0
+    
+    # HELPER METHODS FOR SUPPORT/RESISTANCE
+    
+    def _find_support_levels(self, df):
+        """Find support levels using swing lows"""
+        support_levels = []
+        lookback = self.config.SR_LOOKBACK_PERIODS
         
-        # 5. FVG signals (weaker weight)
-        for fvg in fvgs:
-            if fvg["type"] == "bullish" and current_price >= fvg["low"] and current_price <= fvg["high"]:
-                signal_strength += 0.5  # Reduced from 1
-                reasons.append("Price in bullish FVG")
-                logging.info(f"✅ Added +0.5 for Bullish FVG at {fvg['low']}-{fvg['high']}")
-            elif fvg["type"] == "bearish" and current_price >= fvg["low"] and current_price <= fvg["high"]:
-                signal_strength -= 0.5  # Reduced from 1
-                reasons.append("Price in bearish FVG")
-                logging.info(f"✅ Added -0.5 for Bearish FVG at {fvg['low']}-{fvg['high']}")
+        try:
+            # Find swing lows
+            for i in range(5, len(df) - 5):
+                if i >= lookback:
+                    break
+                    
+                current_low = df['low'].iloc[i]
+                is_swing_low = True
+                
+                # Check if it's a swing low
+                for j in range(i-5, i+6):
+                    if j != i and df['low'].iloc[j] < current_low:
+                        is_swing_low = False
+                        break
+                
+                if is_swing_low:
+                    # Count touches to this level
+                    touches = self._count_level_touches(df, current_low, 'support')
+                    if touches >= self.config.SR_MIN_TOUCHES:
+                        support_levels.append({
+                            'level': current_low,
+                            'strength': touches,
+                            'index': i
+                        })
+            
+            # Sort by strength
+            return sorted(support_levels, key=lambda x: x['strength'], reverse=True)[:3]
+            
+        except Exception:
+            return []
+    
+    def _find_resistance_levels(self, df):
+        """Find resistance levels using swing highs"""
+        resistance_levels = []
+        lookback = self.config.SR_LOOKBACK_PERIODS
         
-        logging.info(f"🔢 Final Signal Strength: {signal_strength:.2f}")
+        try:
+            # Find swing highs
+            for i in range(5, len(df) - 5):
+                if i >= lookback:
+                    break
+                    
+                current_high = df['high'].iloc[i]
+                is_swing_high = True
+                
+                # Check if it's a swing high
+                for j in range(i-5, i+6):
+                    if j != i and df['high'].iloc[j] > current_high:
+                        is_swing_high = False
+                        break
+                
+                if is_swing_high:
+                    # Count touches to this level
+                    touches = self._count_level_touches(df, current_high, 'resistance')
+                    if touches >= self.config.SR_MIN_TOUCHES:
+                        resistance_levels.append({
+                            'level': current_high,
+                            'strength': touches,
+                            'index': i
+                        })
+            
+            # Sort by strength
+            return sorted(resistance_levels, key=lambda x: x['strength'], reverse=True)[:3]
+            
+        except Exception:
+            return []
+    
+    def _count_level_touches(self, df, level, level_type):
+        """Count how many times price touched a support/resistance level"""
+        touches = 0
+        tolerance = self.config.SR_TOUCH_TOLERANCE
         
-        # Determine final signal with dynamic confidence
-        if signal_strength > 0.5:  # Lowered threshold from 1
-            signal = "BUY"
-            confidence = min(abs(signal_strength) * 40, 100)  # Increased multiplier from 30
-            logging.info(f"🎯 FINAL SIGNAL: BUY (Confidence: {confidence:.1f}%)")
-        elif signal_strength < -0.5:  # Lowered threshold from -1
-            signal = "SELL"
-            confidence = min(abs(signal_strength) * 40, 100)  # Increased multiplier from 30
-            logging.info(f"🎯 FINAL SIGNAL: SELL (Confidence: {confidence:.1f}%)")
+        try:
+            for i in range(len(df)):
+                if level_type == 'support':
+                    price = df['low'].iloc[i]
+                    if abs(price - level) / level <= tolerance:
+                        touches += 1
+                else:  # resistance
+                    price = df['high'].iloc[i]
+                    if abs(price - level) / level <= tolerance:
+                        touches += 1
+            
+            return touches
+            
+        except Exception:
+            return 0
+    
+    def _confirm_support_bounce(self, df, support_level):
+        """Confirm if price is bouncing from support"""
+        try:
+            confirmation_periods = self.config.SR_BOUNCE_CONFIRMATION
+            if len(df) < confirmation_periods:
+                return False
+            
+            recent_candles = df.tail(confirmation_periods)
+            
+            # Check if price touched support and is now moving up
+            touched_support = False
+            moving_up = False
+            
+            for _, candle in recent_candles.iterrows():
+                if abs(candle['low'] - support_level) / support_level <= self.config.SR_TOUCH_TOLERANCE:
+                    touched_support = True
+                    break
+            
+            if touched_support:
+                # Check if recent candles are moving up
+                if recent_candles['close'].iloc[-1] > recent_candles['close'].iloc[-2]:
+                    moving_up = True
+            
+            return touched_support and moving_up
+            
+        except Exception:
+            return False
+    
+    def _confirm_resistance_rejection(self, df, resistance_level):
+        """Confirm if price is being rejected from resistance"""
+        try:
+            confirmation_periods = self.config.SR_BOUNCE_CONFIRMATION
+            if len(df) < confirmation_periods:
+                return False
+            
+            recent_candles = df.tail(confirmation_periods)
+            
+            # Check if price touched resistance and is now moving down
+            touched_resistance = False
+            moving_down = False
+            
+            for _, candle in recent_candles.iterrows():
+                if abs(candle['high'] - resistance_level) / resistance_level <= self.config.SR_TOUCH_TOLERANCE:
+                    touched_resistance = True
+                    break
+            
+            if touched_resistance:
+                # Check if recent candles are moving down
+                if recent_candles['close'].iloc[-1] < recent_candles['close'].iloc[-2]:
+                    moving_down = True
+            
+            return touched_resistance and moving_down
+            
+        except Exception:
+            return False
+    
+    def _analyze_smc_structure(self, df):
+        """Enhanced SMC (Smart Money Concepts) analysis"""
+        try:
+            # Calculate swing highs and lows
+            swing_highs = self._find_swing_points(df['high'], 'high')
+            swing_lows = self._find_swing_points(df['low'], 'low')
+            
+            # Identify market structure shifts
+            structure_shift = self._identify_structure_shift(swing_highs, swing_lows)
+            
+            # Find order blocks
+            order_blocks = self._find_order_blocks(df)
+            
+            # Identify fair value gaps
+            fvg = self._find_fair_value_gaps(df)
+            
+            # Liquidity analysis
+            liquidity_sweep = self._check_liquidity_sweep(df, swing_highs, swing_lows)
+            
+            # Combine SMC signals
+            smc_score = 0
+            if structure_shift == 'bullish':
+                smc_score += 2
+            elif structure_shift == 'bearish':
+                smc_score -= 2
+                
+            if order_blocks == 'bullish':
+                smc_score += 1
+            elif order_blocks == 'bearish':
+                smc_score -= 1
+                
+            if fvg == 'bullish':
+                smc_score += 1
+            elif fvg == 'bearish':
+                smc_score -= 1
+                
+            if liquidity_sweep == 'bullish':
+                smc_score += 1
+            elif liquidity_sweep == 'bearish':
+                smc_score -= 1
+            
+            return smc_score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_moving_averages(self, df):
+        """Enhanced moving average analysis"""
+        try:
+            # Calculate multiple MAs
+            ma_fast = df['close'].rolling(window=self.config.TREND_MA_FAST).mean()
+            ma_slow = df['close'].rolling(window=self.config.TREND_MA_SLOW).mean()
+            ma_filter = df['close'].rolling(window=self.config.TREND_MA_FILTER).mean()
+            
+            current_price = df['close'].iloc[-1]
+            
+            score = 0
+            # Fast MA vs Slow MA
+            if ma_fast.iloc[-1] > ma_slow.iloc[-1]:
+                score += 1
+            else:
+                score -= 1
+                
+            # Price vs Filter MA
+            if current_price > ma_filter.iloc[-1]:
+                score += 1
+            else:
+                score -= 1
+                
+            # MA slope analysis
+            if ma_fast.iloc[-1] > ma_fast.iloc[-2]:
+                score += 0.5
+            else:
+                score -= 0.5
+                
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_rsi(self, df):
+        """Enhanced RSI analysis with divergence"""
+        try:
+            rsi = talib.RSI(df['close'].values, timeperiod=self.config.RSI_PERIOD)
+            current_rsi = rsi[-1]
+            
+            score = 0
+            # Basic RSI signals
+            if current_rsi < self.config.RSI_OVERSOLD:
+                score += 2  # Strong buy signal
+            elif current_rsi < 40:
+                score += 1  # Mild buy signal
+            elif current_rsi > self.config.RSI_OVERBOUGHT:
+                score -= 2  # Strong sell signal
+            elif current_rsi > 60:
+                score -= 1  # Mild sell signal
+                
+            # RSI momentum
+            if len(rsi) > 1 and rsi[-1] > rsi[-2]:
+                score += 0.5
+            elif len(rsi) > 1 and rsi[-1] < rsi[-2]:
+                score -= 0.5
+                
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_macd(self, df):
+        """MACD analysis"""
+        try:
+            macd, macd_signal, macd_hist = talib.MACD(
+                df['close'].values,
+                fastperiod=self.config.MACD_FAST,
+                slowperiod=self.config.MACD_SLOW,
+                signalperiod=self.config.MACD_SIGNAL
+            )
+            
+            score = 0
+            if len(macd) > 1:
+                # MACD line vs Signal line
+                if macd[-1] > macd_signal[-1]:
+                    score += 1
+                else:
+                    score -= 1
+                    
+                # MACD histogram momentum
+                if macd_hist[-1] > macd_hist[-2]:
+                    score += 0.5
+                else:
+                    score -= 0.5
+                    
+                # Zero line cross
+                if macd[-1] > 0:
+                    score += 0.5
+                else:
+                    score -= 0.5
+                    
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_bollinger_bands(self, df):
+        """Bollinger Bands analysis"""
+        try:
+            upper, middle, lower = talib.BBANDS(
+                df['close'].values,
+                timeperiod=self.config.BB_PERIOD,
+                nbdevup=self.config.BB_STD_DEV,
+                nbdevdn=self.config.BB_STD_DEV
+            )
+            
+            current_price = df['close'].iloc[-1]
+            
+            score = 0
+            # Price position within bands
+            if current_price < lower[-1]:
+                score += 2  # Oversold
+            elif current_price < middle[-1]:
+                score += 1  # Below middle
+            elif current_price > upper[-1]:
+                score -= 2  # Overbought
+            elif current_price > middle[-1]:
+                score -= 1  # Above middle
+                
+            # Band squeeze detection
+            band_width = (upper[-1] - lower[-1]) / middle[-1]
+            avg_band_width = np.mean([(upper[i] - lower[i]) / middle[i] for i in range(-20, -1)])
+            
+            if band_width < avg_band_width * 0.8:
+                score += 0.5  # Squeeze suggests breakout coming
+                
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _analyze_stochastic(self, df):
+        """Stochastic oscillator analysis"""
+        try:
+            slowk, slowd = talib.STOCH(
+                df['high'].values,
+                df['low'].values,
+                df['close'].values,
+                fastk_period=self.config.STOCH_K,
+                slowk_period=self.config.STOCH_D,
+                slowd_period=self.config.STOCH_D
+            )
+            
+            score = 0
+            if len(slowk) > 1:
+                current_k = slowk[-1]
+                current_d = slowd[-1]
+                
+                # Oversold/Overbought levels
+                if current_k < self.config.STOCH_OVERSOLD:
+                    score += 2
+                elif current_k > self.config.STOCH_OVERBOUGHT:
+                    score -= 2
+                    
+                # %K vs %D crossover
+                if current_k > current_d and slowk[-2] <= slowd[-2]:
+                    score += 1  # Bullish crossover
+                elif current_k < current_d and slowk[-2] >= slowd[-2]:
+                    score -= 1  # Bearish crossover
+                    
+            return score
+            
+        except Exception:
+            return 0
+    
+    def _detect_market_regime(self, df):
+        """Detect market regime (trending/ranging)"""
+        try:
+            # Calculate ADX for trend strength
+            adx = talib.ADX(
+                df['high'].values,
+                df['low'].values,
+                df['close'].values,
+                timeperiod=14
+            )
+            
+            current_adx = adx[-1]
+            
+            if current_adx > self.config.TRENDING_THRESHOLD * 100:
+                return 'trending'
+            elif current_adx < self.config.RANGING_THRESHOLD * 100:
+                return 'ranging'
+            else:
+                return 'neutral'
+                
+        except Exception:
+            return 'unknown'
+    
+    def _confirm_trend(self, df):
+        """Multi-timeframe trend confirmation"""
+        try:
+            # Use multiple MA periods for trend confirmation
+            ma_short = df['close'].rolling(window=self.config.TREND_MA_FAST).mean()
+            ma_long = df['close'].rolling(window=self.config.TREND_MA_SLOW).mean()
+            ma_filter = df['close'].rolling(window=self.config.TREND_MA_FILTER).mean()
+            
+            current_price = df['close'].iloc[-1]
+            
+            # All MAs should be aligned for strong trend
+            current_price = df['close'].iloc[-1]
+            
+            # Bullish trend: price > ma_short > ma_long > ma_filter
+            bullish_trend = (current_price > ma_short.iloc[-1] > 
+                           ma_long.iloc[-1] > ma_filter.iloc[-1])
+            
+            # Bearish trend: price < ma_short < ma_long < ma_filter
+            bearish_trend = (current_price < ma_short.iloc[-1] < 
+                           ma_long.iloc[-1] < ma_filter.iloc[-1])
+            
+            return bullish_trend or bearish_trend
+            
+        except Exception:
+            return True  # Default to confirmed if calculation fails
+    
+    def _confirm_volume(self, df):
+        """Volume confirmation"""
+        try:
+            if 'volume' not in df.columns:
+                return True  # Skip if no volume data
+                
+            current_volume = df['volume'].iloc[-1]
+            avg_volume = df['volume'].rolling(window=self.config.VOLUME_MA_PERIOD).mean().iloc[-1]
+            
+            # Volume should be above average for confirmation
+            return current_volume > avg_volume * (1 + self.config.MIN_VOLUME_RATIO)
+            
+        except Exception:
+            return True
+    
+    def _check_volatility(self, df):
+        """Check if volatility is sufficient for trading"""
+        try:
+            atr = self.tech_indicators.calculate_atr(df, period=self.config.ATR_PERIOD)
+            current_atr = atr.iloc[-1]
+            current_price = df['close'].iloc[-1]
+            
+            atr_percent = (current_atr / current_price) * 100
+            
+            return atr_percent >= self.config.MIN_ATR_PERCENT
+            
+        except Exception:
+            return True
+    
+    def _check_rsi_divergence(self, df):
+        """Check for RSI divergence"""
+        try:
+            rsi = talib.RSI(df['close'].values, timeperiod=self.config.RSI_PERIOD)
+            
+            # Look for divergence in last N periods
+            lookback = min(self.config.RSI_DIVERGENCE_LOOKBACK, len(df) - 1)
+            
+            price_trend = df['close'].iloc[-1] - df['close'].iloc[-lookback]
+            rsi_trend = rsi[-1] - rsi[-lookback]
+            
+            # Bullish divergence: price down, RSI up
+            if price_trend < 0 and rsi_trend > 0:
+                return 1
+            # Bearish divergence: price up, RSI down
+            elif price_trend > 0 and rsi_trend < 0:
+                return -1
+            else:
+                return 0
+                
+        except Exception:
+            return 0
+    
+    def _check_engulfing_pattern(self, df):
+        """Check for engulfing candlestick patterns"""
+        try:
+            if len(df) < 2:
+                return True
+                
+            # Get last two candles
+            prev_candle = df.iloc[-2]
+            current_candle = df.iloc[-1]
+            
+            # Bullish engulfing
+            bullish_engulfing = (
+                prev_candle['close'] < prev_candle['open'] and  # Previous red
+                current_candle['close'] > current_candle['open'] and  # Current green
+                current_candle['open'] < prev_candle['close'] and  # Gap down open
+                current_candle['close'] > prev_candle['open']  # Engulfs previous
+            )
+            
+            # Bearish engulfing
+            bearish_engulfing = (
+                prev_candle['close'] > prev_candle['open'] and  # Previous green
+                current_candle['close'] < current_candle['open'] and  # Current red
+                current_candle['open'] > prev_candle['close'] and  # Gap up open
+                current_candle['close'] < prev_candle['open']  # Engulfs previous
+            )
+            
+            return bullish_engulfing or bearish_engulfing
+            
+        except Exception:
+            return True
+    
+    def _combine_signals(self, signals, regime, trend_confirmed, volume_confirmed, 
+                        volatility_ok, rsi_signal, pattern_confirmed):
+        """Combine all signals for final decision"""
+        try:
+            # Calculate total score
+            total_score = 0
+            max_score = 0
+            
+            for signal_name, score in signals.items():
+                if signal_name == 'smc':
+                    weight = 3  # SMC gets highest weight
+                elif signal_name in ['ma', 'rsi']:
+                    weight = 2  # Important indicators
+                else:
+                    weight = 1  # Supporting indicators
+                    
+                total_score += score * weight
+                max_score += 4 * weight  # Assuming max score per indicator is 4
+            
+            # Add RSI divergence
+            total_score += rsi_signal * 2
+            max_score += 4
+            
+            # Apply filters
+            if not trend_confirmed:
+                total_score *= 0.5
+                
+            if not volume_confirmed:
+                total_score *= 0.7
+                
+            if not volatility_ok:
+                return 'HOLD', 0, 'Insufficient volatility'
+                
+            if not pattern_confirmed:
+                total_score *= 0.8
+            
+            # Adjust for market regime
+            if regime == 'trending':
+                total_score *= 1.2  # Boost signals in trending market
+            elif regime == 'ranging':
+                total_score *= 0.8  # Reduce signals in ranging market
+            
+            # Adjust for consecutive losses
+            if self.consecutive_losses >= self.config.MAX_CONSECUTIVE_LOSSES:
+                total_score *= self.config.DRAWDOWN_REDUCTION_FACTOR
+            
+            # Calculate confidence
+            confidence = min(abs(total_score) / max_score * 100, 100)
+            
+            # Determine signal
+            if total_score > 2:
+                signal = 'BUY'
+            elif total_score < -2:
+                signal = 'SELL'
+            else:
+                signal = 'HOLD'
+            
+            # Create analysis summary
+            analysis = f"Score: {total_score:.1f}, Regime: {regime}, Trend: {trend_confirmed}, Vol: {volume_confirmed}"
+            
+            return signal, confidence, analysis
+            
+        except Exception as e:
+            return 'HOLD', 0, f'Error combining signals: {str(e)}'
+    
+    # Helper methods for SMC analysis
+    def _find_swing_points(self, series, point_type, window=5):
+        """Find swing highs and lows"""
+        swings = []
+        for i in range(window, len(series) - window):
+            if point_type == 'high':
+                if all(series[i] >= series[j] for j in range(i-window, i+window+1) if j != i):
+                    swings.append((i, series[i]))
+            else:  # low
+                if all(series[i] <= series[j] for j in range(i-window, i+window+1) if j != i):
+                    swings.append((i, series[i]))
+        return swings
+    
+    def _identify_structure_shift(self, swing_highs, swing_lows):
+        """Identify market structure shifts"""
+        if len(swing_highs) < 2 or len(swing_lows) < 2:
+            return 'neutral'
+            
+        # Check for higher highs and higher lows (bullish)
+        recent_highs = swing_highs[-2:]
+        recent_lows = swing_lows[-2:]
+        
+        if (recent_highs[1][1] > recent_highs[0][1] and 
+            recent_lows[1][1] > recent_lows[0][1]):
+            return 'bullish'
+        elif (recent_highs[1][1] < recent_highs[0][1] and 
+              recent_lows[1][1] < recent_lows[0][1]):
+            return 'bearish'
         else:
-            signal = "HOLD"
-            confidence = 0
-            logging.info("🎯 FINAL SIGNAL: HOLD (No clear signal)")
-        
-        return {
-            "signal": signal,
-            "confidence": confidence,
-            "reason": "; ".join(reasons) if reasons else "No clear signal",
-            "market_structure": market_structure,
-            "order_blocks": order_blocks,
-            "fvgs": fvgs,
-            "rsi": rsi_signal,
-            "ma_trend": ma_trend,
-            "signal_strength": signal_strength
-        }
-
-    def _analyze_rsi(self, df: pd.DataFrame) -> Dict:
-        """Analyze RSI for overbought/oversold conditions"""
-        import pandas_ta as ta
-        
-        # Use configured RSI settings instead of hardcoded values
-        rsi = ta.rsi(df['close'], length=self.config.RSI_LENGTH)
-        current_rsi = rsi.iloc[-1]
-        
-        # Debug logging
-        logging.info(f" RSI Analysis: Current RSI={current_rsi:.1f}, Oversold={self.config.RSI_OVERSOLD}, Overbought={self.config.RSI_OVERBOUGHT}")
-        
-        if current_rsi < self.config.RSI_OVERSOLD:
-            logging.info(f" RSI BUY Signal: {current_rsi:.1f} < {self.config.RSI_OVERSOLD}")
-            return {"signal": "BUY", "value": current_rsi}
-        elif current_rsi > self.config.RSI_OVERBOUGHT:
-            logging.info(f" RSI SELL Signal: {current_rsi:.1f} > {self.config.RSI_OVERBOUGHT}")
-            return {"signal": "SELL", "value": current_rsi}
-        else:
-            logging.info(f" RSI NEUTRAL: {current_rsi:.1f} between {self.config.RSI_OVERSOLD}-{self.config.RSI_OVERBOUGHT}")
-            return {"signal": "NEUTRAL", "value": current_rsi}
-
-    def _analyze_moving_average(self, df: pd.DataFrame) -> Dict:
-        """Analyze moving average trend with detailed logging"""
-        # Use configured MA period
-        ma = df['close'].rolling(window=self.config.MA_PERIOD).mean()
-        current_price = df['close'].iloc[-1]
-        ma_value = ma.iloc[-1]
-        
-        logging.info(f"📈 MA Analysis (Period={self.config.MA_PERIOD}):")
-        logging.info(f"   Current Price: {current_price:.6f}")
-        logging.info(f"   MA Value: {ma_value:.6f}")
-        logging.info(f"   Price vs MA: {current_price - ma_value:.6f} ({'ABOVE' if current_price > ma_value else 'BELOW' if current_price < ma_value else 'AT'} MA)")
-        
-        # Determine trend
-        if current_price > ma_value:
-            logging.info(f"   ✅ Price is ABOVE MA - Bullish Signal")
-            return {"signal": "BUY", "ma_value": ma_value}
-        elif current_price < ma_value:
-            logging.info(f"   ✅ Price is BELOW MA - Bearish Signal")
-            return {"signal": "SELL", "ma_value": ma_value}
-        else:
-            logging.info(f"   ⏸️  Price is AT MA - Neutral")
-            return {"signal": "NEUTRAL", "ma_value": ma_value}
+            return 'neutral'
+    
+    def _find_order_blocks(self, df):
+        """Find order blocks (simplified)"""
+        try:
+            # Look for strong moves followed by consolidation
+            if len(df) < 10:
+                return 'neutral'
+                
+            recent_data = df.tail(10)
+            price_change = (recent_data['close'].iloc[-1] - recent_data['close'].iloc[0]) / recent_data['close'].iloc[0]
+            
+            if price_change > 0.02:  # 2% move up
+                return 'bullish'
+            elif price_change < -0.02:  # 2% move down
+                return 'bearish'
+            else:
+                return 'neutral'
+                
+        except Exception:
+            return 'neutral'
+    
+    def _find_fair_value_gaps(self, df):
+        """Find fair value gaps (simplified)"""
+        try:
+            if len(df) < 3:
+                return 'neutral'
+                
+            # Check last 3 candles for gaps
+            for i in range(len(df) - 3, len(df) - 1):
+                current = df.iloc[i]
+                next_candle = df.iloc[i + 1]
+                
+                # Bullish FVG: gap up
+                if next_candle['low'] > current['high']:
+                    return 'bullish'
+                # Bearish FVG: gap down
+                elif next_candle['high'] < current['low']:
+                    return 'bearish'
+                    
+            return 'neutral'
+            
+        except Exception:
+            return 'neutral'
+    
+    def _check_liquidity_sweep(self, df, swing_highs, swing_lows):
+        """Check for liquidity sweeps"""
+        try:
+            if len(df) < 5 or not swing_highs or not swing_lows:
+                return 'neutral'
+                
+            current_price = df['close'].iloc[-1]
+            recent_high = max([h[1] for h in swing_highs[-3:]] if len(swing_highs) >= 3 else [swing_highs[-1][1]])
+            recent_low = min([l[1] for l in swing_lows[-3:]] if len(swing_lows) >= 3 else [swing_lows[-1][1]])
+            
+            # Check if price swept above recent high then reversed
+            if current_price > recent_high * 1.001:  # 0.1% above
+                return 'bearish'  # Potential liquidity grab
+            elif current_price < recent_low * 0.999:  # 0.1% below
+                return 'bullish'  # Potential liquidity grab
+            else:
+                return 'neutral'
+                
+        except Exception:
+            return 'neutral'
