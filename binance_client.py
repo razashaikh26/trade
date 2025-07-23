@@ -9,6 +9,7 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 from typing import List, Dict
+import logging
 
 class BinanceClient:
     def __init__(self, mock_mode=False, testnet=False):
@@ -530,3 +531,86 @@ class BinanceClient:
     def stop_websocket(self):
         """Stop the websocket connection"""
         self.websocket_running = False
+
+    def get_recent_trades(self, symbol: str, limit: int = 100, since: int = None) -> List[Dict]:
+        """
+        Fetch recent trades for a symbol
+        
+        Args:
+            symbol: Trading pair symbol (e.g., 'DOGEUSDT')
+            limit: Maximum number of trades to return (default: 100, max: 1000)
+            since: Timestamp in milliseconds to start fetching trades from
+            
+        Returns:
+            List of trade dictionaries with trade details
+        """
+        if self.mock_mode:
+            # Return mock trade data for testing
+            mock_trade = {
+                'id': 'mock-trade-1',
+                'symbol': symbol,
+                'orderId': 'mock-order-1',
+                'side': 'buy',
+                'price': str(self.get_latest_price(symbol) or 0.0),
+                'qty': '100',
+                'realizedPnl': '0.0',
+                'marginAsset': 'USDT',
+                'quoteQty': '0.0',
+                'commission': '0.0',
+                'commissionAsset': 'USDT',
+                'time': int(time.time() * 1000),
+                'positionSide': 'LONG',
+                'buyer': True,
+                'maker': False
+            }
+            return [mock_trade] * min(limit, 10)  # Return up to 10 mock trades
+        
+        try:
+            # Ensure symbol is in correct format (no slashes)
+            symbol = symbol.replace('/', '')
+            
+            # Prepare parameters
+            params = {
+                'symbol': symbol,
+                'limit': min(limit, 1000)  # Binance max is 1000
+            }
+            
+            if since is not None:
+                params['startTime'] = since
+            
+            # Fetch trades
+            trades = self.client.fapiPrivateGetUserTrades(params)
+            
+            # Format trades consistently
+            formatted_trades = []
+            for trade in trades:
+                formatted_trade = {
+                    'id': str(trade.get('id', '')),
+                    'symbol': trade.get('symbol', symbol),
+                    'orderId': str(trade.get('orderId', '')),
+                    'side': trade.get('side', '').lower(),
+                    'price': trade.get('price', '0'),
+                    'qty': trade.get('qty', '0'),
+                    'realizedPnl': trade.get('realizedPnl', '0'),
+                    'marginAsset': trade.get('marginAsset', 'USDT'),
+                    'quoteQty': trade.get('quoteQty', '0'),
+                    'commission': trade.get('commission', '0'),
+                    'commissionAsset': trade.get('commissionAsset', 'USDT'),
+                    'time': int(trade.get('time', time.time() * 1000)),
+                    'positionSide': trade.get('positionSide', 'BOTH'),
+                    'buyer': trade.get('isBuyer', False),
+                    'maker': trade.get('isMaker', False)
+                }
+                formatted_trades.append(formatted_trade)
+            
+            # Sort by time (oldest first)
+            formatted_trades.sort(key=lambda x: x['time'])
+            
+            # Apply limit after formatting
+            return formatted_trades[-limit:] if limit else formatted_trades
+            
+        except Exception as e:
+            error_msg = f"Error fetching recent trades: {str(e)}"
+            print(f"❌ {error_msg}")
+            logging.error(error_msg, exc_info=True)
+            return []

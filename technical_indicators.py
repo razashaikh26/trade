@@ -135,6 +135,93 @@ class TechnicalIndicators:
         }
     
     @staticmethod
+    def add_volume_confirmation(df, period=20):
+        """
+        Add volume confirmation to the dataframe
+        
+        Args:
+            df (pd.DataFrame): DataFrame with OHLCV data
+            period (int): Period for volume moving average
+            
+        Returns:
+            pd.DataFrame: DataFrame with volume confirmation signals
+        """
+        df = df.copy()
+        
+        # Calculate volume moving average
+        df['volume_ma'] = df['volume'].rolling(window=period).mean()
+        
+        # Volume is confirmed if current volume > volume MA
+        df['volume_confirmed'] = df['volume'] > df['volume_ma']
+        
+        return df
+    
+    @staticmethod
+    def detect_candlestick_patterns(df):
+        """
+        Detect common candlestick patterns
+        
+        Args:
+            df (pd.DataFrame): DataFrame with OHLCV data
+            
+        Returns:
+            pd.DataFrame: DataFrame with pattern detection columns
+        """
+        df = df.copy()
+        
+        # Bullish patterns
+        df['bullish_engulfing'] = (df['close'] > df['open']) & \
+                                 (df['close'].shift(1) < df['open'].shift(1)) & \
+                                 (df['close'] > df['open'].shift(1)) & \
+                                 (df['open'] < df['close'].shift(1))
+        
+        df['hammer'] = (df['close'] > df['open']) & \
+                      ((df['close'] - df['low']) > 2 * (df['open'] - df['close'])) & \
+                      ((df['high'] - df['close']) < (df['open'] - df['close']) * 0.3)
+        
+        # Bearish patterns
+        df['bearish_engulfing'] = (df['close'] < df['open']) & \
+                                 (df['close'].shift(1) > df['open'].shift(1)) & \
+                                 (df['close'] < df['open'].shift(1)) & \
+                                 (df['open'] > df['close'].shift(1))
+        
+        df['shooting_star'] = (df['open'] > df['close']) & \
+                             ((df['high'] - df['open']) > 2 * (df['open'] - df['close'])) & \
+                             ((df['close'] - df['low']) < (df['open'] - df['close']) * 0.3)
+        
+        return df
+    
+    @staticmethod
+    def get_market_regime(df, short_period=20, long_period=50):
+        """
+        Determine market regime (trending/range-bound)
+        
+        Args:
+            df (pd.DataFrame): DataFrame with price data
+            short_period (int): Short-term moving average period
+            long_period (int): Long-term moving average period
+            
+        Returns:
+            str: Market regime ('trending' or 'range')
+        """
+        df = df.copy()
+        
+        # Calculate moving averages
+        df['sma_short'] = df['close'].rolling(window=short_period).mean()
+        df['sma_long'] = df['close'].rolling(window=long_period).mean()
+        
+        # Calculate ATR for volatility
+        df['atr'] = df['high'].rolling(window=14).max() - df['low'].rolling(window=14).min()
+        
+        # Simple trend detection
+        price_std = df['close'].rolling(window=20).std()
+        atr_ratio = df['atr'] / df['close'].rolling(window=20).mean()
+        
+        if atr_ratio.iloc[-1] > 0.01:  # Threshold for trending market
+            return 'trending'
+        return 'range'
+    
+    @staticmethod
     def calculate_volatility_adjusted_position_size(
         account_balance: float,
         base_risk_percent: float,

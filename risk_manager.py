@@ -1,5 +1,8 @@
 from datetime import datetime, time
 from typing import List
+import logging
+
+logger = logging.getLogger(__name__)
 
 class RiskManager:
     def __init__(self, max_trades_per_day, max_daily_loss, min_balance):
@@ -62,3 +65,83 @@ class RiskManager:
     def record_trade(self):
         """Record that a trade has been executed."""
         self.daily_trade_count += 1
+
+    def calculate_position_size(self, account_balance, entry_price, stop_loss_price, risk_percent=1.0):
+        """
+        Calculate position size based on account balance and risk parameters
+        
+        Args:
+            account_balance (float): Current account balance in USDT
+            entry_price (float): Entry price of the trade
+            stop_loss_price (float): Stop loss price
+            risk_percent (float): Percentage of account to risk (default: 1%)
+            
+        Returns:
+            float: Position size in base currency (e.g., DOGE)
+        """
+        try:
+            # Calculate risk amount in USDT
+            risk_amount = account_balance * (risk_percent / 100.0)
+            
+            # Calculate price difference (absolute value)
+            price_diff = abs(entry_price - stop_loss_price)
+            
+            # Handle potential division by zero
+            if price_diff == 0:
+                return 0
+                
+            # Calculate position size in base currency
+            position_size = (risk_amount / price_diff)
+            
+            # Apply maximum position size limit (e.g., 50% of account)
+            max_position_value = account_balance * 0.5  # Max 50% of account per trade
+            max_position_size = max_position_value / entry_price
+            
+            return min(position_size, max_position_size)
+            
+        except Exception as e:
+            logger.error(f"Error calculating position size: {e}")
+            return 0
+
+    def calculate_dynamic_sl_tp(self, entry_price, atr, side, risk_reward_ratio=1.5):
+        """
+        Calculate dynamic stop loss and take profit based on ATR
+        
+        Args:
+            entry_price (float): Entry price
+            atr (float): Current ATR value
+            side (str): 'long' or 'short'
+            risk_reward_ratio (float): Desired risk/reward ratio
+            
+        Returns:
+            tuple: (stop_loss, take_profit)
+        """
+        # Base ATR multiplier
+        atr_multiplier = 2.0  # Default multiplier
+        
+        # Adjust multiplier based on volatility
+        if atr / entry_price < 0.002:  # Low volatility
+            atr_multiplier = 2.5
+        elif atr / entry_price > 0.005:  # High volatility
+            atr_multiplier = 1.5
+            
+        # Calculate stop loss
+        if side.lower() == 'long':
+            stop_loss = entry_price - (atr * atr_multiplier)
+            take_profit = entry_price + (atr * atr_multiplier * risk_reward_ratio)
+        else:  # short
+            stop_loss = entry_price + (atr * atr_multiplier)
+            take_profit = entry_price - (atr * atr_multiplier * risk_reward_ratio)
+            
+        # Ensure stop loss is not too tight (min 0.5%)
+        min_sl_distance = entry_price * 0.005
+        current_sl_distance = abs(entry_price - stop_loss)
+        if current_sl_distance < min_sl_distance:
+            if side.lower() == 'long':
+                stop_loss = entry_price - min_sl_distance
+                take_profit = entry_price + (min_sl_distance * risk_reward_ratio)
+            else:
+                stop_loss = entry_price + min_sl_distance
+                take_profit = entry_price - (min_sl_distance * risk_reward_ratio)
+                
+        return stop_loss, take_profit

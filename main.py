@@ -91,6 +91,28 @@ def check_and_trade(mock_mode=False, testnet=False):
             logger.error(f"❌ Failed to get current price for {symbol}: {e}")
             return
         
+        # Check if we have an open position
+        positions = binance.get_open_positions(symbol)
+        if positions:
+            for pos in positions:
+                if float(pos.get('contracts', 0)) > 0:
+                    logger.info(f"✅ OPEN POSITION: {pos}")
+                else:
+                    logger.info("❌ NO ACTIVE POSITIONS FOUND")
+        else:
+            logger.info("❌ NO POSITIONS FOUND")
+            
+        # Check account balance
+        balance = binance.get_account_balance()
+        logger.info(f"💰 ACCOUNT BALANCE: {balance} USDT")
+        
+        # Check recent trades
+        try:
+            trades = binance.get_recent_trades(symbol, limit=5)
+            logger.info(f"🔄 LAST 5 TRADES: {trades}")
+        except Exception as e:
+            logger.error(f"❌ Error fetching recent trades: {e}")
+        
         # Check for existing positions
         try:
             positions = binance.get_open_positions(symbol)
@@ -507,132 +529,104 @@ def check_and_trade(mock_mode=False, testnet=False):
         signal_data = strategy.get_trading_signal(market_data)
         signal = signal_data.get("signal", "HOLD")
         confidence = signal_data.get("confidence", 0)
-        reason = signal_data.get("reason", "No reason provided")
+        reasons = signal_data.get("reasons", ["No reason provided"])
+        market_regime = signal_data.get("market_regime", "unknown")
         
-        # Log enhanced signal information
         logger.info(f"📊 Trading Signal: {signal} (Confidence: {confidence}%)")
-        logger.info(f"📝 Reason: {reason}")
+        for reason in reasons:
+            logger.info(f"📝 {reason}")
         
-        # Log ATR data if available
-        atr_data = signal_data.get('atr_data', {})
-        if atr_data:
-            logger.info(f"📈 ATR Analysis:")
-            logger.info(f"   Current ATR: {atr_data.get('current_atr', 0):.6f}")
-            logger.info(f"   ATR %: {atr_data.get('atr_percent', 0):.2f}%")
-            logger.info(f"   Volatility: {atr_data.get('volatility_state', 'UNKNOWN')}")
-        
-        # Log engulfing patterns if available
-        engulfing = signal_data.get('engulfing_patterns', {})
-        if engulfing:
-            if engulfing.get('bullish_engulfing'):
-                logger.info("🟢 Bullish Engulfing Pattern Detected")
-            if engulfing.get('bearish_engulfing'):
-                logger.info("� Bearish Engulfing Pattern Detected")
-        
-        if signal in ["BUY", "SELL"]:
-            # Check risk management
-            balance = binance.get_account_balance()
-            can_trade_result = risk_manager.can_trade(balance, binance, config.SYMBOLS)
-            if not can_trade_result[0]:  # can_trade returns (bool, message)
-                logger.warning(f"⚠️ Risk management prevents trading: {can_trade_result[1]}")
-                return
-            
-            # Calculate position size with adaptive sizing if enabled
-            balance = binance.get_account_balance()
-            
-            if getattr(config, 'USE_ADAPTIVE_POSITION_SIZE', False):
-                adaptive_data = signal_data.get('adaptive_sizing', {})
-                if adaptive_data and adaptive_data.get('current_atr', 0) > 0:
-                    tech_indicators = TechnicalIndicators()
-                    position_size = tech_indicators.calculate_volatility_adjusted_position_size(
-                        account_balance=balance,
-                        base_risk_percent=config.RISK_PERCENT,
-                        current_atr=adaptive_data['current_atr'],
-                        price=current_price,
-                        atr_period_avg=adaptive_data.get('atr_ma', adaptive_data['current_atr']),
-                        min_size=config.MIN_ORDER_SIZE_DOGE,
-                        max_size_multiplier=getattr(config, 'MAX_POSITION_MULTIPLIER', 2.0)
-                    )
-                    logger.info(f"🎯 Adaptive Position Size: {position_size:.2f} {symbol.replace('USDT', '')}")
-                    logger.info(f"   Volatility State: {adaptive_data.get('volatility_state', 'UNKNOWN')}")
-                else:
-                    # Fallback to standard position sizing
-                    position_size = (balance * config.RISK_PERCENT / 100) / current_price
-                    logger.info(f"📊 Standard Position Size: {position_size:.2f} {symbol.replace('USDT', '')}")
-            else:
-                # Standard position sizing
-                position_size = (balance * config.RISK_PERCENT / 100) / current_price
-                logger.info(f"📊 Standard Position Size: {position_size:.2f} {symbol.replace('USDT', '')}")
-            
-            # Ensure minimum position size
-            if position_size < config.MIN_ORDER_SIZE_DOGE:
-                position_size = config.MIN_ORDER_SIZE_DOGE
-                logger.info(f"⚠️ Adjusted to minimum position size: {position_size}")
-            
-            # Calculate stop loss and take profit with dynamic levels
-            dynamic_levels = signal_data.get('dynamic_levels', {})
-            
-            if dynamic_levels and getattr(config, 'USE_DYNAMIC_ATR_LEVELS', False):
-                if signal == "BUY":
-                    stop_loss = dynamic_levels['long_stop_loss']
-                    take_profit = dynamic_levels['long_take_profit']
-                    logger.info(f"🎯 Dynamic Levels (LONG): SL={stop_loss:.4f}, TP={take_profit:.4f}")
-                else:  # SELL
-                    stop_loss = dynamic_levels['short_stop_loss']
-                    take_profit = dynamic_levels['short_take_profit']
-                    logger.info(f"🎯 Dynamic Levels (SHORT): SL={stop_loss:.4f}, TP={take_profit:.4f}")
-            else:
-                # Fallback to fixed percentages
-                if signal == "BUY":
-                    stop_loss = current_price * (1 - config.STOP_LOSS_PERCENT / 100)
-                    take_profit = current_price * (1 + config.TAKE_PROFIT_PERCENT / 100)
-                    logger.info(f"📊 Fixed Levels (LONG): SL={stop_loss:.4f}, TP={take_profit:.4f}")
-                else:  # SELL
-                    stop_loss = current_price * (1 + config.STOP_LOSS_PERCENT / 100)
-                    take_profit = current_price * (1 - config.TAKE_PROFIT_PERCENT / 100)
-                    logger.info(f"📊 Fixed Levels (SHORT): SL={stop_loss:.4f}, TP={take_profit:.4f}")
-
-            if position_size > 0:
-                if signal == 'BUY':
-                    logger.info(f"� Executing LONG order for {position_size} {symbol} at {current_price:.4f}")
-                    order = binance.place_order(symbol, 'BUY', position_size, 'market')
-                    if order:
-                        logger.info(f"✅ LONG order placed successfully")
-                        
-                        # Send email notification for new position
-                        if email_notifier:
-                            email_notifier.send_trade_notification(
-                                symbol=symbol,
-                                action='OPEN LONG',
-                                price=current_price,
-                                quantity=position_size,
-                                order_id=str(order.get('id', 'N/A')),
-                                notes=f"New position opened"
-                            )
-                    else:
-                        logger.error(f"❌ Failed to place LONG order for {position_size} {symbol}")
-                else:  # SELL
-                    logger.info(f"🔻 Executing SHORT order for {position_size} {symbol} at {current_price:.4f}")
-                    order = binance.place_order(symbol, 'SELL', position_size, 'market')
-                    if order:
-                        logger.info(f"✅ SHORT order placed successfully")
-                        
-                        # Send email notification for new position
-                        if email_notifier:
-                            email_notifier.send_trade_notification(
-                                symbol=symbol,
-                                action='OPEN SHORT',
-                                price=current_price,
-                                quantity=position_size,
-                                order_id=str(order.get('id', 'N/A')),
-                                notes=f"New position opened"
-                            )
-                    else:
-                        logger.error(f"❌ Failed to place SHORT order for {position_size} {symbol}")
-            else:
-                logger.warning("⚠️ Position size calculation error")
-        else:
+        # Skip if no valid signal
+        if signal == "HOLD":
             logger.info("⏸️ No trading signal. Waiting for next opportunity...")
+            return
+            
+        # Get current price and account balance
+        current_price = float(market_data['close'].iloc[-1])
+        balance = binance.get_account_balance()
+        
+        # Calculate position size using risk management
+        risk_per_trade = 1.0  # 1% risk per trade
+        
+        # Get ATR for dynamic levels
+        atr = strategy.tech_indicators.calculate_atr(market_data, period=14).iloc[-1]
+        
+        # Dynamic risk/reward based on market regime
+        risk_reward_ratio = 2.0  # Default
+        if market_regime == 'trending':
+            risk_reward_ratio = 2.5  # Higher R:R in trending markets
+        elif market_regime == 'range':
+            risk_reward_ratio = 1.5  # Lower R:R in ranging markets
+        
+        # Calculate stop loss and take profit
+        if signal == "BUY":
+            stop_loss = current_price - (atr * 2.0)  # 2 ATR stop
+            take_profit = current_price + (atr * 2.0 * risk_reward_ratio)
+        else:  # SELL
+            stop_loss = current_price + (atr * 2.0)
+            take_profit = current_price - (atr * 2.0 * risk_reward_ratio)
+        
+        # Calculate position size based on risk
+        position_size = risk_manager.calculate_position_size(
+            account_balance=balance,
+            entry_price=current_price,
+            stop_loss_price=stop_loss,
+            risk_percent=risk_per_trade
+        )
+        
+        # Ensure minimum order size
+        min_order_size = 10  # Minimum 10 DOGE
+        position_size = max(position_size, min_order_size)
+        
+        # Log trade details
+        logger.info(f"🎯 Trade Setup:")
+        logger.info(f"   Market Regime: {market_regime.upper()}")
+        logger.info(f"   Entry: {current_price:.6f}")
+        logger.info(f"   Stop Loss: {stop_loss:.6f} ({(abs(stop_loss-current_price)/current_price*100):.2f}%)")
+        logger.info(f"   Take Profit: {take_profit:.6f} ({(abs(take_profit-current_price)/current_price*100):.2f}%)")
+        logger.info(f"   Position Size: {position_size:.2f} {symbol.replace('USDT', '')} (${position_size * current_price:.2f})")
+        logger.info(f"   Risk: {risk_per_trade}% of ${balance:.2f} = ${balance * (risk_per_trade/100):.2f}")
+        
+        # Execute trade
+        if signal == "BUY":
+            logger.info(f"🚀 Executing BUY order for {position_size:.2f} {symbol} at {current_price:.6f}")
+            order = binance.place_order(
+                symbol=symbol,
+                side='BUY',
+                quantity=position_size,
+                price=current_price,
+                order_type='MARKET'
+            )
+        else:  # SELL
+            logger.info(f"� Executing SELL order for {position_size:.2f} {symbol} at {current_price:.6f}")
+            order = binance.place_order(
+                symbol=symbol,
+                side='SELL',
+                quantity=position_size,
+                price=current_price,
+                order_type='MARKET'
+            )
+        
+        if order and 'orderId' in order:
+            logger.info(f"✅ Order executed successfully! Order ID: {order['orderId']}")
+            
+            # Store trade details for tracking
+            trade_details = {
+                'entry_price': current_price,
+                'stop_loss': stop_loss,
+                'take_profit': take_profit,
+                'position_size': position_size,
+                'direction': signal,
+                'entry_time': datetime.utcnow().isoformat(),
+                'market_regime': market_regime,
+                'risk_reward_ratio': risk_reward_ratio
+            }
+            
+            # Optionally save trade to database or file
+            self._save_trade_details(trade_details)
+            
+        else:
+            logger.error("❌ Failed to execute order!")
             
     except Exception as e:
         logger.error(f"❌ An unexpected error occurred in check_and_trade: {e}")

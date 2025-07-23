@@ -3,6 +3,7 @@ import numpy as np
 from typing import Tuple, Dict, List, Optional
 import pandas_ta as ta
 from technical_indicators import TechnicalIndicators
+import logging
 
 class SMCStrategy:
     """
@@ -287,92 +288,112 @@ class SMCStrategy:
     
     def get_trading_signal(self, df: pd.DataFrame) -> Dict:
         """
-        Enhanced main method to get trading signals with ATR-based levels and pattern confirmation
+        Generate trading signals with enhanced entry conditions
         """
-        if len(df) < 50:
-            return {"signal": "HOLD", "reason": "Insufficient data", "confidence": 0}
-        
-        # Check if market is tradeable
-        tradeable, reason = self._is_market_tradeable(df)
-        if not tradeable:
-            return {"signal": "HOLD", "reason": reason, "confidence": 0}
-        
-        # Calculate ATR and volatility metrics
-        atr = self.tech_indicators.calculate_atr(df, period=self.config.ATR_PERIOD)
-        atr_ma = atr.rolling(window=self.config.ATR_MA_PERIOD).mean()
-        
-        current_atr = atr.iloc[-1] if not atr.empty else 0
-        current_atr_ma = atr_ma.iloc[-1] if not atr_ma.empty else current_atr
-        current_price = df['close'].iloc[-1]
-        
-        # Get volatility state
-        volatility_state = self.tech_indicators.get_market_volatility_state(current_atr, current_atr_ma)
-        
-        # Check for engulfing patterns if enabled
-        engulfing_patterns = {}
-        if getattr(self.config, 'USE_ENGULFING_FILTER', False):
-            engulfing_patterns = self.tech_indicators.detect_engulfing_patterns(df)
-        
-        # Get base SMC signal
-        base_signal = self._get_base_smc_signal(df)
-        
-        if base_signal["signal"] == "HOLD":
-            return base_signal
-        
-        # Apply engulfing pattern filter
-        if getattr(self.config, 'USE_ENGULFING_FILTER', False):
-            signal_direction = base_signal["signal"]
+        try:
+            # Add technical indicators
+            df = df.copy()
             
-            # For BUY signals, check for bullish engulfing confirmation
-            if signal_direction == "BUY" and not engulfing_patterns.get('bullish_engulfing', False):
-                return {
-                    "signal": "HOLD", 
-                    "reason": "BUY signal but no bullish engulfing confirmation",
-                    "confidence": 0
-                }
+            # Calculate RSI using pandas_ta's rsi function
+            df['rsi'] = ta.rsi(df['close'], length=self.config.RSI_LENGTH)
             
-            # For SELL signals, check for bearish engulfing confirmation
-            if signal_direction == "SELL" and not engulfing_patterns.get('bearish_engulfing', False):
-                return {
-                    "signal": "HOLD", 
-                    "reason": "SELL signal but no bearish engulfing confirmation",
-                    "confidence": 0
-                }
-        
-        # Calculate dynamic ATR-based levels
-        dynamic_levels = {}
-        if getattr(self.config, 'USE_DYNAMIC_ATR_LEVELS', False) and current_atr > 0:
-            atr_multiplier = self.tech_indicators.calculate_dynamic_atr_multiplier(volatility_state)
-            dynamic_levels = self.tech_indicators.atr_based_levels(
-                current_price, current_atr, atr_multiplier, testnet=self.testnet
-            )
-        
-        # Calculate adaptive position size
-        adaptive_position_size = None
-        if getattr(self.config, 'USE_ADAPTIVE_POSITION_SIZE', False):
-            # This would need account balance - will be calculated in main.py
-            adaptive_position_size = {
-                'current_atr': current_atr,
-                'atr_ma': current_atr_ma,
-                'volatility_state': volatility_state
+            # Calculate SMA using pandas_ta's sma function
+            df['sma_20'] = ta.sma(df['close'], length=20)
+            
+            # Add volume confirmation
+            df = TechnicalIndicators.add_volume_confirmation(df)
+            
+            # Detect candlestick patterns
+            df = TechnicalIndicators.detect_candlestick_patterns(df)
+            
+            # Get market regime
+            market_regime = TechnicalIndicators.get_market_regime(df)
+            
+            # Initialize signal
+            signal = "HOLD"
+            confidence = 0
+            reasons = []
+            
+            # Get latest data point
+            latest = df.iloc[-1]
+            
+            # Volume confirmation
+            volume_confirmed = latest.get('volume_confirmed', False)
+            
+            # Check for buy signals
+            buy_conditions = [
+                latest['rsi'] < self.config.RSI_OVERSOLD if pd.notna(latest['rsi']) else False,
+                latest['close'] > latest['sma_20'] if pd.notna(latest['sma_20']) else False,
+                latest.get('bullish_engulfing', False) or latest.get('hammer', False),
+                volume_confirmed
+            ]
+            
+            # Check for sell signals
+            sell_conditions = [
+                latest['rsi'] > self.config.RSI_OVERBOUGHT if pd.notna(latest['rsi']) else False,
+                latest['close'] < latest['sma_20'] if pd.notna(latest['sma_20']) else False,
+                latest.get('bearish_engulfing', False) or latest.get('shooting_star', False),
+                volume_confirmed
+            ]
+            
+            # Adjust confidence based on number of conditions met
+            buy_score = sum([1 for cond in buy_conditions if cond is True])
+            sell_score = sum([1 for cond in sell_conditions if cond is True])
+            
+            # Generate signal based on conditions and market regime
+            if buy_score >= 3:  # At least 3 out of 4 conditions
+                signal = "BUY"
+                confidence = min(100, 50 + (buy_score * 10))  # 80-90% confidence
+                reasons.append(f"Bullish setup: {buy_score}/4 conditions met")
+                
+                # Adjust for market regime
+                if market_regime == 'trending':
+                    confidence += 5
+                    reasons.append("Trending market favors trend-following")
+                
+            elif sell_score >= 3:
+                signal = "SELL"
+                confidence = min(100, 50 + (sell_score * 10))
+                reasons.append(f"Bearish setup: {sell_score}/4 conditions met")
+                
+                # Adjust for market regime
+                if market_regime == 'trending':
+                    confidence += 5
+                    reasons.append("Trending market favors trend-following")
+            
+            # Add market regime to reasons
+            reasons.append(f"Market regime: {market_regime.upper()}")
+            
+            # Add volume status
+            reasons.append(f"Volume {'confirmed' if volume_confirmed else 'below average'}")
+            
+            # Add RSI value if available
+            if pd.notna(latest['rsi']):
+                reasons.append(f"RSI: {latest['rsi']:.1f}")
+            
+            # Log the final decision
+            logging.info(f"Signal: {signal} (Confidence: {confidence}%)")
+            for reason in reasons:
+                logging.info(f" - {reason}")
+            
+            return {
+                'signal': signal,
+                'confidence': confidence,
+                'reasons': reasons,
+                'market_regime': market_regime,
+                'volume_confirmed': volume_confirmed,
+                'rsi': latest.get('rsi'),
+                'price': latest['close']
             }
-        
-        # Enhanced signal with new features
-        enhanced_signal = {
-            **base_signal,
-            'atr_data': {
-                'current_atr': current_atr,
-                'atr_ma': current_atr_ma,
-                'volatility_state': volatility_state,
-                'atr_percent': (current_atr / current_price) * 100
-            },
-            'engulfing_patterns': engulfing_patterns,
-            'dynamic_levels': dynamic_levels,
-            'adaptive_sizing': adaptive_position_size
-        }
-        
-        return enhanced_signal
-    
+            
+        except Exception as e:
+            logging.error(f"Error generating trading signal: {e}", exc_info=True)
+            return {
+                'signal': 'HOLD',
+                'confidence': 0,
+                'reasons': [f"Error: {str(e)}"]
+            }
+
     def _get_base_smc_signal(self, df: pd.DataFrame) -> Dict:
         """
         Get base SMC trading signal (original logic)
