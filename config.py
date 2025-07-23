@@ -49,8 +49,9 @@ MAX_POSITION_MULTIPLIER = 1.5  # Reduced from 2.0 for better risk control
 # Minimum volatility (ATR as a percentage of price) to consider a trade
 MIN_ATR_PERCENT = 0.3  # Reduced from 0.5% to allow more trades
 
-# Minimum volume (compared to its moving average) to consider a trade
-MIN_VOLUME_RATIO = 0.05  # Ultra-low to handle DOGE's inconsistent volume patterns
+# Volume settings
+MIN_VOLUME_RATIO = 0.005  # Reduced from 0.01 to allow trading in lower volume conditions
+VOLUME_MA_PERIOD = 20  # Period for volume moving average
 
 # STRATEGY SETTINGS
 # -- Moving Average --
@@ -59,8 +60,8 @@ MA_PERIOD = 20  # Reduced from 50 for more trend signals
 # -- RSI --
 RSI_TIMEFRAME = '15m'  # 15-minute candles
 RSI_LENGTH = 10        # Reduced from 14 for more signals
-RSI_OVERSOLD = 32      # Slightly increased from 30
-RSI_OVERBOUGHT = 68    # Slightly reduced from 70
+RSI_OVERSOLD = 40      # Increased from 32 to catch more opportunities
+RSI_OVERBOUGHT = 60    # Reduced from 68 to catch more opportunities
 
 # Execution settings
 CHECK_INTERVAL = 5     # Check every 5 minutes

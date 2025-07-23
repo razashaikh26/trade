@@ -22,29 +22,59 @@ class SMCStrategy:
         self.tech_indicators = TechnicalIndicators()
         
     def _is_market_tradeable(self, df: pd.DataFrame) -> Tuple[bool, str]:
-        """Check if the market has enough volume and volatility to trade"""
-        # Volatility Check (ATR)
-        atr = self.tech_indicators.calculate_atr(df, period=self.config.ATR_PERIOD)
-        if atr.empty or pd.isna(atr.iloc[-1]):
-            return False, "Unable to calculate ATR"
-            
-        current_atr = atr.iloc[-1]
-        current_price = df['close'].iloc[-1]
-        atr_percent = (current_atr / current_price) * 100
-        
-        if atr_percent < self.config.MIN_ATR_PERCENT:
-            return False, f"Low volatility (ATR: {atr_percent:.2f}%)"
-        
-        # Volume Check
-        volume_ma = df['volume'].rolling(window=20).mean().iloc[-1]
-        current_volume = df['volume'].iloc[-1]
-        volume_ratio = current_volume / volume_ma
-        
-        if volume_ratio < self.config.MIN_VOLUME_RATIO:
-            return False, f"Low volume (Ratio: {volume_ratio:.2f})"
-            
-        return True, "Market is tradeable"
+        """Check if market conditions are suitable for trading"""
+        try:
+            # Check if we have enough data
+            if len(df) < 20:  # Minimum required candles
+                logging.warning("⚠️ Not enough data points for analysis")
+                return False, "Insufficient data"
 
+            # Get current price and ATR
+            current_price = df['close'].iloc[-1]
+            atr = self.tech_indicators.calculate_atr(df, period=14)
+            current_atr = atr.iloc[-1]
+            
+            # Calculate ATR as percentage of price
+            atr_percent = (current_atr / current_price) * 100
+            
+            logging.info(f"📊 Market Tradeability Check:")
+            logging.info(f"   Current Price: {current_price:.6f}")
+            logging.info(f"   ATR: {current_atr:.6f} ({atr_percent:.2f}% of price)")
+            logging.info(f"   Minimum ATR% required: {self.config.MIN_ATR_PERCENT}%")
+            
+            # Check ATR volatility
+            if atr_percent < self.config.MIN_ATR_PERCENT:
+                logging.warning(f"   ⚠️ Low volatility (ATR: {atr_percent:.2f}% < {self.config.MIN_ATR_PERCENT}%)")
+                return False, f"Low volatility (ATR: {atr_percent:.2f}%)"
+            
+            # Check volume
+            volume_ma = df['volume'].rolling(window=20).mean()
+            current_volume = df['volume'].iloc[-1]
+            volume_ratio = current_volume / volume_ma.iloc[-1] if volume_ma.iloc[-1] > 0 else 0
+            
+            logging.info(f"   Current Volume: {current_volume:.2f}")
+            logging.info(f"   20-period Avg Volume: {volume_ma.iloc[-1]:.2f}")
+            logging.info(f"   Volume Ratio: {volume_ratio:.4f} (Min: {self.config.MIN_VOLUME_RATIO})")
+            
+            if volume_ratio < self.config.MIN_VOLUME_RATIO:
+                logging.warning(f"   ⚠️ Volume below threshold: {volume_ratio:.4f} < {self.config.MIN_VOLUME_RATIO}")
+                return False, f"Volume below threshold ({volume_ratio:.2f} < {self.config.MIN_VOLUME_RATIO})"
+            
+            # Check if market is open (not during weekends or holidays)
+            # This is a simplified check - you might want to use a proper market calendar
+            current_time = pd.Timestamp.now()
+            if current_time.weekday() >= 5:  # Weekend
+                logging.warning(f"   ⚠️ Market closed (weekend)")
+                return False, "Market closed (weekend)"
+            
+            # Check if within trading hours (24/7 for crypto)
+            logging.info("   ✅ Market is tradeable")
+            return True, "Market is tradeable"
+            
+        except Exception as e:
+            logging.error(f"❌ Error checking market tradeability: {str(e)}", exc_info=True)
+            return False, f"Error: {str(e)}"
+    
     def identify_market_structure(self, df: pd.DataFrame) -> Dict:
         """Identify market structure: HH, HL, LH, LL"""
         if len(df) < 20:
@@ -395,20 +425,18 @@ class SMCStrategy:
             }
 
     def _get_base_smc_signal(self, df: pd.DataFrame) -> Dict:
-        """
-        Get base SMC trading signal (original logic)
-        """
+        """Generate base trading signal using Smart Money Concepts"""
         # Market structure analysis
         market_structure = self.identify_market_structure(df)
+        logging.info(f"🔍 Market Structure: {market_structure}")
         
         # Order block analysis
         order_blocks = self.identify_order_blocks(df)
+        logging.info(f"🔍 Order Blocks: {len(order_blocks)} found")
         
         # Fair Value Gap analysis
         fvgs = self.identify_fair_value_gaps(df)
-        
-        # Liquidity analysis
-        liquidity_zones = self.identify_liquidity_zones(df)
+        logging.info(f"🔍 Fair Value Gaps: {len(fvgs)} found")
         
         # RSI analysis
         rsi_signal = self._analyze_rsi(df)
@@ -420,60 +448,80 @@ class SMCStrategy:
         signal_strength = 0
         reasons = []
         
-        # Market structure signals
+        # 1. Market structure signals (strongest weight)
         if market_structure["bos"] or market_structure["choch"]:
             if market_structure["trend"] == "BULLISH":
-                signal_strength += 2
+                signal_strength += 3  # Increased from 2
                 reasons.append("Bullish market structure break")
+                logging.info("✅ Added +3 for Bullish market structure break")
             elif market_structure["trend"] == "BEARISH":
-                signal_strength -= 2
+                signal_strength -= 3  # Increased from 2
                 reasons.append("Bearish market structure break")
+                logging.info("✅ Added -3 for Bearish market structure break")
         
-        # Order block signals
+        # 2. RSI signals (strong weight)
+        if rsi_signal["signal"] == "BUY":
+            # Add more weight if RSI is significantly oversold
+            rsi_value = rsi_signal["value"]
+            rsi_strength = max(1, (self.config.RSI_OVERSOLD - rsi_value) / 2)
+            signal_strength += rsi_strength
+            reasons.append(f"RSI oversold: {rsi_value:.1f} (strength: +{rsi_strength:.1f})")
+            logging.info(f"✅ Added +{rsi_strength:.1f} for RSI oversold: {rsi_value:.1f}")
+        elif rsi_signal["signal"] == "SELL":
+            rsi_value = rsi_signal["value"]
+            rsi_strength = max(1, (rsi_value - self.config.RSI_OVERBOUGHT) / 2)
+            signal_strength -= rsi_strength
+            reasons.append(f"RSI overbought: {rsi_value:.1f} (strength: -{rsi_strength:.1f})")
+            logging.info(f"✅ Added -{rsi_strength:.1f} for RSI overbought: {rsi_value:.1f}")
+        
+        # 3. Moving average signals (medium weight)
+        if ma_trend["signal"] == "BUY":
+            signal_strength += 1.5  # Increased from 1
+            reasons.append("Price above MA trend")
+            logging.info(f"✅ Added +1.5 for Price above MA ({ma_trend['ma_value']:.6f})")
+        elif ma_trend["signal"] == "SELL":
+            signal_strength -= 1.5  # Increased from 1
+            reasons.append("Price below MA trend")
+            logging.info(f"✅ Added -1.5 for Price below MA ({ma_trend['ma_value']:.6f})")
+        
+        # 4. Order block signals (weaker weight)
         current_price = df['close'].iloc[-1]
         for ob in order_blocks:
             if ob["type"] == "bullish" and current_price <= ob["high"] and current_price >= ob["low"]:
-                signal_strength += 1
+                signal_strength += 0.5  # Reduced from 1
                 reasons.append("Price at bullish order block")
+                logging.info(f"✅ Added +0.5 for Bullish order block at {ob['low']}-{ob['high']}")
             elif ob["type"] == "bearish" and current_price <= ob["high"] and current_price >= ob["low"]:
-                signal_strength -= 1
+                signal_strength -= 0.5  # Reduced from 1
                 reasons.append("Price at bearish order block")
+                logging.info(f"✅ Added -0.5 for Bearish order block at {ob['low']}-{ob['high']}")
         
-        # Fair Value Gap signals
+        # 5. FVG signals (weaker weight)
         for fvg in fvgs:
             if fvg["type"] == "bullish" and current_price >= fvg["low"] and current_price <= fvg["high"]:
-                signal_strength += 1
+                signal_strength += 0.5  # Reduced from 1
                 reasons.append("Price in bullish FVG")
+                logging.info(f"✅ Added +0.5 for Bullish FVG at {fvg['low']}-{fvg['high']}")
             elif fvg["type"] == "bearish" and current_price >= fvg["low"] and current_price <= fvg["high"]:
-                signal_strength -= 1
+                signal_strength -= 0.5  # Reduced from 1
                 reasons.append("Price in bearish FVG")
+                logging.info(f"✅ Added -0.5 for Bearish FVG at {fvg['low']}-{fvg['high']}")
         
-        # RSI signals
-        if rsi_signal["signal"] == "BUY":
-            signal_strength += 1
-            reasons.append(f"RSI oversold: {rsi_signal['value']:.1f}")
-        elif rsi_signal["signal"] == "SELL":
-            signal_strength -= 1
-            reasons.append(f"RSI overbought: {rsi_signal['value']:.1f}")
+        logging.info(f"🔢 Final Signal Strength: {signal_strength:.2f}")
         
-        # Moving average signals
-        if ma_trend["signal"] == "BUY":
-            signal_strength += 1
-            reasons.append("Price above MA trend")
-        elif ma_trend["signal"] == "SELL":
-            signal_strength -= 1
-            reasons.append("Price below MA trend")
-        
-        # Determine final signal
-        if signal_strength >= 1:  # Lowered from 2 to allow single strong signals
+        # Determine final signal with dynamic confidence
+        if signal_strength > 0.5:  # Lowered threshold from 1
             signal = "BUY"
-            confidence = min(signal_strength * 50, 100)  # Higher multiplier for single signals
-        elif signal_strength <= -1:  # Lowered from -2 to allow single strong signals
-            signal = "SELL" 
-            confidence = min(abs(signal_strength) * 50, 100)  # Higher multiplier for single signals
+            confidence = min(abs(signal_strength) * 40, 100)  # Increased multiplier from 30
+            logging.info(f"🎯 FINAL SIGNAL: BUY (Confidence: {confidence:.1f}%)")
+        elif signal_strength < -0.5:  # Lowered threshold from -1
+            signal = "SELL"
+            confidence = min(abs(signal_strength) * 40, 100)  # Increased multiplier from 30
+            logging.info(f"🎯 FINAL SIGNAL: SELL (Confidence: {confidence:.1f}%)")
         else:
             signal = "HOLD"
             confidence = 0
+            logging.info("🎯 FINAL SIGNAL: HOLD (No clear signal)")
         
         return {
             "signal": signal,
@@ -482,7 +530,6 @@ class SMCStrategy:
             "market_structure": market_structure,
             "order_blocks": order_blocks,
             "fvgs": fvgs,
-            "liquidity_zones": liquidity_zones,
             "rsi": rsi_signal,
             "ma_trend": ma_trend,
             "signal_strength": signal_strength
@@ -496,25 +543,38 @@ class SMCStrategy:
         rsi = ta.rsi(df['close'], length=self.config.RSI_LENGTH)
         current_rsi = rsi.iloc[-1]
         
+        # Debug logging
+        logging.info(f" RSI Analysis: Current RSI={current_rsi:.1f}, Oversold={self.config.RSI_OVERSOLD}, Overbought={self.config.RSI_OVERBOUGHT}")
+        
         if current_rsi < self.config.RSI_OVERSOLD:
+            logging.info(f" RSI BUY Signal: {current_rsi:.1f} < {self.config.RSI_OVERSOLD}")
             return {"signal": "BUY", "value": current_rsi}
         elif current_rsi > self.config.RSI_OVERBOUGHT:
+            logging.info(f" RSI SELL Signal: {current_rsi:.1f} > {self.config.RSI_OVERBOUGHT}")
             return {"signal": "SELL", "value": current_rsi}
         else:
+            logging.info(f" RSI NEUTRAL: {current_rsi:.1f} between {self.config.RSI_OVERSOLD}-{self.config.RSI_OVERBOUGHT}")
             return {"signal": "NEUTRAL", "value": current_rsi}
 
     def _analyze_moving_average(self, df: pd.DataFrame) -> Dict:
-        """Analyze moving average trend"""
-        # Use configured MA period instead of hardcoded values
+        """Analyze moving average trend with detailed logging"""
+        # Use configured MA period
         ma = df['close'].rolling(window=self.config.MA_PERIOD).mean()
-        
         current_price = df['close'].iloc[-1]
         ma_value = ma.iloc[-1]
         
-        # Simplified logic: just check if price is above/below MA
+        logging.info(f"📈 MA Analysis (Period={self.config.MA_PERIOD}):")
+        logging.info(f"   Current Price: {current_price:.6f}")
+        logging.info(f"   MA Value: {ma_value:.6f}")
+        logging.info(f"   Price vs MA: {current_price - ma_value:.6f} ({'ABOVE' if current_price > ma_value else 'BELOW' if current_price < ma_value else 'AT'} MA)")
+        
+        # Determine trend
         if current_price > ma_value:
+            logging.info(f"   ✅ Price is ABOVE MA - Bullish Signal")
             return {"signal": "BUY", "ma_value": ma_value}
         elif current_price < ma_value:
+            logging.info(f"   ✅ Price is BELOW MA - Bearish Signal")
             return {"signal": "SELL", "ma_value": ma_value}
         else:
+            logging.info(f"   ⏸️  Price is AT MA - Neutral")
             return {"signal": "NEUTRAL", "ma_value": ma_value}
